@@ -1,0 +1,16 @@
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.exe
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.xml
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.pdb
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\bin\Debug\OL3Designer.exe
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\bin\Debug\OL3Designer.pdb
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\bin\Debug\OL3Designer.xml
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.Form1.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.Resources.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OLStylePicker.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OLStylePickerDialog.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OLStylePickerDialogIconControl.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OLStylePickerDialogLineControl.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OLStylePickerDialogPointControl.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OLStylePickerDialogPolygonControl.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OLStylePickerDialogTextControl.resources
+C:\Users\John\Documents\Visual Studio 2013\Projects\OL3Designer\OL3Designer\obj\Debug\OL3StylePicker.vbproj.GenerateResource.Cache

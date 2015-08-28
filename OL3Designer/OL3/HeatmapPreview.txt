@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"  style='margin:0;padding:0;width: 100%; height: 100%;overflow:hidden;'>
+  <head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  </head>
+  
+	<body  style='margin:0;padding:0;width: 100%; height: 100%;'>
+<script src='OLFILEPATHol.js' type='text/javascript'></script> <link rel='stylesheet' href='ol.css' type='text/css'>
+<script src='OLFILEPATHproj4.js' type='text/javascript'></script> 
+
+
+<script src='OLFILEPATHbase.js' type='text/javascript'></script>
+<script src='OLFILEPATHol-deps.js' type='text/javascript'></script>
+
+<table style='height:100%;width:100%;'><tr><td  id='table0_2' style='height:100%;width:80%;'><div id='map1' style='position:relative;height:100%;width:100%;'></div></td></tr></table><script type='text/javascript'>
+
+
+
+
+
+//************** MAP 1*******************>>>
+
+
+//**************Layer declarations******************
+var map1_vectorLayer_0;
+var map1_vectorSource_0;
+
+var registerOfLayerNames = ["points"];
+
+
+
+//**************Projection definition******************
+
+proj4.defs('USER:0',"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs "); 
+proj4.defs('USER:9999',"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs");
+
+
+//**************basemaps******************
+//var map1_Basemap = new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})});
+
+//**************Layer sources******************
+ map1_vectorSource_0a  = new ol.source.GeoJSON({
+projection: 'USER:9999',
+object: {'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:0'}},"features":[{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -21.897357, 64.153348 ] },"properties": {"id":1}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 10.077424, 53.673497 ] },"properties": {"id":0.5}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 12.391388, 41.869931 ] },"properties": {"id":0.9}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -3.701182, 40.284307 ] },"properties": {"id":0.7}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 2.294089, 48.875917 ] },"properties": {"id":0.9}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -0.254031, 51.513209 ] },"properties": {"id":1}}]}
+});
+
+var map1_vectorSource_0 =  new ol.source.GeoJSON({projection: 'USER:9999'});
+map1_vectorSource_0_SetSource();
+
+function map1_vectorSource_0_SetSource() {
+map1_vectorSource_0.clear('fast');
+map1_vectorSource_0.addFeatures(map1_vectorSource_0a.getFeatures());
+}
+
+//**************Layer layers******************
+ map1_vectorLayer_0  = new ol.layer.Heatmap({
+title: 'points',
+geoType: 'Point',
+weight:'id',
+name: 'map1_vectorLayer_0',
+source: map1_vectorSource_0,
+gradient: [OLGRADIENT],
+  blur: OLBLUR,
+  radius: OLRADIUS
+});
+
+
+//**************Map Parameters******************
+var map1 = new ol.Map({
+layers: [map1_vectorLayer_0],
+target: document.getElementById('map1'),
+controls: [new ol.control.Zoom()],
+view: new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:9999'})
+});
+setMaxExtent(map1);
+
+
+
+//****************Extent Functions ********************
+//only add once , not with every map
+
+function setMaxExtent(theMap){
+var hasVectorLayer = 0;
+//get map view
+var view = theMap.getView();
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+
+//cycle through layers
+for (i = 0; i < theMap.getLayers().getLength(); i++) { 
+if (theMap.getLayers().item(i) instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = theMap.getLayers().item(i).getSource().getExtent();
+}
+//alert(theMap.getLayers().item(i).get('name'));
+hasVectorLayer = 1;
+tempExtent = theMap.getLayers().item(i).getSource().getExtent();
+//minx
+if(tempExtent[0] < theExtent[0]){theExtent[0] = tempExtent[0]}
+//miny
+if(tempExtent[1] < theExtent[1]){theExtent[1] = tempExtent[1]}
+//maxx
+if(tempExtent[2] > theExtent[2]){theExtent[2] = tempExtent[2]}
+//maxy
+if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
+}
+}
+if (hasVectorLayer == 1){
+view.fitExtent(theExtent , theMap.getSize());
+}
+//}
+}
+
+
+
+
+
+
+
+</script></body></html>

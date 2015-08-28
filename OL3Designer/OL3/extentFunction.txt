@@ -1,0 +1,85 @@
+//only add once , not with every map
+
+function setMaxExtent(theMap){
+var hasVectorLayer = 0;
+//get map view
+var view = theMap.getView();
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+
+//cycle through layers
+for (i = 0; i < theMap.getLayers().getLength(); i++) { 
+if (theMap.getLayers().item(i) instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = theMap.getLayers().item(i).getSource().getExtent();
+}
+//alert(theMap.getLayers().item(i).get('name'));
+hasVectorLayer = 1;
+tempExtent = theMap.getLayers().item(i).getSource().getExtent();
+//minx
+if(tempExtent[0] < theExtent[0]){theExtent[0] = tempExtent[0]}
+//miny
+if(tempExtent[1] < theExtent[1]){theExtent[1] = tempExtent[1]}
+//maxx
+if(tempExtent[2] > theExtent[2]){theExtent[2] = tempExtent[2]}
+//maxy
+if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
+}
+}
+if (hasVectorLayer == 1){
+view.fitExtent(theExtent , theMap.getSize());
+}
+//}
+}
+
+
+function setMaxExtentByLayer(theMap,layerArray){
+var hasVectorLayer = 0;
+//get map view
+var view = theMap.getView();
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+
+//cycle through layers
+for (i = 0; i < layerArray.length; i++) { 
+if (theMap.getLayers().item(layerArray[i]) instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = theMap.getLayers().item(layerArray[i]).getSource().getExtent();
+}
+
+hasVectorLayer = 1;
+tempExtent = theMap.getLayers().item(layerArray[i]).getSource().getExtent();
+//minx
+if(tempExtent[0] < theExtent[0]){theExtent[0] = tempExtent[0]}
+//miny
+if(tempExtent[1] < theExtent[1]){theExtent[1] = tempExtent[1]}
+//maxx
+if(tempExtent[2] > theExtent[2]){theExtent[2] = tempExtent[2]}
+//maxy
+if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
+}
+}
+if (hasVectorLayer == 1){
+view.fitExtent(theExtent , theMap.getSize());
+}
+//}
+}
+
+
+function setMaxExtentCoords(theMap,theCoords){
+//get map view
+var view = theMap.getView();
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+theExtent = theMap.getLayers().item(0).getSource().getExtent();
+
+//minx
+theExtent[0] = theCoords[0];
+//miny
+theExtent[1] = theCoords[1];
+//maxx
+theExtent[2] = theCoords[2];
+//maxy
+theExtent[3] = theCoords[3];
+
+}

@@ -1,0 +1,12 @@
+Direction Marker:1,0,bottom-left,0,fraction,0,pixels;
+Green Flat Headed Pin:1,0,bottom-left,0,fraction,0,pixels;
+Green Marker:1,0,bottom-left,0,fraction,0,pixels;
+Black Marker:1,0,bottom-left,0,fraction,0,pixels;
+Blue Dot:1,0,bottom-left,0,fraction,0,pixels;
+Green Pin:1,0,bottom-left,0,fraction,0,pixels;
+Orange Pin:1,0,bottom-left,0,fraction,0,pixels;
+Straight Blue Pin:1,0,bottom-left,0,fraction,0,pixels;
+Blue Dashed:2,#0000FF,round,round,0,4;
+Red Line:2,#FF0000,round,round,0,0;
+Blue Point:6,2,#00008B,#0000FF;
+Red Point:8,2,#FF0000,#FFB6C1;

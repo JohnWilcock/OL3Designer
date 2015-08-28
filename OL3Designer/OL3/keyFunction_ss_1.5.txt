@@ -1,0 +1,475 @@
+function createKey(keyObject){
+var changeHandlerEvals = "";
+keyLayers = keyObject['keyLayers'];
+keyDiv = keyObject['keyDiv'];
+keyHeading = keyObject['keyTitle'];
+keyPadding = keyObject['keyPadding'];
+keyPatchSize = keyObject['keyPatchSize'];
+
+//blank anything in div
+document.getElementById(keyDiv).innerHTML = "";
+
+//get info
+var numberOfKeyLayers = keyLayers.length;
+var theKeyHTML = "<div  style='padding:" + keyPadding + "px;'>" + keyHeading;
+
+//for each layer you need 1. the styles . 2. the values which relate to them
+//alert(keyLayers[0].get('title'));
+for (i = 0; i < keyLayers.length; i++) { 
+var layerName = keyLayers[i].get('name');
+var styleSelectorIndex = 0;
+
+//get number of dynamic styles
+var numStyles = getNumStyles(layerName + "_Style");
+
+//for each layer
+//create container table
+theKeyHTML = theKeyHTML + "<table >";
+
+//************setup header*****************
+theKeyHTML = theKeyHTML + "<tr>";
+
+//layer switch
+if(numStyles == 1){
+	theKeyHTML = theKeyHTML + "<table  id='" + layerName + "_keyTable'><tr><td style='vertical-align:top;'>";
+}else{
+	theKeyHTML = theKeyHTML + "<table style='width:100%;' ><tr><td style='vertical-align:top;width:15px;'>";
+}
+theKeyHTML = theKeyHTML + "<input  id='" +  layerName + "_switch' type='checkbox' checked='true' onclick='switchLayerVisibility(" + String.fromCharCode(34) + layerName + String.fromCharCode(34) + ")'>";
+//theKeyHTML = theKeyHTML + "</td>";
+
+
+//**************get current layer style ********************
+//if layer has single symbolizer in style, display in the header, else display below header
+layerStyle = getCurrentLayerStyle(keyLayers[i])
+styleSelectorIndex = getSelectedStyleIndex(layerName)
+//*********************************************************
+
+var buttonHTML = "";
+//if only one symbolizer, place in header
+if (countLiterols(layerStyle) != 1) {
+	buttonHTML = "&nbsp &nbsp <button id='" + layerName + "_Style" + styleSelectorIndex + "_Button" + "' onClick='CE("  + String.fromCharCode(34) +   layerName + String.fromCharCode(34) + ")' style='vertical-align:top;margin:1px;padding:2px;line-height:0.8em;width:20px;height:20px;'>-</button>";
+	theKeyHTML = theKeyHTML + "<td style='position:relative;width:25px;'><div style='position:absolute;bottom:14px;height:44px;right:0px;'>" + buttonHTML + "</div></td>"
+}
+
+
+
+//create style selector if more than 1 style
+var selectHTML = "";
+var patchPad = "";
+if(numStyles > 1 && keyObject['stylePickerInKey'][i] == 1){
+selectHTML = "<select style='width:100%;' id='styleSelect" + layerName + "'>";
+for (a = 0; a < numStyles; a++) { 
+	//create selector
+	selectHTML = selectHTML + '<option value="' + layerName + "_Style" + a + '_Function">' + getStyleText(keyObject,i,a) + '</option>';
+
+	
+}
+selectHTML = selectHTML + '</select>';
+theKeyHTML = theKeyHTML + " <td> " + selectHTML + " </td></tr></table> ";
+
+	
+	//create change handler //create change function	
+	changeHandlerEvals = changeHandlerEvals + "document.getElementById('styleSelect" + layerName + "').onchange = function(){ eval(" + layerName + "_SwitchLayerDeclaration( document.getElementById('styleSelect" + layerName + "').selectedIndex)); if(mapStyleTypes['" + getMapNumFromLayerName(layerName) + "']['" + getLayerNumFromLayerName(layerName) + "'][document.getElementById('styleSelect" + layerName + "').selectedIndex] != 'Heatmap'){" + layerName + ".setStyle(eval(document.getElementById('styleSelect" + layerName + "').value));refreshKey(" + keyDiv + ")}else{refreshKey(" + keyDiv + ")}  };";
+	
+	
+theKeyHTML = theKeyHTML + "<table  id='" + layerName + "_keyTable'><tr>";
+patchPad = "<td>&nbsp &nbsp</td>";
+}
+
+
+var buttonHTML = "";
+//if only one symbolizer, place in header
+if (countLiterols(layerStyle) == 1) {
+theKeyHTML = theKeyHTML + patchPad  + "<td > <div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0" + "' style='width:50px;height:" + keyPatchSize + "px;'></div> </td>";
+}else{
+// if lots of symbolizers, place below header, with option to expand
+for (b = 0; b < countLiterols(layerStyle); b++) { 
+	//see lower down
+}
+//buttonHTML = "&nbsp &nbsp <button id='" + layerName + "_Style" + styleSelectorIndex + "_Button" + "' onClick='CE("  + String.fromCharCode(34) +   layerName + String.fromCharCode(34) + ")' style='margin:1px;padding:2px;line-height:0.8em;width:20px;height:20px;'>-</button>";
+//theKeyHTML = theKeyHTML + "<td><button onClick='CE("  + String.fromCharCode(34) +   layerName + String.fromCharCode(34) + ")' style='padding:2px;line-height:0.8em;width:20px;height:20px;'>+</button></td>";
+} 
+theKeyHTML = theKeyHTML + buttonHTML + "</td>"
+
+
+
+//layer description
+
+if(numStyles == 1){
+theKeyHTML = theKeyHTML + "<td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_Description" + "'>";
+theKeyHTML = theKeyHTML + getKeyText(keyObject,i,0,0) //keyLayers[i].get('title') ;
+theKeyHTML = theKeyHTML + "</div></td>";
+}
+
+
+//end header row
+theKeyHTML = theKeyHTML + "</tr><tr><td >";
+
+//if lots of symbolizer
+if (countLiterols(layerStyle) > 1) {
+theKeyHTML = theKeyHTML + "<table id='" + layerName + "_keyTable'>";
+	//create divs/tds for each symbolizer
+	for (j = 0; j < countLiterols(layerStyle); j++) { 
+		theKeyHTML = theKeyHTML + "<tr><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "_PaddingCell'>&nbsp &nbsp</div></td><td><div  id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "' style='width:50px;height:" + keyPatchSize + "px;'></div></td><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "_Description'>" + getKeyText(keyObject,i,0,j) + "</div></td></tr>";
+	}
+theKeyHTML = theKeyHTML + "</table>";
+}
+
+
+theKeyHTML = theKeyHTML + "</td></tr></table>";
+}
+theKeyHTML = theKeyHTML + "</div>";
+
+//place key html into correct div
+document.getElementById(keyDiv).innerHTML = theKeyHTML;
+
+//run evals for change handlers now html has been created
+eval(changeHandlerEvals);
+
+//now cycle back through styles and create ol3 maps, must be done after html is in place
+for (s = 0; s < keyLayers.length; s++) { 
+var layerName = keyLayers[s].get('name');
+layerStyle = getCurrentLayerStyle(keyLayers[s])
+styleSelectorIndex = getSelectedStyleIndex(layerName)
+
+if (countLiterols(layerStyle) == 1) {
+	//if (mapStyleTypes[getMapNumFromLayerName(layerName)][getLayerNumFromLayerName(layerName)][layerStyle] != 'Heatmap'){
+		createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule0",keyLayers[s].get('geoType'),layerStyle['0']) 
+	//}
+	} else{
+		//if (mapStyleTypes[getMapNumFromLayerName(layerName)][getLayerNumFromLayerName(layerName)][layerStyle] != 'Heatmap'){
+		for (d = 0; d < countLiterols(layerStyle); d++) { 
+			createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule" + d, keyLayers[s].get('geoType'),layerStyle[d]) 
+		//}
+		}
+	}
+}
+
+//end key function
+}
+
+//************************************************************************************
+//*******************************************KEY REFRESH******************************
+//************************************************************************************
+function refreshKey(keyDivName){
+//get key literol from keydivname
+var theKeylitoral = eval(keyDivName)
+keyLayers = theKeylitoral['keyLayers'];
+var patchPad = "";
+
+//same as what was/is on end of create key function
+for (s = 0; s < keyLayers.length; s++) { 
+var layerName = keyLayers[s].get('name');
+layerStyle = getCurrentLayerStyle(keyLayers[s])
+styleSelectorIndex = getSelectedStyleIndex(layerName)
+
+//original keymaps will have been created in style0
+if (countLiterols(layerStyle) == 1) {
+	//clear out old key
+	//eval("document.getElementById('" + layerName + "_Style0_Rule0').innerHTML = '';");
+	//delete old key
+	document.getElementById(layerName + "_keyTable").innerHTML = "";
+	//add div to keytable
+	var checkbox = "";
+	styleSelectorTypeLayer = document.getElementById("styleSelect" + layerName);
+	patchPad = "<td>&nbsp &nbsp</td>";
+	if (styleSelectorTypeLayer == null) {
+		checkbox = "<input  id='" +  layerName + "_switch' type='checkbox' checked='true' onclick='switchLayerVisibility(" + String.fromCharCode(34) + layerName + String.fromCharCode(34) + ")'>"
+		patchPad = "";
+	} else {patchPad = "&nbsp &nbsp";}
+	document.getElementById(layerName + "_keyTable").innerHTML = "<tr><td>" + checkbox  + "</td><td>" + patchPad + "</td><td><div  id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0' style='width:50px;height:" + keyPatchSize + "px;'></div></td><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_Description" + "'>" + getKeyText(theKeylitoral,s,styleSelectorIndex,0) + "</div></tr></tr>";
+	//create key symbol
+	createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule0",keyLayers[s].get('geoType'),layerStyle[0]) 
+} else{
+//re create divs as there may be a different amount
+theKeyHTML = "";
+
+	//create divs/tds for each symbolizer
+	for (j = 0; j < countLiterols(layerStyle); j++) { 
+		theKeyHTML = theKeyHTML + "<tr><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "_PaddingCell'>&nbsp &nbsp</div></td><td><div  id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "' style='width:50px;height:" + keyPatchSize + "px;'></div></td><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "_Description'>" + getKeyText(theKeylitoral,s,styleSelectorIndex,j) + "</div></td></tr>";
+	}
+	//replace with new divs for new style/s
+	document.getElementById(layerName + "_keyTable").innerHTML = theKeyHTML;
+
+
+	for (d = 0; d < countLiterols(layerStyle); d++) { 
+		//clear out old key - need to do for all divs that previous style had. but what happen when style is changed to one with more divs....they will not exist
+		//eval("document.getElementById('" + layerName + "_Style" + styleSelectorIndex + "_Rule" + d + "').innerHTML = '';");
+		
+		createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule" + d, keyLayers[s].get('geoType'),layerStyle[d]) 
+	}
+}
+}
+}
+//************************************************************************************
+
+function getKeyText(keyLiterol,layerNum,styleNum,ruleNum){
+return keyLiterol['keyDescriptions'][layerNum][styleNum][ruleNum];
+}
+
+function getStyleText(keyLiterol,layerNum,styleNum,ruleNum){
+return keyLiterol['styleDescriptions'][layerNum][styleNum];
+}
+
+function countLiterols(theObj){
+if(theObj == 'Heatmap'){
+	return 1
+}
+
+theCount = 0;
+for (var key in theObj) {
+   if (theObj.hasOwnProperty(key)) {
+            theCount = theCount + 1;
+   }
+}
+return theCount
+}
+
+function getCurrentLayerStyle(theLayer){
+//**************get current layer style ********************
+layerName = theLayer.get('name');
+//get element by id of style picker combo box
+styleSelector = document.getElementById("styleSelect" + layerName);
+//if fetched element is null, then only one style present (simply fetch style0 array)
+// assemeble eval of map1_vectorLayer_1_StyleX(from layer name property) to get the style array -> cycle through each item in array and create ol map
+styleSelectorIndex = getSelectedStyleIndex(layerName);
+
+var layerNum = getLayerNumFromLayerName(layerName);
+var mapNum = getMapNumFromLayerName(layerName);
+var StyleNum = styleSelectorIndex;
+if(mapStyleTypes[mapNum][layerNum][StyleNum] == 'Heatmap'){
+	return "Heatmap"
+}
+
+layerStyle = eval(layerName + "_Style" + styleSelectorIndex + "('key')");
+//*********************************************************
+
+return layerStyle
+}
+
+function getSelectedStyleIndex(theLayerName){
+styleSelector = document.getElementById("styleSelect" + theLayerName);
+	if (styleSelector != null) {
+		styleSelectorIndex = styleSelector.selectedIndex;
+	} else { // no multiple style, only one style present for layer
+		styleSelectorIndex = 0;
+	}
+return 	styleSelectorIndex
+}
+
+function switchLayerVisibility(theLayer){
+//get the layer object
+layerToSwitch = eval(theLayer);
+switchCheckbox = eval("document.getElementById(" + String.fromCharCode(34) + theLayer + "_switch" + String.fromCharCode(34) + ")");
+if(switchCheckbox.checked == true){
+	layerToSwitch.setVisible(true);
+} else {
+	layerToSwitch.setVisible(false);
+}
+}
+
+function getNumStyles(layerNameAndStyle){
+var theStyleCount = 0;
+var tempStyle = eval(layerNameAndStyle + theStyleCount);
+
+while (tempStyle != false){
+	theStyleCount = theStyleCount + 1;
+	tempStyle = eval("if (typeof " + layerNameAndStyle + theStyleCount + " != 'undefined'){true}else{false}" );
+}
+
+return theStyleCount;
+}
+
+
+
+function createKeyMap(divID,geoType,layerSymbolizer){
+//creates a ol3 map in the given div id
+var mapEvalExp;
+var layerEvalExp;
+var sourceEvalExp;
+var evaledLayer;
+
+var layerName = divID.split('_Style')[0];
+var layerNum = getLayerNumFromLayerName(layerName);
+var mapNum = getMapNumFromLayerName(layerName);
+var StyleNum = divID.split('_Style')[1];
+StyleNum  = StyleNum.split('_Rule')[0];
+
+//select correct gemoetry
+var theGeometry;
+switch(geoType) {
+    case 'Polygon':
+		theGeometry = "{'type': 'Polygon','coordinates': [[[0, 0], [0, 10], [4, 7], [10, 10], [10, 0]]]  }";
+		break;
+	case 'Point':
+		theGeometry = " {'type': 'Point','coordinates': [0, 0]}";
+		break;
+	case 'Line':
+		theGeometry = "{'type': 'LineString','coordinates': [[0, 0], [10, 0]]}";
+		break;
+}	
+
+sourceEvalExp = divID + "_source = new ol.source.GeoJSON({projection: 'USER:9999',object: {'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:9999'}},'features':[{'type': 'Feature','geometry': " + theGeometry + ",'properties': {'key_weight':'1'}  }]}});";
+
+
+if(mapStyleTypes[mapNum][layerNum][StyleNum] == 'Heatmap'){
+	layerEvalExp = divID + "_layer = new ol.layer.Heatmap({title:'key_" + divID + "',source: " + divID + "_source,weight:'key_weight',blur:" + mapHeatmapParameters[mapNum][layerNum][StyleNum][0] + ",radius:" + mapHeatmapParameters[mapNum][layerNum][StyleNum][1] + ",gradient:[" + mapHeatmapParameters[mapNum][layerNum][StyleNum][2] + "]});";
+}else{
+	layerEvalExp = divID + "_layer = new ol.layer.Vector({title:'key_" + divID + "',source: " + divID + "_source});";
+}
+
+mapEvalExp = "var key_" + divID + "= new ol.Map({layers: [" + divID + "_layer], interactions:[], target: document.getElementById('" + divID + "'), controls:[], view: new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:9999'})});setMaxExtent(key_" + divID + ")";
+
+
+eval(sourceEvalExp);
+eval(layerEvalExp);
+evaledLayer = eval(divID + "_layer");
+if(mapStyleTypes[mapNum][layerNum][StyleNum] != 'Heatmap'){
+	evaledLayer.setStyle(layerSymbolizer);
+}
+
+eval(mapEvalExp);
+}
+
+function CE(layerName){
+var layerNameAndStyle = layerName + "_Style";
+var theStyleNum = getSelectedStyleIndex(layerName);
+var numberOfRules = countLiterols(eval(layerNameAndStyle + theStyleNum)); 
+var firstRule = document.getElementById(layerName + "_Style" + theStyleNum + "_Rule0");
+if(firstRule.style.display == 'none'){
+	for (s = 0; s < numberOfRules; s++) { 
+		document.getElementById(layerName + "_Style" + theStyleNum + "_Rule" + s ).style.display = 'block';
+		document.getElementById(layerName + "_Style" + theStyleNum + "_Rule" + s + "_Description").style.display = 'block';
+		document.getElementById(layerName + "_Style" + theStyleNum + "_Rule" + s + "_PaddingCell").style.display = 'block';
+		
+		document.getElementById(layerName + "_Style0_Button").innerHTML = '-';
+	}
+}else{
+	for (s = 0; s < numberOfRules; s++) { 
+		document.getElementById(layerName + "_Style" + theStyleNum + "_Rule" + s).style.display = 'none';
+		document.getElementById(layerName + "_Style" + theStyleNum + "_Rule" + s + "_Description").style.display = 'none';
+		document.getElementById(layerName + "_Style" + theStyleNum + "_Rule" + s + "_PaddingCell").style.display = 'none';
+	
+		document.getElementById(layerName + "_Style0_Button").innerHTML = '+';
+	}
+}
+
+
+}
+
+//**************************Cluster Statistic Function********************
+function returnClusterStatistics(clusteredFeature,field,statisticType){
+//get all features in cluster
+var allFeatures = clusteredFeature.get('features');
+if (typeof allFeatures == 'undefined'){
+return 0
+}
+
+var numFeatures = allFeatures.length;
+
+//cycle though features getting the statistic column
+if (statisticType != 'Count'){
+var currentStatValue = Number(allFeatures[0].get(field));
+for (o = 0; o < numFeatures; o++) { 
+	if(statisticType == "Min"){currentStatValue = Math.min(Number(currentStatValue,allFeatures[o].get(field)))}
+	if(statisticType == "Max"){currentStatValue = Math.max(Number(currentStatValue,allFeatures[o].get(field)))}
+	if((statisticType == "Mean" || statisticType == "Sum") && o > 0){currentStatValue = currentStatValue + Number(allFeatures[o].get(field))}
+}
+}
+if(statisticType == "Count"){currentStatValue = allFeatures.length}
+
+if(statisticType == "Mean"){currentStatValue = currentStatValue/numFeatures}	
+return currentStatValue
+}
+
+function getLayerNumFromLayerName (layerName) {
+var theArr;
+theArr = layerName.split("vectorLayer_")
+return theArr[1];
+}
+
+function getMapNumFromLayerName (layerName) {
+var theArr;
+theArr = layerName.split("_vectorLayer_")
+return theArr[0].substring(3);
+}
+
+
+
+
+//**************************Cluster popups Function********************
+function returnClusterPP(clusteredFeature,layerName){
+//get all features in cluster
+var allFeatures = clusteredFeature.get('features');
+if (typeof allFeatures == 'undefined'){
+return ""
+}
+
+var numFeatures = allFeatures.length;
+var allPopupHTML = "<div style='height:200px;overflow:auto;'>"
+
+//if 1 feature just show it
+if (numFeatures == 1){
+	return allPopupHTML + eval(layerName + "_popupHTML(allFeatures[0])") + "</div>";
+}
+
+//cycle though features getting the pp div
+var bgCol;
+for (o = 0; o < numFeatures; o++) { 
+	//
+
+	allPopupHTML = allPopupHTML + "<table style='width:100%;'><tr><td>";
+	allPopupHTML = allPopupHTML + "<table><tr ><td ><button id='popupButtonID" + o + "' style='width:30px;height:25px;' onclick='expandClusteredPopup(" + o + ")'> + </button></td><td>Feature " + o + "</td></tr></table>";
+	allPopupHTML = allPopupHTML + "</td></tr><tr><td><div id='popupDivHTML" + o + "' style='display:none;'>";
+	allPopupHTML = allPopupHTML + eval(layerName + "_popupHTML(allFeatures[" + o + "])") + "";
+	allPopupHTML = allPopupHTML + "</div></td></tr></table>";
+	//allPopupHTML = allPopupHTML + "</td></tr></table>";
+}
+
+allPopupHTML = allPopupHTML + "</div>"
+return allPopupHTML
+}
+
+
+
+function expandClusteredPopup(ref){
+//get element
+var popupDiv = document.getElementById("popupDivHTML" + ref);
+	if (popupDiv.style.display == "none"){
+		popupDiv.style.display = "block"
+		document.getElementById("popupButtonID" + ref).innerHTML = "-";
+	}else{ 
+		popupDiv.style.display = "none"
+		document.getElementById("popupButtonID" + ref).innerHTML = "+";
+	}
+}
+
+
+function abs2rel(theAbs, newPath){
+//remove everything before first "/"
+if (theAbs.indexOf(":") != -1){
+	theAbs = theAbs.substring(theAbs.indexOf("/"))
+}
+
+if (newPath.indexOf(":") != -1){
+	newPath = newPath.substring(newPath.indexOf("/"))
+}
+
+ 
+var uri = new URI(theAbs);
+var theRel = uri.relativeTo(newPath);
+return theRel;
+
+}
+
+function getCorrectPath(feature,field,type){
+var thePath;
+if(type == 'abs'){ 
+	return feature.get(field);
+}
+if(type == 'rel'){
+	return abs2rel(feature.get(field), mapOutputPath)
+}
+
+}

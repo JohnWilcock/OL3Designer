@@ -1,0 +1,687 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB67A6FF-F53E-4707-BA7E-202F1F0C56DD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>OL3Designer.My.MyApplication</StartupObject>
+    <RootNamespace>OL3Designer</RootNamespace>
+    <AssemblyName>OL3Designer</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>OL3Designer.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>OL3Designer.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>OL3Designer.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>OL3Designer.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="gdal_csharp">
+      <HintPath>bin\Debug\dll\gdal_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ogr_csharp">
+      <HintPath>bin\Debug\dll\ogr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="osr_csharp">
+      <HintPath>bin\Debug\dll\osr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjNet">
+      <HintPath>bin\Debug\dll\ProjNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="OL3Des.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OL3Des.Designer.vb">
+      <DependentUpon>OL3Des.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Functions\ColourRamps.vb" />
+    <Compile Include="Functions\DateCells.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Functions\GPSPhotographs.vb" />
+    <Compile Include="Functions\HelperFunctions.vb" />
+    <Compile Include="Functions\SaveAndLoad.vb" />
+    <Compile Include="Functions\SizeRamps.Designer.vb">
+      <DependentUpon>SizeRamps.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\SizeRamps.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GDAL\GDALImport.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\HTMLEditor.Designer.vb">
+      <DependentUpon>HTMLEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\HTMLEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\ImageSource.Designer.vb">
+      <DependentUpon>ImageSource.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\ImageSource.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutContainer.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutControlOptions.Designer.vb">
+      <DependentUpon>LayoutControlOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutControlOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutDesigner.Designer.vb">
+      <DependentUpon>LayoutDesigner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutDesigner.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutKeyOptions.Designer.vb">
+      <DependentUpon>LayoutKeyOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutKeyOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutPreview.Designer.vb">
+      <DependentUpon>LayoutPreview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutPreview.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutStyleOptions.Designer.vb">
+      <DependentUpon>LayoutStyleOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutStyleOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\PropertiesForm.Designer.vb">
+      <DependentUpon>PropertiesForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\PropertiesForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLBasemaps\OL3Basemaps.Designer.vb">
+      <DependentUpon>OL3Basemaps.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLBasemaps\OL3Basemaps.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLBasemaps\OL3BasemapTiledRaster.Designer.vb">
+      <DependentUpon>OL3BasemapTiledRaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLBasemaps\OL3BasemapTiledRaster.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLFilters\OLLayerFilterNumericValues.Designer.vb">
+      <DependentUpon>OLLayerFilterNumericValues.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLFilters\OLLayerFilterNumericValues.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLFilters\OLLayerFilterPicker.Designer.vb">
+      <DependentUpon>OLLayerFilterPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLFilters\OLLayerFilterPicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLFilters\OLLayerFilterUniqueValues.Designer.vb">
+      <DependentUpon>OLLayerFilterUniqueValues.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLFilters\OLLayerFilterUniqueValues.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLGeneral\OL3General.Designer.vb">
+      <DependentUpon>OL3General.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLGeneral\OL3General.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLLayers\OL3EditLayer.Designer.vb">
+      <DependentUpon>OL3EditLayer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLLayers\OL3EditLayer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLLayers\OL3LayerList.Designer.vb">
+      <DependentUpon>OL3LayerList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLLayers\OL3LayerList.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLMaps\OL3BBox.Designer.vb">
+      <DependentUpon>OL3BBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLMaps\OL3BBox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLMaps\OL3MapOptions.Designer.vb">
+      <DependentUpon>OL3MapOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLMaps\OL3MapOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLMaps\OL3Maps.vb" />
+    <Compile Include="UserControls\OLPopups\OL3LayerPopupPicker.Designer.vb">
+      <DependentUpon>OL3LayerPopupPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLPopups\OL3LayerPopupPicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLPopups\OL3PopupDesignerSimple.Designer.vb">
+      <DependentUpon>OL3PopupDesignerSimple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLPopups\OL3PopupDesignerSimple.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLPopups\OL3PopupDesignerType.Designer.vb">
+      <DependentUpon>OL3PopupDesignerType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLPopups\OL3PopupDesignerType.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLPopups\OL3PopupPreview.Designer.vb">
+      <DependentUpon>OL3PopupPreview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLPopups\OL3PopupPreview.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLProjections\OL3Projections.Designer.vb">
+      <DependentUpon>OL3Projections.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLProjections\OL3Projections.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GDAL\ProjectionsAndTransformations.vb" />
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleClusterStats.Designer.vb">
+      <DependentUpon>OL3LayerStyleClusterStats.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleClusterStats.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleCluster.Designer.vb">
+      <DependentUpon>OL3LayerStyleCluster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleCluster.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleDateRanges.Designer.vb">
+      <DependentUpon>OL3LayerStyleDateRanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleDateRanges.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleHeatmap.Designer.vb">
+      <DependentUpon>OL3LayerStyleHeatmap.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleHeatmap.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStylePicker.Designer.vb">
+      <DependentUpon>OL3LayerStylePicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStylePicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleFeatureStyle.Designer.vb">
+      <DependentUpon>OL3LayerStyleFeatureStyle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleFeatureStyle.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleNumericRanges.Designer.vb">
+      <DependentUpon>OL3LayerStyleNumericRanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleNumericRanges.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleUniqueValues.Designer.vb">
+      <DependentUpon>OL3LayerStyleUniqueValues.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleUniqueValues.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePicker.Designer.vb">
+      <DependentUpon>OLStylePicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialog.Designer.vb">
+      <DependentUpon>OLStylePickerDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogIconControl.Designer.vb">
+      <DependentUpon>OLStylePickerDialogIconControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogIconControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogLabelControl.Designer.vb">
+      <DependentUpon>OLStylePickerDialogLabelControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogLabelControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogLineControl.Designer.vb">
+      <DependentUpon>OLStylePickerDialogLineControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogLineControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogPointControl.Designer.vb">
+      <DependentUpon>OLStylePickerDialogPointControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogPointControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogPolygonControl.Designer.vb">
+      <DependentUpon>OLStylePickerDialogPolygonControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogPolygonControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogTextControl.Designer.vb">
+      <DependentUpon>OLStylePickerDialogTextControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogTextControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OL3Des.resx">
+      <DependentUpon>OL3Des.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Functions\SizeRamps.resx">
+      <DependentUpon>SizeRamps.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\HTMLEditor.resx">
+      <DependentUpon>HTMLEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\ImageSource.resx">
+      <DependentUpon>ImageSource.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\LayoutControlOptions.resx">
+      <DependentUpon>LayoutControlOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\LayoutDesigner.resx">
+      <DependentUpon>LayoutDesigner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\LayoutKeyOptions.resx">
+      <DependentUpon>LayoutKeyOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\LayoutPreview.resx">
+      <DependentUpon>LayoutPreview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\LayoutStyleOptions.resx">
+      <DependentUpon>LayoutStyleOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\PropertiesForm.resx">
+      <DependentUpon>PropertiesForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLBasemaps\OL3Basemaps.resx">
+      <DependentUpon>OL3Basemaps.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLBasemaps\OL3BasemapTiledRaster.resx">
+      <DependentUpon>OL3BasemapTiledRaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLFilters\OLLayerFilterNumericValues.resx">
+      <DependentUpon>OLLayerFilterNumericValues.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLFilters\OLLayerFilterPicker.resx">
+      <DependentUpon>OLLayerFilterPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLFilters\OLLayerFilterUniqueValues.resx">
+      <DependentUpon>OLLayerFilterUniqueValues.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLGeneral\OL3General.resx">
+      <DependentUpon>OL3General.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLLayers\OL3EditLayer.resx">
+      <DependentUpon>OL3EditLayer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLLayers\OL3LayerList.resx">
+      <DependentUpon>OL3LayerList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLMaps\OL3BBox.resx">
+      <DependentUpon>OL3BBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLMaps\OL3MapOptions.resx">
+      <DependentUpon>OL3MapOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLPopups\OL3LayerPopupPicker.resx">
+      <DependentUpon>OL3LayerPopupPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLPopups\OL3PopupDesignerSimple.resx">
+      <DependentUpon>OL3PopupDesignerSimple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLPopups\OL3PopupDesignerType.resx">
+      <DependentUpon>OL3PopupDesignerType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLPopups\OL3PopupPreview.resx">
+      <DependentUpon>OL3PopupPreview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLProjections\OL3Projections.resx">
+      <DependentUpon>OL3Projections.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleClusterStats.resx">
+      <DependentUpon>OL3LayerStyleClusterStats.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleCluster.resx">
+      <DependentUpon>OL3LayerStyleCluster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleDateRanges.resx">
+      <DependentUpon>OL3LayerStyleDateRanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleHeatmap.resx">
+      <DependentUpon>OL3LayerStyleHeatmap.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStylePicker.resx">
+      <DependentUpon>OL3LayerStylePicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleFeatureStyle.resx">
+      <DependentUpon>OL3LayerStyleFeatureStyle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleNumericRanges.resx">
+      <DependentUpon>OL3LayerStyleNumericRanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleUniqueValues.resx">
+      <DependentUpon>OL3LayerStyleUniqueValues.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePicker.resx">
+      <DependentUpon>OLStylePicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialog.resx">
+      <DependentUpon>OLStylePickerDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogIconControl.resx">
+      <DependentUpon>OLStylePickerDialogIconControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogLabelControl.resx">
+      <DependentUpon>OLStylePickerDialogLabelControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogLineControl.resx">
+      <DependentUpon>OLStylePickerDialogLineControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogPointControl.resx">
+      <DependentUpon>OLStylePickerDialogPointControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogPolygonControl.resx">
+      <DependentUpon>OLStylePickerDialogPolygonControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogTextControl.resx">
+      <DependentUpon>OLStylePickerDialogTextControl.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\keyFunction.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_icon_Blue Dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_icon__Direction Marker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_icon__Green Flat Headed Pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_icon__Green Marker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_icon_Green Pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_icon_Orange Pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_icon_Straight Blue Pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_marker_Blue Point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_marker_Red Point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_icon_Black Marker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_line_Blue Dashed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_line_Red Line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_polygon_Purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\olstyle_polygon_Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test\popup\forPreview\ol.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test\popup\forPreview\ol.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\ol.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\base.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\jQuery.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\ol-deps.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\proj4.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\bootstrap.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\bootstrap.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MSHTML">
+      <Guid>{3050F1C5-98B5-11CF-BB82-00AA00BDCE0B}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\extentFunction.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addCol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\FormIcons\column_16xLG - Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\FormIcons\column_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\FormIcons\dialog_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\FormIcons\Offline_16xLG _2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\PopupJS.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\PopupJSPreview.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\HeatmapPreview.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\FormIcons\Editdatasetwithdesigner_8449.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\FormIcons\PencilTool_206.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OL3\URI.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

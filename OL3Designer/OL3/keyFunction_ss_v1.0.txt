@@ -1,0 +1,166 @@
+function createKey(keyObject){
+keyLayers = keyObject['keyLayers'];
+keyDiv = keyObject['keyDiv'];
+keyHeading = keyObject['keyTitle'];
+keyPadding = keyObject['keyPadding'];
+keyPatchSize = keyObject['keyPatchSize'];
+
+//get info
+var numberOfKeyLayers = keyLayers.length;
+var theKeyHTML = "<div style='padding:" + keyPadding + "px;'>" + keyHeading;
+
+//for each layer you need 1. the styles . 2. the values which relate to them
+//alert(keyLayers[0].get('title'));
+for (i = 0; i < keyLayers.length; i++) { 
+var layerName = keyLayers[i].get('name');
+var styleSelectorIndex = 0;
+
+//for each layer
+//create container table
+theKeyHTML = theKeyHTML + "<table style=''>";
+
+//************setup header*****************
+theKeyHTML = theKeyHTML + "<tr>";
+
+//layer switch
+theKeyHTML = theKeyHTML + "<td>";
+theKeyHTML = theKeyHTML + "<input id='" + layerName + "_switch' type='checkbox' checked='true' onclick='switchLayerVisibility(" + String.fromCharCode(34) + layerName + String.fromCharCode(34) + ")'>";
+theKeyHTML = theKeyHTML + "</td>";
+
+
+//**************get current layer style ********************
+//if layer has single symbolizer in style, display in the header, else display below header
+layerStyle = getCurrentLayerStyle(keyLayers[i])
+styleSelectorIndex = getSelectedStyleIndex(layerName)
+//*********************************************************
+
+//if only one symbolizer, place in header
+if (countLiterols(layerStyle) == 1) {
+theKeyHTML = theKeyHTML + "<td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0" + "' style='width:50px;height:" + keyPatchSize + "px;'></div></td>";
+}else{
+// if lots of symbolizers, place below header, with option to expand
+theKeyHTML = theKeyHTML + "<td>+</td>";
+} 
+
+
+//layer description
+theKeyHTML = theKeyHTML + "<td>";
+theKeyHTML = theKeyHTML + keyLayers[i].get('title') ;
+theKeyHTML = theKeyHTML + "</td>";
+
+//end header row
+theKeyHTML = theKeyHTML + "</tr>";
+
+//if lots of symbolizer
+if (countLiterols(layerStyle) > 1) {
+theKeyHTML = theKeyHTML + "<table>";
+	//create divs/tds for each symbolizer
+	for (j = 0; j < keyLayers.length; j++) { 
+		theKeyHTML = theKeyHTML + "<tr><td><div  id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "' style='width:50px;height:" + keyPatchSize + "px;'></div></td></tr>";
+	}
+theKeyHTML = theKeyHTML + "</table>";
+}
+
+
+theKeyHTML = theKeyHTML + "</table>";
+}
+
+
+//place key html into correct div
+document.getElementById(keyDiv).innerHTML = theKeyHTML + "</div>";
+
+//now cycle back through styles and create ol3 maps, must be done after html is in place
+for (s = 0; s < keyLayers.length; s++) { 
+var layerName = keyLayers[s].get('name');
+layerStyle = getCurrentLayerStyle(keyLayers[s])
+styleSelectorIndex = getSelectedStyleIndex(layerName)
+
+if (countLiterols(layerStyle) == 1) {
+	createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule0",keyLayers[s].get('geoType'),layerStyle['0']) 
+} else{
+	for (d = 0; d < keyLayers.length; d++) { 
+		createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule" + d, keyLayers[s].get('geoType'),layerStyle[d]) 
+	}
+}
+}
+
+//end key function
+}
+
+
+function countLiterols(theObj){
+theCount = 0;
+for (var key in theObj) {
+   if (theObj.hasOwnProperty(key)) {
+            theCount = theCount + 1;
+   }
+}
+return theCount
+}
+
+function getCurrentLayerStyle(theLayer){
+//**************get current layer style ********************
+layerName = theLayer.get('name');
+//get element by id of style picker combo box
+styleSelector = document.getElementById(layerName + "_styleSelector");
+//if fetched element is null, then only one style present (simply fetch style0 array)
+// assemeble eval of map1_vectorLayer_1_StyleX(from layer name property) to get the style array -> cycle through each item in array and create ol map
+styleSelectorIndex = getSelectedStyleIndex(layerName);
+layerStyle = eval(layerName + "_Style" + styleSelectorIndex);
+//*********************************************************
+return layerStyle
+}
+
+function getSelectedStyleIndex(theLayerName){
+styleSelector = document.getElementById(theLayerName + "_styleSelector");
+	if (styleSelector != null) {
+		styleSelectorIndex = styleSelector.selectedIndex;
+	} else { // no multiple style, only one style present for layer
+		styleSelectorIndex = 0;
+	}
+return 	styleSelectorIndex
+}
+
+function switchLayerVisibility(theLayer){
+//get the layer object
+layerToSwitch = eval(theLayer);
+switchCheckbox = eval("document.getElementById(" + String.fromCharCode(34) + theLayer + "_switch" + String.fromCharCode(34) + ")");
+if(switchCheckbox.checked == true){
+	layerToSwitch.setVisible(true);
+} else {
+	layerToSwitch.setVisible(false);
+}
+}
+
+function createKeyMap(divID,geoType,layerSymbolizer){
+//creates a ol3 map in the given div id
+var mapEvalExp;
+var layerEvalExp;
+var sourceEvalExp;
+var evaledLayer;
+
+//select correct gemoetry
+var theGeometry;
+switch(geoType) {
+    case 'Polygon':
+		theGeometry = "{'type': 'Polygon','coordinates': [[[0, 0], [0, 10], [4, 7], [10, 10], [10, 0]]]  }";
+		break;
+	case 'Point':
+		theGeometry = " {'type': 'Point','coordinates': [0, 0]}";
+		break;
+	case 'Line':
+		theGeometry = "{'type': 'LineString','coordinates': [[0, 0], [10, 0]]}";
+		break;
+}	
+
+sourceEvalExp = divID + "_source = new ol.source.GeoJSON({projection: 'USER:9999',object: {'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:9999'}},'features':[{'type': 'Feature','geometry': " + theGeometry + "}]}});";
+layerEvalExp = divID + "_layer = new ol.layer.Vector({title:'key_" + divID + "',source: " + divID + "_source});";
+mapEvalExp = "var key_" + divID + "= new ol.Map({layers: [" + divID + "_layer], interactions:[], target: document.getElementById('" + divID + "'), controls:[], view: new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:9999'})});setMaxExtent(key_" + divID + ")";
+
+
+eval(sourceEvalExp);
+eval(layerEvalExp);
+evaledLayer = eval(divID + "_layer");
+evaledLayer.setStyle(layerSymbolizer);
+eval(mapEvalExp);
+}
