@@ -6,31 +6,19 @@ OL3Designer
 </name>
 </assembly>
 <members>
-<member name="F:OL3Designer.EnvironmentalGdal._MakeEnvironment">
-	<summary>
- Status for Set enviroment (Register drive, set path,...)
- </summary>
-</member><member name="M:OL3Designer.EnvironmentalGdal.MakeEnvironment(System.String)">
-	<summary>
- Set environment (Register drive, set path,...)
- </summary>
-</member><member name="M:OL3Designer.EnvironmentalGdal._SetEnvironment(System.String)">
-	<summary>
- Make and set variables system for GDAL DLL´s
- Create variables GDAL (IF not exist):
- - GDAL_DATA        -&gt; %Program Path% \data
- - GEOTIFF_CSV      -&gt; %Program Path% \data
- - GDAL_DRIVER_PATH -&gt; %Program Path% \gdalplugins
- 
-  Add PATH
-  - PATH            -&gt; PATH + %Program Path% + %Program Path%\dll
-  
- Struct folder for this program and files (Folder : files)
- -- %Program Path% : %name program%, %this DLL%, %*_csharp.dll% (Ex.: GdalToTilesWin.exe, MngImg.dll, gdal_csharp.dll, osr_csharp.dll)
-          |_ dll: FWTools Dll´s for this program
-          |_ data: files find in FWTools\data
-          |_ gdalplugins: files find in FWTools\gdalplugins
- </summary>
+<member name="F:OL3Designer.SridReader.WKTstring.WKID">
+	<summary>Well-known ID</summary>
+</member><member name="F:OL3Designer.SridReader.WKTstring.WKT">
+	<summary>Well-known Text</summary>
+</member><member name="F:OL3Designer.SridReader.WKTstring.WKTName">
+	<summary>Well-known name</summary>
+</member><member name="M:OL3Designer.SridReader.GetSRIDs">
+	<summary>Enumerates all SRID's in the SRID.csv file.</summary>
+	<returns>Enumerator</returns>
+</member><member name="M:OL3Designer.SridReader.GetCSbyID(System.Int32)">
+	<summary>Gets a coordinate system from the SRID.csv file</summary>
+	<param name="id">EPSG ID</param>
+	<returns>Coordinate system, or null if SRID was not found.</returns>
 </member><member name="P:OL3Designer.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
@@ -412,19 +400,31 @@ var PointFeature = new ol.Feature({
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
-</member><member name="F:OL3Designer.SridReader.WKTstring.WKID">
-	<summary>Well-known ID</summary>
-</member><member name="F:OL3Designer.SridReader.WKTstring.WKT">
-	<summary>Well-known Text</summary>
-</member><member name="F:OL3Designer.SridReader.WKTstring.WKTName">
-	<summary>Well-known name</summary>
-</member><member name="M:OL3Designer.SridReader.GetSRIDs">
-	<summary>Enumerates all SRID's in the SRID.csv file.</summary>
-	<returns>Enumerator</returns>
-</member><member name="M:OL3Designer.SridReader.GetCSbyID(System.Int32)">
-	<summary>Gets a coordinate system from the SRID.csv file</summary>
-	<param name="id">EPSG ID</param>
-	<returns>Coordinate system, or null if SRID was not found.</returns>
+</member><member name="F:OL3Designer.EnvironmentalGdal._MakeEnvironment">
+	<summary>
+ Status for Set enviroment (Register drive, set path,...)
+ </summary>
+</member><member name="M:OL3Designer.EnvironmentalGdal.MakeEnvironment(System.String)">
+	<summary>
+ Set environment (Register drive, set path,...)
+ </summary>
+</member><member name="M:OL3Designer.EnvironmentalGdal._SetEnvironment(System.String)">
+	<summary>
+ Make and set variables system for GDAL DLL´s
+ Create variables GDAL (IF not exist):
+ - GDAL_DATA        -&gt; %Program Path% \data
+ - GEOTIFF_CSV      -&gt; %Program Path% \data
+ - GDAL_DRIVER_PATH -&gt; %Program Path% \gdalplugins
+ 
+  Add PATH
+  - PATH            -&gt; PATH + %Program Path% + %Program Path%\dll
+  
+ Struct folder for this program and files (Folder : files)
+ -- %Program Path% : %name program%, %this DLL%, %*_csharp.dll% (Ex.: GdalToTilesWin.exe, MngImg.dll, gdal_csharp.dll, osr_csharp.dll)
+          |_ dll: FWTools Dll´s for this program
+          |_ data: files find in FWTools\data
+          |_ gdalplugins: files find in FWTools\gdalplugins
+ </summary>
 </member>
 </members>
 </doc>

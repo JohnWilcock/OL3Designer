@@ -72,7 +72,10 @@ var table2row1 = table2row1 + "</div></td></tr>";
 var table2row2 = "";
 table2row2 = table2row2 + "<tr><td><div id='" + layerName + "_Controls' style='width:100%;'>";
 //var allLayerControls = document.getElementById(layerName + "_controlHTML");
-var allLayerControls = eval(layerName + "_controlHTML");
+var allLayerControls = null;
+if(eval("typeof " + layerName + "_controlHTML") != 'undefined'){
+allLayerControls = eval(layerName + "_controlHTML");
+}
 	if (allLayerControls != null && keyObject['controlPickerInKey'][i] == 1) {
 		table2row2 = table2row2 + allLayerControls;
 	}

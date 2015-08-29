@@ -158,6 +158,55 @@ Public Class HelperFunctions
     End Function
 
 
+    Function replaceIconPathsWithOutputPaths(ByVal outputText As String, ByVal outputPath As String) As String
+        replaceIconPathsWithOutputPaths = ""
+        'for each icon in list, 
+        'combine with exe file path and replace \ with /.
+        'if match is found copy icon to output folder
+        'then use for loop and for each match replace with output path + icon file name.
+
+
+        'get exe path 
+        Dim exePath As String = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace("\", "/")
+
+        'cycle through icons in style settings and put in list
+        Dim defaultString As String = My.Resources.DefaultStyleSettings
+        Dim defaultStrings() As String = defaultString.Split(";")
+        Dim currentStyle() As String
+        Dim iconName As String = ""
+        Dim listOfIconsToCopyFrom As New List(Of String)
+        Dim listOfIconsToCopyTo As New List(Of String)
+
+        For Each item As String In defaultStrings
+            currentStyle = item.Split(":")
+            iconName = "olstyle_icon_" & currentStyle(0).Replace(vbCrLf, "").ToString.Trim(" ")
+
+            'is icon referenced in output
+            If outputText.IndexOf(currentStyle(0).Replace(vbCrLf, "").ToString.Trim(" ")) <> -1 Then
+                replaceIconPathsWithOutputPaths = outputText.Replace(exePath & "/" & iconName & ".png", outputPath.Replace("\", "/") & "/" & iconName & ".png")
+                listOfIconsToCopyFrom.Add(exePath & "/" & iconName & ".png")
+                listOfIconsToCopyTo.Add(outputPath & "/" & iconName & ".png")
+            End If
+
+        Next
+
+        'get unique values from lists
+        Dim listFrom() As String
+        Dim listTo() As String
+        If listOfIconsToCopyFrom.Count > 0 Then
+            listFrom = listOfIconsToCopyFrom.ToArray.Distinct
+            listTo = listOfIconsToCopyTo.ToArray.Distinct
+
+            For s As Integer = 0 To listFrom.Count
+                File.Copy(listFrom(s), listTo(s))
+            Next
+        End If
+
+
+
+        Return replaceIconPathsWithOutputPaths
+    End Function
+
 
 
 End Class

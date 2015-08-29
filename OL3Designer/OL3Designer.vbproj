@@ -84,18 +84,21 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="gdal_csharp">
-      <HintPath>bin\Debug\dll\gdal_csharp.dll</HintPath>
+      <HintPath>bin\Release\dll\gdal_csharp.dll</HintPath>
     </Reference>
     <Reference Include="ogr_csharp">
-      <HintPath>bin\Debug\dll\ogr_csharp.dll</HintPath>
+      <HintPath>bin\Release\dll\ogr_csharp.dll</HintPath>
     </Reference>
     <Reference Include="osr_csharp">
-      <HintPath>bin\Debug\dll\osr_csharp.dll</HintPath>
+      <HintPath>bin\Release\dll\osr_csharp.dll</HintPath>
     </Reference>
     <Reference Include="ProjNet">
-      <HintPath>bin\Debug\dll\ProjNet.dll</HintPath>
+      <HintPath>bin\Release\dll\ProjNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -675,6 +678,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

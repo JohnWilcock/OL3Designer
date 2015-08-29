@@ -182,6 +182,11 @@
 
 
         getJS = getJS & Chr(10) & "</script>"
+
+        'now replace default icon filepaths with new ones and copy them to output folder
+        Dim hf As New HelperFunctions
+        getJS = hf.replaceIconPathsWithOutputPaths(getJS, outPath)
+
     End Function
 
 

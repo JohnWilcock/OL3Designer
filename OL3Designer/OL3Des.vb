@@ -25,7 +25,8 @@ Public Class OL3Des
 
         ToolStripTextBox1.Text = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) & "\output.html"
 
-
+        Dim hf As New HelperFunctions
+        hf.createOL3Script()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
@@ -88,24 +89,11 @@ Public Class OL3Des
 
 
     Sub saveOLMaps()
-        Dim SL As New SaveAndLoad
-
-        Dim FSD As New SaveFileDialog
-
-        If FSD.ShowDialog = Windows.Forms.DialogResult.OK Then
-            SL.Save(FSD.FileName, maps)
-        End If
 
     End Sub
 
     Sub loadOLMaps()
-        Dim SL As New SaveAndLoad
 
-        Dim OFD As New OpenFileDialog
-
-        If OFD.ShowDialog = Windows.Forms.DialogResult.OK Then
-            maps = SL.Load(OFD.FileName)
-        End If
     End Sub
 
 
