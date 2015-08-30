@@ -159,7 +159,7 @@ Public Class HelperFunctions
 
 
     Function replaceIconPathsWithOutputPaths(ByVal outputText As String, ByVal outputPath As String) As String
-        replaceIconPathsWithOutputPaths = ""
+        replaceIconPathsWithOutputPaths = outputText
         'for each icon in list, 
         'combine with exe file path and replace \ with /.
         'if match is found copy icon to output folder
