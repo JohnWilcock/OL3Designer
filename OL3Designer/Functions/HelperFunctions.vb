@@ -167,25 +167,27 @@ Public Class HelperFunctions
 
 
         'get exe path 
-        Dim exePath As String = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace("\", "/")
+        Dim exePath As String = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("\", "/")
 
         'cycle through icons in style settings and put in list
         Dim defaultString As String = My.Resources.DefaultStyleSettings
         Dim defaultStrings() As String = defaultString.Split(";")
         Dim currentStyle() As String
         Dim iconName As String = ""
+        Dim iconShortName As String = ""
         Dim listOfIconsToCopyFrom As New List(Of String)
         Dim listOfIconsToCopyTo As New List(Of String)
 
         For Each item As String In defaultStrings
             currentStyle = item.Split(":")
             iconName = "olstyle_icon_" & currentStyle(0).Replace(vbCrLf, "").ToString.Trim(" ")
+            iconShortName = currentStyle(0).Replace(vbCrLf, " ").ToString
 
             'is icon referenced in output
-            If outputText.IndexOf(currentStyle(0).Replace(vbCrLf, "").ToString.Trim(" ")) <> -1 Then
-                replaceIconPathsWithOutputPaths = outputText.Replace(exePath & "/" & iconName & ".png", outputPath.Replace("\", "/") & "/" & iconName & ".png")
-                listOfIconsToCopyFrom.Add(exePath & "/" & iconName & ".png")
-                listOfIconsToCopyTo.Add(outputPath & "/" & iconName & ".png")
+            If outputText.IndexOf(iconShortName) <> -1 And iconShortName.Length > 4 Then
+                replaceIconPathsWithOutputPaths = outputText.Replace(exePath & "/" & iconShortName & ".png", outputPath.Replace("\", "/") & "/" & iconShortName & ".png")
+                listOfIconsToCopyFrom.Add(exePath.Replace("/", "\") & "\" & iconShortName & ".png")
+                listOfIconsToCopyTo.Add(outputPath & "\" & iconShortName & ".png")
             End If
 
         Next
@@ -194,11 +196,13 @@ Public Class HelperFunctions
         Dim listFrom() As String
         Dim listTo() As String
         If listOfIconsToCopyFrom.Count > 0 Then
-            listFrom = listOfIconsToCopyFrom.ToArray.Distinct
-            listTo = listOfIconsToCopyTo.ToArray.Distinct
+            listFrom = listOfIconsToCopyFrom.Distinct.ToArray
+            listTo = listOfIconsToCopyTo.Distinct.ToArray
 
-            For s As Integer = 0 To listFrom.Count
-                File.Copy(listFrom(s), listTo(s))
+            For s As Integer = 0 To listFrom.Count - 1
+                If File.Exists(listFrom(s)) Then
+                    File.Copy(listFrom(s), listTo(s))
+                End If
             Next
         End If
 
