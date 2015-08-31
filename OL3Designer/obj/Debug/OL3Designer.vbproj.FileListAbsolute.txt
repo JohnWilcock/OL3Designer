@@ -182,3 +182,8 @@ C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.vbp
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\bin\Debug\OL3Designer.exe
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\bin\Debug\OL3Designer.pdb
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\bin\Debug\OL3Designer.xml
+C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\bin\Debug\gdal_csharp.dll
+C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\bin\Debug\ogr_csharp.dll
+C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\bin\Debug\osr_csharp.dll
+C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\bin\Debug\ProjNet.dll
+C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OL3DesAbout.resources

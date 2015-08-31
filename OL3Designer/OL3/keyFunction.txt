@@ -312,7 +312,7 @@ switch(geoType) {
 		break;
 }	
 
-sourceEvalExp = divID + "_source = new ol.source.GeoJSON({projection: 'USER:9999',object: {'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:9999'}},'features':[{'type': 'Feature','geometry': " + theGeometry + ",'properties': {'key_weight':'1'}  }]}});";
+sourceEvalExp = divID + "_source = new ol.source.GeoJSON({projection: 'USER:1999',object: {'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:1999'}},'features':[{'type': 'Feature','geometry': " + theGeometry + ",'properties': {'key_weight':'1'}  }]}});";
 
 
 if(mapStyleTypes[mapNum][layerNum][StyleNum] == 'Heatmap'){
@@ -321,7 +321,7 @@ if(mapStyleTypes[mapNum][layerNum][StyleNum] == 'Heatmap'){
 	layerEvalExp = divID + "_layer = new ol.layer.Vector({title:'key_" + divID + "',source: " + divID + "_source});";
 }
 
-mapEvalExp = "var key_" + divID + "= new ol.Map({layers: [" + divID + "_layer], interactions:[], target: document.getElementById('" + divID + "'), controls:[], view: new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:9999'})});setMaxExtent(key_" + divID + ")";
+mapEvalExp = "var key_" + divID + "= new ol.Map({layers: [" + divID + "_layer], interactions:[], target: document.getElementById('" + divID + "'), controls:[], view: new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:1999'})});setMaxExtent(key_" + divID + ")";
 
 
 eval(sourceEvalExp);

@@ -40,8 +40,10 @@ Partial Class OLStylePickerDialog
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.WebBrowser2 = New System.Windows.Forms.WebBrowser()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -125,6 +127,7 @@ Partial Class OLStylePickerDialog
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Label1)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -166,6 +169,15 @@ Partial Class OLStylePickerDialog
         Me.Panel2.Size = New System.Drawing.Size(180, 278)
         Me.Panel2.TabIndex = 0
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(37, 34)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(103, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Not yet implemented"
+        '
         'OLStylePickerDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -183,6 +195,8 @@ Partial Class OLStylePickerDialog
         Me.Text = "Style Picker"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -198,4 +212,5 @@ Partial Class OLStylePickerDialog
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents WebBrowser2 As System.Windows.Forms.WebBrowser
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

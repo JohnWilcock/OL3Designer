@@ -311,7 +311,7 @@ Public Class OL3LayerList
 
         ' get the parameters js
         getMapParameters = ""
-        getMapParameters = getMapParameters & "var map" & mapNumber & "_View =  new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:9999'})" & Chr(10)
+        getMapParameters = getMapParameters & "var map" & mapNumber & "_View =  new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:" & mapNumber & "999'})" & Chr(10)
 
         'ensure map still exists and hasn't been deleted since setup
         mapOptions.checkSyncedMap()
@@ -675,13 +675,13 @@ Class OLLayer
         'setup var
         getLayerSource = getLayerSource & " map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "a  = new ol.source.GeoJSON({" & Chr(10)
         'add projection (out, i.e. the map projection)
-        getLayerSource = getLayerSource & "projection: 'USER:9999'," & Chr(10) 'map projection is always called 9999
+        getLayerSource = getLayerSource & "projection: 'USER:" & mapNumber & "999'," & Chr(10) 'map projection is always called <map number>999
 
         'add features
         getLayerSource = getLayerSource & "object: " & GDAL.getGeoJson({OL3LayerPath}) & Chr(10)
 
         'add IN projection (i.e. the source data projection)
-        getLayerSource = getLayerSource.Replace("{" & Chr(34) & "type" & Chr(34) & ":" & Chr(34) & "FeatureCollection" & Chr(34) & ",", "{'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:" & Me.Cells.Item(0).RowIndex & "'}},")
+        getLayerSource = getLayerSource.Replace("{" & Chr(34) & "type" & Chr(34) & ":" & Chr(34) & "FeatureCollection" & Chr(34) & ",", "{'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:" & mapNumber & "00" & Me.Cells.Item(0).RowIndex & "'}},")
         '{'type':'FeatureCollection', crs': { 'type': 'name','properties': {'name': 'USER:0'}},
 
         'finish
@@ -689,7 +689,7 @@ Class OLLayer
         '///////////////////////////////////////////////////////////////////////////////////////////////////
 
         '*********************variabls to hold empty source and call to function to populate it will all features***********************
-        getLayerSource = getLayerSource & "var map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & " =  new ol.source.GeoJSON({projection: 'USER:9999'});" & Chr(10)
+        getLayerSource = getLayerSource & "var map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & " =  new ol.source.GeoJSON({projection: 'USER:" & mapNumber & "999'});" & Chr(10)
         getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "_SetSource();" & Chr(10) & Chr(10)
         '*******************************************************************************************************************************
 
@@ -873,7 +873,7 @@ Class OLLayer
     Public Function getLayerProjectionDefinition() As String
         getLayerProjectionDefinition = ""
         'getLayerProjectionDefinition = "Proj4js.defs['EPSG:" & Me.Cells.Item(0).RowIndex & "'] = " & Chr(34) & OL3Edit.OL3Projections1.TextBox2.Text & Chr(34) & Chr(10)
-        getLayerProjectionDefinition = "proj4.defs('USER:" & Me.Cells.Item(0).RowIndex & "'," & Chr(34) & OL3Edit.OL3Projections1.TextBox2.Text & Chr(34) & ");" & Chr(10)
+        getLayerProjectionDefinition = "proj4.defs('USER:" & mapNumber & "00" & Me.Cells.Item(0).RowIndex & "'," & Chr(34) & OL3Edit.OL3Projections1.TextBox2.Text & Chr(34) & ");" & Chr(10)
     End Function
 
 End Class

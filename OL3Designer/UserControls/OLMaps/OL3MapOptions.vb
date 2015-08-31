@@ -28,7 +28,7 @@
     Public Function getMapProjectionDefinition() As String
         getMapProjectionDefinition = ""
         'getLayerProjectionDefinition = "Proj4js.defs['EPSG:" & Me.Cells.Item(0).RowIndex & "'] = " & Chr(34) & OL3Edit.OL3Projections1.TextBox2.Text & Chr(34) & Chr(10)
-        getMapProjectionDefinition = "proj4.defs('USER:9999'," & Chr(34) & OL3Projections1.TextBox2.Text & Chr(34) & ");" & Chr(10)
+        getMapProjectionDefinition = "proj4.defs('USER:" & theParentLayerList.mapNumber & "999'," & Chr(34) & OL3Projections1.TextBox2.Text & Chr(34) & ");" & Chr(10)
     End Function
 
     Private Sub OL3MapOptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load

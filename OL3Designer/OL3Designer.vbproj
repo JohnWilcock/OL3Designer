@@ -87,18 +87,25 @@
   <PropertyGroup>
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="gdal_csharp">
-      <HintPath>bin\Release\dll\gdal_csharp.dll</HintPath>
+      <HintPath>bin\Debug\dll\gdal_csharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ogr_csharp">
-      <HintPath>bin\Release\dll\ogr_csharp.dll</HintPath>
+      <HintPath>bin\Debug\dll\ogr_csharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="osr_csharp">
-      <HintPath>bin\Release\dll\osr_csharp.dll</HintPath>
+      <HintPath>bin\Debug\dll\osr_csharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ProjNet">
-      <HintPath>bin\Release\dll\ProjNet.dll</HintPath>
+      <HintPath>bin\Debug\dll\ProjNet.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -159,6 +166,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="OL3DesAbout.Designer.vb">
+      <DependentUpon>OL3DesAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OL3DesAbout.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserControls\LayoutDesigner\HTMLEditor.Designer.vb">
       <DependentUpon>HTMLEditor.vb</DependentUpon>
@@ -413,6 +426,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="OL3DesAbout.resx">
+      <DependentUpon>OL3DesAbout.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LayoutDesigner\HTMLEditor.resx">
       <DependentUpon>HTMLEditor.vb</DependentUpon>
     </EmbeddedResource>
@@ -533,6 +549,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -159,4 +159,9 @@ Public Class OL3Des
             ToolStripTextBox1.Text = sfa.FileName
         End If
     End Sub
+
+    Private Sub ToolStripButton3_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Dim ab As New OL3DesAbout
+        ab.Show()
+    End Sub
 End Class

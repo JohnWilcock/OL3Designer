@@ -8,8 +8,8 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("OL3Designer")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("OpenLayers 3 Designer")> 
+<Assembly: AssemblyDescription("Automaticly creates OL3 maps from GIS data")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("OL3Designer")> 
 <Assembly: AssemblyCopyright("JWilcock 2015")> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("0.1.0.0")> 
+<Assembly: AssemblyFileVersion("0.1.0.0")> 
