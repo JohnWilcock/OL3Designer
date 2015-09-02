@@ -2,6 +2,7 @@
 Imports OSGeo.OGR
 Imports OSGeo.OSR
 Imports OSGeo.GDAL
+Imports System.IO
 
 
 Public Class GDALImport
@@ -620,11 +621,14 @@ Public NotInheritable Class EnvironmentalGdal
         ' Check exist variables, else, set variable
         _SetValueNewVariable("GDAL_DATA", sPathProgram & "\data")
         _SetValueNewVariable("GEOTIFF_CSV", sPathProgram & "\data")
-        _SetValueNewVariable("GDAL_DRIVER_PATH", sPathProgram & "\gdalplugins")
+        _SetValueNewVariable("GDAL_DRIVER_PATH", sPathProgram & "\data")
 
-        ' Add variable Path new folders
+        'quick fix ! need more robust way of doing this
+        Directory.SetCurrentDirectory(sPathProgram & "\dll")
+
+        ' Add variable Path new folders - not working ??
         Dim sVarPath As String = System.Environment.GetEnvironmentVariable("Path")
-        sVarPath += sPathProgram & ";" & sPathProgram & "\dll"
+        sVarPath = sVarPath & ";" & sPathProgram & "\dll"
         System.Environment.SetEnvironmentVariable("Path", sVarPath)
     End Sub
     Private Shared Sub _SetValueNewVariable(sVar As String, sValue As String)

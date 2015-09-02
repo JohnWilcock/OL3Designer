@@ -28,7 +28,7 @@ Public Class OLStylePickerDialog
 
     Function getLabelResolution() As String
         If OLLabelPicker.ComboBox2.Text <> "All" Then
-            Return "if (resolution > " & OLLabelPicker.ComboBox2.Text.Replace(",", "") & ")"
+            Return "if (resolution < " & OLLabelPicker.ComboBox2.Text.Replace(",", "") & ")"
         Else
             Return ""
         End If
