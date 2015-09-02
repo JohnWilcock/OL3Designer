@@ -22,8 +22,12 @@ Public Class OL3Des
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'OlStylePicker2.OLStyleSettings.OLGeomType = "Point"
+        If Not Directory.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) & "\Outputs\") Then
+            System.IO.Directory.CreateDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) & "\Outputs\")
+        End If
 
-        ToolStripTextBox1.Text = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) & "\output.html"
+
+        ToolStripTextBox1.Text = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) & "\Outputs\output.html"
 
         Dim hf As New HelperFunctions
         hf.createOL3Script()
@@ -109,18 +113,21 @@ Public Class OL3Des
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
         LayoutDesigner1.Sp1.Panel1Collapsed = True
-
+        LayoutDesigner1.Sp1.p1Type.Text = "Text"
     End Sub
 
     Private Sub ToolStripTextBox1_Change(sender As Object, e As EventArgs) Handles ToolStripTextBox1.TextChanged
         Dim hasErr As Boolean = False
 
         If File.Exists(ToolStripTextBox1.Text) Then
-            ToolStripTextBox1.BackColor = Color.LightCoral
+            ToolStripTextBox1.BackColor = Color.LightYellow
             hasErr = True
         End If
 
-
+        If Not Directory.Exists(Path.GetDirectoryName(ToolStripTextBox1.Text)) Then
+            ToolStripTextBox1.BackColor = Color.LightCoral
+            hasErr = True
+        End If
 
         If Not IsValidPath(ToolStripTextBox1.Text) Then
             ToolStripTextBox1.BackColor = Color.LightCoral

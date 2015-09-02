@@ -36,7 +36,10 @@ if (numSymbols == 1){
 	table1row1 = table1row1   + "<td style='width:50px;'> <div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_header" + "' style='width:50px;height:" + keyPatchSize + "px;'></div> </td>";
 	table1row1 = table1row1 + "<td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_Description_header" + "'>" + getKeyText(keyObject,i,0,0) + "</div></td>";
 } else {
+	//table1row1 = table1row1 + "<td>" + keyLayers[i].get('title') + "</td>";
+	table1row1 = table1row1   + "<td style='width:50px;'> <div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_header" + "' style='width:50px;height:" + keyPatchSize + "px;'></div> </td>";
 	table1row1 = table1row1 + "<td>" + keyLayers[i].get('title') + "</td>";
+
 }
 table1row1 = table1row1 + "</tr></table></tr>";
 
@@ -158,7 +161,9 @@ layerStyle = getCurrentLayerStyle(keyLayers[s])
 styleSelectorIndex = getSelectedStyleIndex(layerName)
 
 //wipe header key if present
+if (document.getElementById( layerName + "_Style0_Rule0_header") != null){
 document.getElementById( layerName + "_Style0_Rule0_header").innerHTML = "";
+}
 
 //original keymaps will have been created in style0
 if (countLiterols(layerStyle) == 1) {
@@ -177,7 +182,8 @@ if (countLiterols(layerStyle) == 1) {
 	} else {patchPad = "&nbsp &nbsp";}
 	//document.getElementById(layerName + "_keyTable").innerHTML = "<tr><td>" + checkbox  + "</td><td>" + patchPad + "</td><td><div  id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_header' style='width:50px;height:" + keyPatchSize + "px;'></div></td><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_Description_header" + "'>" + getKeyText(theKeylitoral,s,styleSelectorIndex,0) + "</div></tr></tr>";
 	//create key symbol
-	createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule0_header",keyLayers[s].get('geoType'),layerStyle[0]) 
+	//style index number will allways be "0" for the header row ... was previously + styleSelectorIndex +
+	createKeyMap(layerName + "_Style" + "0" + "_Rule0_header",keyLayers[s].get('geoType'),layerStyle[0]) 
 } else{
 
 //re create divs as there may be a different amount
