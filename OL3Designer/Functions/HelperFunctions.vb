@@ -159,6 +159,7 @@ Public Class HelperFunctions
 
 
     Function replaceIconPathsWithOutputPaths(ByVal outputText As String, ByVal outputPath As String) As String
+        'this whole function needs re-thinking for something more robust
         replaceIconPathsWithOutputPaths = outputText
         'for each icon in list, 
         'combine with exe file path and replace \ with /.
@@ -200,8 +201,10 @@ Public Class HelperFunctions
             listTo = listOfIconsToCopyTo.Distinct.ToArray
 
             For s As Integer = 0 To listFrom.Count - 1
-                If File.Exists(listFrom(s)) Then
-                    File.Copy(listFrom(s), listTo(s))
+                If File.Exists(listFrom(s)) Then 'check source icon file exists
+                    If Not File.Exists(listTo(s)) Then ' check destination file does not.
+                        File.Copy(listFrom(s), listTo(s))
+                    End If
                 End If
             Next
         End If

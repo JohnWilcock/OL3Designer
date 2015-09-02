@@ -120,7 +120,7 @@ Public Class OL3Des
         Dim hasErr As Boolean = False
 
         If File.Exists(ToolStripTextBox1.Text) Then
-            ToolStripTextBox1.BackColor = Color.LightYellow
+            ToolStripTextBox1.BackColor = Color.FromArgb(255, 255, 120)
             hasErr = True
         End If
 
