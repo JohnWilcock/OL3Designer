@@ -278,7 +278,7 @@ Public Class OLStylePickerDialog
                     styleSettings.OLMiterLimit = defStyle(4)
                     styleSettings.OLLineDash = defStyle(5)
                     styleSettings.OLFillColour = ColorTranslator.FromHtml(defStyle(6))
-
+                    styleSettings.OlTransparancy = defStyle(7)
 
                     'place style values into dialog controls
                     OLPolygonPicker.loadValuesToControls()

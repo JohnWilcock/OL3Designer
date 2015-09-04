@@ -186,7 +186,7 @@ document.getElementById(keyDiv).innerHTML = "";
 var numberOfKeyLayers = keyLayers.length;
 var theKeyHTML = "&lt;div  style='padding:" + keyPadding + "px;'&gt;" + keyHeading;
 
-//for each layer you need 1. the styles . 2. the values which re [rest of string was truncated]";.
+//for each layer you need 1. the styles . 2. the  [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.LABELJS">
 	<summary>
@@ -294,6 +294,14 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.olstyle_polygon_Red">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:OL3Designer.My.Resources.Resources.olstyle_polygon_Thick_Black_Outline">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:OL3Designer.My.Resources.Resources.olstyle_polygon_Transparent_Green">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

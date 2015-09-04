@@ -281,7 +281,7 @@ Namespace My.Resources
         '''var numberOfKeyLayers = keyLayers.length;
         '''var theKeyHTML = &quot;&lt;div  style=&apos;padding:&quot; + keyPadding + &quot;px;&apos;&gt;&quot; + keyHeading;
         '''
-        '''//for each layer you need 1. the styles . 2. the values which re [rest of string was truncated]&quot;;.
+        '''//for each layer you need 1. the styles . 2. the  [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property keyFunction() As String
             Get
@@ -504,6 +504,26 @@ Namespace My.Resources
         Friend ReadOnly Property olstyle_polygon_Red() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("olstyle_polygon_Red", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property olstyle_polygon_Thick_Black_Outline() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("olstyle_polygon_Thick_Black_Outline", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property olstyle_polygon_Transparent_Green() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("olstyle_polygon_Transparent_Green", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

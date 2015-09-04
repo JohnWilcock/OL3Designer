@@ -130,8 +130,10 @@ Blue Dashed:2,#0000FF,round,round,0,4;
 Red Line:2,#FF0000,round,round,0,0;
 Blue Point:6,2,#00008B,#0000FF;
 Red Point:8,2,#FF0000,#FFB6C1;
-Red:2,#FF0000,round,round,0,0,#FF7575;
-Purple:2,#993399,round,round,0,0,#CC99CC;</value>
+Red:2,#FF0000,round,round,0,0,#FF7575,1;
+Purple:2,#993399,round,round,0,0,#CC99CC,1;
+Thick Black Outline:3,#000000,round,round,0,0,#000000,0;
+Transparent Green:1,#199617,round,round,0,0,#5AED4E,0.7;</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="olstyle_icon_Black_Marker" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -738,5 +740,11 @@ view.fitExtent(theExtent , theMap.getSize());
   </data>
   <data name="URI" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\OL3\URI.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="olstyle_polygon_Thick_Black_Outline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\olstyle_polygon_Thick Black Outline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="olstyle_polygon_Transparent_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\olstyle_polygon_Transparent Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
