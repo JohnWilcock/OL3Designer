@@ -191,13 +191,15 @@ Public Class GDALImport
                     Next
 
                 Else
-                    OutputString = OutputString & vbCrLf & (feat.GetFieldAsString(iField))
-                    properties = properties & Chr(34) & Replace(feat.GetFieldAsString(iField), "\", "/").Replace(Chr(34), "'") & Chr(34)
+                    If feat.GetFieldAsString(iField).Length > 0 Then
+                        OutputString = OutputString & vbCrLf & (feat.GetFieldAsString(iField))
+                        properties = properties & Chr(34) & Replace(feat.GetFieldAsString(iField), "\", "/").Replace(Chr(34), "'") & Chr(34)
+                    End If
                 End If
 
             Else
-                OutputString = OutputString & vbCrLf & ("(null)")
-                properties = properties & Chr(34) & ("(null)") & Chr(34)
+                    OutputString = OutputString & vbCrLf & ("(null)")
+                    properties = properties & Chr(34) & ("(null)") & Chr(34)
             End If
             properties = properties & ","
 
