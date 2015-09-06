@@ -27,10 +27,8 @@ Partial Class OL3Des
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.LayoutDesigner1 = New OL3Designer.LayoutDesigner()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.LayoutPreview1 = New OL3Designer.LayoutPreview()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -54,6 +52,9 @@ Partial Class OL3Des
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.LayoutDesigner1 = New OL3Designer.LayoutDesigner()
+        Me.LayoutPreview1 = New OL3Designer.LayoutPreview()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -78,13 +79,13 @@ Partial Class OL3Des
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(3, 3)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(130, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(100, 21)
         Me.ComboBox1.TabIndex = 3
         '
         'Button2
         '
         Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.Location = New System.Drawing.Point(138, 3)
+        Me.Button2.Location = New System.Drawing.Point(109, 2)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(26, 24)
         Me.Button2.TabIndex = 4
@@ -114,15 +115,6 @@ Partial Class OL3Des
         Me.TabPage1.Text = "Design"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'LayoutDesigner1
-        '
-        Me.LayoutDesigner1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutDesigner1.layoutList = ""
-        Me.LayoutDesigner1.Location = New System.Drawing.Point(3, 3)
-        Me.LayoutDesigner1.Name = "LayoutDesigner1"
-        Me.LayoutDesigner1.Size = New System.Drawing.Size(617, 349)
-        Me.LayoutDesigner1.TabIndex = 0
-        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.TableLayoutPanel1)
@@ -148,14 +140,6 @@ Partial Class OL3Des
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(617, 324)
         Me.TableLayoutPanel1.TabIndex = 1
-        '
-        'LayoutPreview1
-        '
-        Me.LayoutPreview1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutPreview1.Location = New System.Drawing.Point(3, 3)
-        Me.LayoutPreview1.Name = "LayoutPreview1"
-        Me.LayoutPreview1.Size = New System.Drawing.Size(428, 318)
-        Me.LayoutPreview1.TabIndex = 0
         '
         'Panel5
         '
@@ -245,6 +229,7 @@ Partial Class OL3Des
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.ComboBox1)
         Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
@@ -268,9 +253,9 @@ Partial Class OL3Des
         '
         'ToolStripContainer1.TopToolStripPanel
         '
+        Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip2)
         Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip3)
         Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip1)
-        Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip2)
         '
         'ToolStrip3
         '
@@ -339,7 +324,7 @@ Partial Class OL3Des
         '
         Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripButton1, Me.ToolStripButton4, Me.ToolStripButton5})
-        Me.ToolStrip2.Location = New System.Drawing.Point(565, 0)
+        Me.ToolStrip2.Location = New System.Drawing.Point(557, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
         Me.ToolStrip2.Size = New System.Drawing.Size(155, 25)
         Me.ToolStrip2.TabIndex = 11
@@ -379,6 +364,32 @@ Partial Class OL3Des
         Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton5.Text = "ToolStripButton5"
         Me.ToolStripButton5.ToolTipText = "Simple layout"
+        '
+        'Button1
+        '
+        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
+        Me.Button1.Location = New System.Drawing.Point(135, 2)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(26, 24)
+        Me.Button1.TabIndex = 5
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'LayoutDesigner1
+        '
+        Me.LayoutDesigner1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutDesigner1.layoutList = ""
+        Me.LayoutDesigner1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutDesigner1.Name = "LayoutDesigner1"
+        Me.LayoutDesigner1.Size = New System.Drawing.Size(617, 349)
+        Me.LayoutDesigner1.TabIndex = 0
+        '
+        'LayoutPreview1
+        '
+        Me.LayoutPreview1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutPreview1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutPreview1.Name = "LayoutPreview1"
+        Me.LayoutPreview1.Size = New System.Drawing.Size(428, 318)
+        Me.LayoutPreview1.TabIndex = 0
         '
         'OL3Des
         '
@@ -445,5 +456,6 @@ Partial Class OL3Des
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents ToolStrip3 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

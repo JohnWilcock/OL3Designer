@@ -171,4 +171,20 @@ Public Class OL3Des
         Dim ab As New OL3DesAbout
         ab.Show()
     End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        'remove map
+        If maps.mapList.Count > 1 Then
+            'maps.mapList.RemoveAt(maps.linkedBox.SelectedIndex)
+            ' maps.linkedBox.Items.RemoveAt(maps.linkedBox.SelectedIndex)
+            'maps.linkedBox.SelectedIndex = 0
+
+            'refersh all layout designer keys
+
+
+        Else
+            MsgBox("Cannot delete, there must be at least one map")
+        End If
+
+    End Sub
 End Class

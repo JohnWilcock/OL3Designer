@@ -18,6 +18,7 @@ Public Class OL3LayerList
         ' Add any initialization after the InitializeComponent() call.
         mapOptions = New OL3MapOptions
         mapOptions.theParentLayerList = Me
+        mapOptions.refreshMinMax()
 
         Dim ran1 As New Random
         mapID = ran1.Next(1000000, 9999999).ToString
