@@ -215,10 +215,10 @@ Public Class OLStylePickerDialog
 
                     'save bitmap down
                     Dim theBitmap As Bitmap = New Bitmap(standardStylesImageList.Images(theItem.ImageIndex))
-                    theBitmap.Save(Path.Combine(Path.GetDirectoryName(theAssembly.Location), theItem.Text) & ".png")
+                    theBitmap.Save(Path.Combine(Path.GetDirectoryName(theAssembly.Location), "OL3Icon_" & theItem.Text.Replace(" ", "_")) & ".png")
 
                     'set src
-                    styleSettings.OLSRC = (Path.Combine(Path.GetDirectoryName(theAssembly.Location), theItem.Text) & ".png").Replace("\", "/")
+                    styleSettings.OLSRC = (Path.Combine(Path.GetDirectoryName(theAssembly.Location), "OL3Icon_" & theItem.Text.Replace(" ", "_")) & ".png").Replace("\", "/")
 
                     'set default styles
                     If theItem.Group.Name <> "cicon" Then

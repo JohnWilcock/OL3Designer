@@ -697,7 +697,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icons\olstyle_polygon_ThickBlackOutline.png" />
     <None Include="Icons\olstyle_polygon_Thick Black Outline.png" />
     <None Include="Icons\olstyle_polygon_Transparent Green.png" />
     <Content Include="logo.ico" />

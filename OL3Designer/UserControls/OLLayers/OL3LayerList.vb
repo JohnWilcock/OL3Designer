@@ -311,14 +311,14 @@ Public Class OL3LayerList
 
         ' get the parameters js
         getMapParameters = ""
-        getMapParameters = getMapParameters & "var map" & mapNumber & "_View =  new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:" & mapNumber & "999'})" & Chr(10)
+        getMapParameters = getMapParameters & "var map" & mapNumber & "_View =  new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:" & mapNumber & "999'" & mapOptions.getRestrictedExtentAndZoomString & "})" & Chr(10)
 
         'ensure map still exists and hasn't been deleted since setup
         mapOptions.checkSyncedMap()
 
         Dim mapViewJS As String
         If mapOptions.ComboBox1.SelectedIndex <> 0 And mapOptions.ComboBox1.Text <> "" Then
-            mapViewJS = mapOptions.ComboBox1.Text.Replace(" ", "").ToLower & "_View"
+            mapViewJS = mapOptions.ComboBox1.Text.Replace(" ", "").ToLower & ".getView()"  'mapViewJS = mapOptions.ComboBox1.Text.Replace(" ", "").ToLower & "_View"
         Else
             mapViewJS = "map" & mapNumber & "_View" & Chr(10)
         End If
@@ -331,7 +331,7 @@ Public Class OL3LayerList
         getMapParameters = getMapParameters & "});" & Chr(10)
 
         'set default extents
-        getMapParameters = getMapParameters & "setMaxExtent(map" & mapNumber & ");" & Chr(10) & Chr(10)
+        getMapParameters = getMapParameters & mapOptions.getExtentString & Chr(10) & Chr(10)
 
 
         'prepare popup event handler
@@ -493,6 +493,7 @@ Class OLLayer
     Public layerID As Integer
     Public OL3Edit As OL3EditLayer
     Public useLayerForDefaultExtent As Boolean = 1
+    Public useLayerForRestrictedExtent As Boolean = 0
 
     Public MinX As Double
     Public MinY As Double
@@ -527,8 +528,8 @@ Class OLLayer
         Dim BBox As List(Of Double)
         BBox = GDAL.getExtents(layerPath)
         MinX = BBox(0)
-        MinY = BBox(1)
-        MaxX = BBox(2)
+        MaxX = BBox(1)
+        MinY = BBox(2)
         MaxY = BBox(3)
 
         'set general 

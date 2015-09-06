@@ -67,11 +67,20 @@ view.fitExtent(theExtent , theMap.getSize());
 
 
 function setMaxExtentCoords(theMap,theCoords){
+var hasVectorLayer = 0;
 //get map view
 var view = theMap.getView();
 //set up blank extent
 var theExtent = new ol.extent.createEmpty();
-theExtent = theMap.getLayers().item(0).getSource().getExtent();
+//cycle through layers
+for (i = 0; i < theMap.getLayers().getLength(); i++) { 
+if (theMap.getLayers().item(i) instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = theMap.getLayers().item(i).getSource().getExtent();
+}
+hasVectorLayer = 1;
+}
+}
 
 //minx
 theExtent[0] = theCoords[0];
@@ -82,4 +91,48 @@ theExtent[2] = theCoords[2];
 //maxy
 theExtent[3] = theCoords[3];
 
+
+view.fitExtent(theExtent , theMap.getSize());
+
+}
+
+
+
+function getMaxExtentByLayerAndMargin(layerArray, margin){
+var hasVectorLayer = 0;
+
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+
+//cycle through layers
+for (i = 0; i < layerArray.length; i++) { 
+if (layerArray[i] instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = layerArray[i].getSource().getExtent();
+}
+
+hasVectorLayer = 1;
+tempExtent = layerArray[i].getSource().getExtent();
+//minx
+if(tempExtent[0] < theExtent[0]){theExtent[0] = tempExtent[0]}
+//miny
+if(tempExtent[1] < theExtent[1]){theExtent[1] = tempExtent[1]}
+//maxx
+if(tempExtent[2] > theExtent[2]){theExtent[2] = tempExtent[2]}
+//maxy
+if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
+
+}
+}
+
+var xDiff = (theExtent[2] - theExtent[0]) * margin;
+var yDiff = (theExtent[3] - theExtent[1]) * margin;
+
+theExtent[0] = theExtent[0] - xDiff;
+theExtent[1] = theExtent[1] - yDiff;
+theExtent[2] =  theExtent[2] + xDiff;
+theExtent[3] = theExtent[3] + yDiff;
+
+
+return theExtent;
 }

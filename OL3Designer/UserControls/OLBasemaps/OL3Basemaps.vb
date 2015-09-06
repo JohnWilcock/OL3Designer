@@ -1,5 +1,7 @@
 ﻿Public Class OL3Basemaps
 
+    Public parentMapOptions As OL3MapOptions
+    Public hasLoaded As Boolean = False
 
     Public Function getBasemapJS(Optional ByVal outputPath As String = "", Optional ByVal mapNumber As Integer = 0, Optional ByVal outputName As String = "") As String
         Select Case TreeView1.SelectedNode.Text
@@ -29,6 +31,8 @@
         ' Add any initialization after the InitializeComponent() call.
         TreeView1.Nodes(1).Expand()
         TreeView1.SelectedNode = TreeView1.Nodes(1).Nodes(0)
+
+
     End Sub
 
 
@@ -37,6 +41,8 @@
         Select Case TreeView1.SelectedNode.Text
             Case "OpenStreetMap"
                 Panel1.Controls.Clear()
+                If hasLoaded Then parentMapOptions.numberOfZoomLevels = 22
+
             Case "Image Files"
                 If Panel1.Controls.Count > 0 Then
                     If TypeOf (Panel1.Controls(0)) Is OL3BasemapTiledRaster Then
@@ -50,10 +56,11 @@
 
             Case "None"
                 Panel1.Controls.Clear()
+                If hasLoaded Then parentMapOptions.numberOfZoomLevels = 22
 
         End Select
 
-
+        If hasLoaded Then parentMapOptions.refreshMinMax()
     End Sub
 
     Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
