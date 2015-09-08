@@ -123,4 +123,30 @@
 (At runtime, the labels' text will be replaced with the application's assembly information.
 Customize the application's assembly information in the Application pane of Project Designer.)</value>
   </data>
+  <data name="TextBox1.Text" xml:space="preserve">
+    <value>This application uses the following open source libraries:
+
+OpenLayers 3.4
+http://openlayers.org/
+OpenLayers 3 powers all the output interactive maps created by the application.
+Due to the ever changing core API of OL3, only version 3.4 is used.
+
+GDAL 1.9:
+http://www.gdal.org/
+GDAL/OGR is used to load all GIS layers, image georeferencing and relevant data. 
+
+JQuery
+https://jquery.com/
+
+URI.js
+http://medialize.github.io/URI.js/
+
+ProjNet
+https://projnet.codeplex.com/
+.net handling of projections
+
+Proj4JS
+http://proj4js.org/
+Javascript handling of projections</value>
+  </data>
 </root>

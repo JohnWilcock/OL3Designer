@@ -47,16 +47,15 @@ Partial Class OL3Projections
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(189, 10)
+        Me.Button1.Location = New System.Drawing.Point(118, 13)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(30, 23)
+        Me.Button1.Size = New System.Drawing.Size(101, 23)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "..."
+        Me.Button1.Text = "Pick projection..."
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button6)
         Me.Panel1.Controls.Add(Me.TextBox2)
         Me.Panel1.Controls.Add(Me.TextBox1)
         Me.Panel1.Controls.Add(Me.Button1)
@@ -67,11 +66,11 @@ Partial Class OL3Projections
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(148, 10)
+        Me.Button6.Location = New System.Drawing.Point(3, 134)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(35, 23)
+        Me.Button6.Size = New System.Drawing.Size(143, 23)
         Me.Button6.TabIndex = 3
-        Me.Button6.Text = "Edit"
+        Me.Button6.Text = "Manualy edit proj4.js string"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'TextBox2
@@ -234,6 +233,7 @@ Partial Class OL3Projections
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "OL3Projections"

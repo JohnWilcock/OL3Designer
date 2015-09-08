@@ -47,14 +47,30 @@
     Private Sub LayoutControlOptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         populateAvailableControls()
         refreshFilters()
+        expandAll()
+    End Sub
+
+    Sub expandAll()
+        For t As Integer = 0 To TreeView1.Nodes.Count - 1
+            TreeView1.Nodes(t).Expand()
+            TreeView1.Nodes(t).ExpandAll()
+        Next
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If TreeView1.SelectedNode.Text <> "Style Selector" Then
-            addUniqueFilterLayer(TreeView1.SelectedNode.Parent, TreeView1.SelectedNode, TreeView1.SelectedNode.Parent.Parent.Index, TreeView1.SelectedNode.Parent.Index)
-        Else
-            addStyleSelector(TreeView1.SelectedNode.Parent, TreeView1.SelectedNode, TreeView1.SelectedNode.Parent.Parent.Index, TreeView1.SelectedNode.Parent.Index)
-        End If
+        'check for valid node, only level 3 can be added
+        Select Case TreeView1.SelectedNode.Level
+
+            Case 2
+                'add to list of controls
+                If TreeView1.SelectedNode.Text <> "Style Selector" Then
+                    addUniqueFilterLayer(TreeView1.SelectedNode.Parent, TreeView1.SelectedNode, TreeView1.SelectedNode.Parent.Parent.Index, TreeView1.SelectedNode.Parent.Index)
+                Else
+                    addStyleSelector(TreeView1.SelectedNode.Parent, TreeView1.SelectedNode, TreeView1.SelectedNode.Parent.Parent.Index, TreeView1.SelectedNode.Parent.Index)
+                End If
+        End Select
+
+
 
 
 
@@ -220,6 +236,20 @@
 
 
     End Function
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        removeControl()
+    End Sub
+
+    Sub removeControl()
+        If TreeView2.SelectedNode Is Nothing Then Exit Sub
+        FilterItems.RemoveAt(TreeView2.SelectedNode.Level)
+        TreeView2.Nodes.Remove(TreeView2.SelectedNode)
+
+        CheckedListBox1.Items.Clear()
+    End Sub
+
+
 End Class
 
 Class ControlItem

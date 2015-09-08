@@ -63,6 +63,9 @@ Public Class OL3LayerList
         Dim theRow As OLLayer = DataGridView1.Rows(e.RowIndex)
         If e.ColumnIndex = 1 Then ' remove Layer
             DataGridView1.Rows.RemoveAt(e.RowIndex)
+            'force remove any items in keys
+            parentMapList.layout.refreshAllKeysAndControls(parentMapList.layout.Sp1)
+
         End If
 
         If e.ColumnIndex = 2 Then 'edit layer

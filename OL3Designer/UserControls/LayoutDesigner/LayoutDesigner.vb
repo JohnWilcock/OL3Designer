@@ -185,6 +185,46 @@
 
     End Sub
 
+    Sub refreshAllKeysAndControls(ByVal theSP As SP)
+        'recursive function to refresh all key - used to force remove items from removed layers
+
+        'cell 1
+        'if contents of panel1 is another splitter, recall this sub, else check for key
+        removeAllButtons(theSP.Panel1)
+        If theSP.Panel1.Controls.Count > 0 Then
+            refreshAllKeysAndControls(theSP.Panel1.Controls(theSP.Panel1.Controls.Count - 1))
+        Else
+            'if its a key refresh
+            If theSP.p1Type.Text = "Key" Then
+                theSP.p1KeyOptions.refreshKey()
+            End If
+
+            If theSP.p1Type.Text = "Controls" Then
+                theSP.p1ControlOptions.refreshFilters()
+            End If
+        End If
+
+
+        'cell2
+        removeAllButtons(theSP.Panel2)
+        If theSP.Panel2.Controls.Count > 0 Then
+            refreshAllKeysAndControls(theSP.Panel2.Controls(theSP.Panel2.Controls.Count - 1))
+        Else
+            'if its a key refresh
+            If theSP.p2Type.Text = "Key" Then
+                theSP.p2KeyOptions.refreshKey()
+            End If
+
+            If theSP.p2Type.Text = "Controls" Then
+                theSP.p2controloptions.refreshFilters()
+            End If
+        End If
+
+        'reset labels
+        addAllLabels(Sp1)
+
+    End Sub
+
 
     Public Sub removeAllButtonsAllPanels(ByVal theSP As SP)
         'cell 1

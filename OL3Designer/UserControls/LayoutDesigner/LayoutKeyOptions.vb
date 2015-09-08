@@ -93,7 +93,8 @@ Public Class LayoutKeyOptions
     Function findKeyID(ByVal keyItemCount As Long) As Boolean
         For Each map As OL3LayerList In OL3mapsObject.mapList
             For Each mapLayer As OLLayer In map.DataGridView1.Rows
-                If mapLayer.layerID = keyItems(keyItemCount).LayerID Then
+
+                If mapLayer.layerID = keyItems(keyItemCount).LayerID And keyItems.Count >= keyItemCount Then
                     'update layer info if names have changed etc
                     keyItems(keyItemCount).layerName = mapLayer.layerName
                     keyItems(keyItemCount).label = mapLayer.layerName & " (Map " & mapLayer.mapNumber & ")"
@@ -101,6 +102,7 @@ Public Class LayoutKeyOptions
 
                     Return True
                 End If
+
             Next
         Next
         Return False
@@ -211,6 +213,15 @@ Public Class LayoutKeyOptions
             ListBox1.SelectedIndex = ListBox1.Items.Count - 1
         End If
 
+    End Sub
+
+
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        Dim pG As New PropertiesForm
+        If ListBox1.SelectedIndex <> -1 Then
+            pG.PropertyGrid1.SelectedObject = keyItems(ListBox1.SelectedIndex)
+            pG.ShowDialog()
+        End If
     End Sub
 End Class
 
