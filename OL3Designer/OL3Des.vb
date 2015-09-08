@@ -175,12 +175,12 @@ Public Class OL3Des
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         'remove map
         If maps.mapList.Count > 1 Then
-            'maps.mapList.RemoveAt(maps.linkedBox.SelectedIndex)
-            ' maps.linkedBox.Items.RemoveAt(maps.linkedBox.SelectedIndex)
-            'maps.linkedBox.SelectedIndex = 0
+            maps.mapList.RemoveAt(maps.linkedBox.SelectedIndex)
+            maps.linkedBox.Items.RemoveAt(maps.linkedBox.SelectedIndex)
+            maps.linkedBox.SelectedIndex = 0
 
-            'refersh all layout designer keys
-
+            'refersh all layout designer keys to remove layers and controls from removed map
+            LayoutDesigner1.refreshAllKeysAndControls(LayoutDesigner1.Sp1)
 
         Else
             MsgBox("Cannot delete, there must be at least one map")
