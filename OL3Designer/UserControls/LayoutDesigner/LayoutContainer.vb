@@ -308,8 +308,8 @@ Public Class SP
 
         Select Case p1Lookup
             Case "Map"
-                p1Collapsable.Show()
-                p1Collapsed.Show()
+                p1Collapsable.Hide()
+                p1Collapsed.Hide()
                 p1Path.Hide()
                 p1Text.Hide()
                 p1KeyButton.Hide()
@@ -317,8 +317,8 @@ Public Class SP
                 p1ImageType.Hide()
                 p1ControlsButton.Hide()
             Case "Key"
-                p1Collapsable.Show()
-                p1Collapsed.Show()
+                p1Collapsable.Hide()
+                p1Collapsed.Hide()
                 p1Path.Hide()
                 p1Text.Hide()
                 p1KeyButton.Show()
@@ -326,8 +326,8 @@ Public Class SP
                 p1ImageType.Hide()
                 p1ControlsButton.Hide()
             Case "Ima" ' Image
-                p1Collapsable.Show()
-                p1Collapsed.Show()
+                p1Collapsable.Hide()
+                p1Collapsed.Hide()
                 p1Path.Show()
                 p1Text.Hide()
                 p1KeyButton.Hide()
@@ -335,8 +335,8 @@ Public Class SP
                 p1ImageType.Show()
                 p1ControlsButton.Hide()
             Case "Tex" ' Text
-                p1Collapsable.Show()
-                p1Collapsed.Show()
+                p1Collapsable.Hide()
+                p1Collapsed.Hide()
                 p1Path.Hide()
                 p1Text.Show()
                 p1KeyButton.Hide()
@@ -344,8 +344,8 @@ Public Class SP
                 p1ImageType.Hide()
                 p1ControlsButton.Hide()
             Case "Con" 'Controls
-                p1Collapsable.Show()
-                p1Collapsed.Show()
+                p1Collapsable.Hide()
+                p1Collapsed.Hide()
                 p1Path.Hide()
                 p1Text.Hide()
                 p1KeyButton.Hide()
@@ -357,8 +357,8 @@ Public Class SP
 
         Select Case p2Lookup
             Case "Map"
-                p2Collapsable.Show()
-                p2collapsed.Show()
+                p2Collapsable.Hide()
+                p2collapsed.Hide()
                 p2Path.Hide()
                 p2Text.Hide()
                 p2KeyButton.Hide()
@@ -366,8 +366,8 @@ Public Class SP
                 p2ImageType.Hide()
                 p2ControlsButton.Hide()
             Case "Key"
-                p2Collapsable.Show()
-                p2collapsed.Show()
+                p2Collapsable.Hide()
+                p2collapsed.Hide()
                 p2Path.Hide()
                 p2Text.Hide()
                 p2KeyButton.Show()
@@ -375,8 +375,8 @@ Public Class SP
                 p2ImageType.Hide()
                 p2ControlsButton.Hide()
             Case "Ima"
-                p2Collapsable.Show()
-                p2collapsed.Show()
+                p2Collapsable.Hide()
+                p2collapsed.Hide()
                 p2Path.Show()
                 p2Text.Hide()
                 p2KeyButton.Hide()
@@ -384,8 +384,8 @@ Public Class SP
                 p2ImageType.Show()
                 p2ControlsButton.Hide()
             Case "Tex"
-                p2Collapsable.Show()
-                p2collapsed.Show()
+                p2Collapsable.Hide()
+                p2collapsed.Hide()
                 p2Path.Hide()
                 p2Text.Show()
                 p2KeyButton.Hide()
@@ -393,8 +393,8 @@ Public Class SP
                 p2ImageType.Hide()
                 p2ControlsButton.Hide()
             Case "Con"
-                p2Collapsable.Show()
-                p2collapsed.Show()
+                p2Collapsable.Hide()
+                p2collapsed.Hide()
                 p2Path.Hide()
                 p2Text.Hide()
                 p2KeyButton.Hide()
