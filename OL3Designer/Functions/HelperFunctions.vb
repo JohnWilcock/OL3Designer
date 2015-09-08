@@ -172,6 +172,21 @@ Public Class HelperFunctions
 
         'cycle through icons in style settings and put in list
         Dim defaultString As String = My.Resources.DefaultStyleSettings
+
+        'now add any custom icons to the list and pad out with dummy values
+        If Directory.Exists(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Custom Icons")) Then
+            Dim dir As New DirectoryInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Custom Icons"))
+            Dim allFiles As FileInfo() = dir.GetFiles()
+            For Each filei As FileInfo In allFiles
+                'if a png file
+                If filei.Extension.ToLower = ".png" Then
+                    defaultString = defaultString & Path.GetFileNameWithoutExtension(filei.FullName) & ":1,0,bottom-left,0.5,fraction,0.5,fraction;"
+
+                End If
+            Next
+        End If
+
+
         Dim defaultStrings() As String = defaultString.Split(";")
         Dim currentStyle() As String
         Dim iconName As String = ""
@@ -186,7 +201,8 @@ Public Class HelperFunctions
 
             'is icon referenced in output
             If outputText.IndexOf(iconShortName) <> -1 And iconShortName.Length > 4 Then
-                replaceIconPathsWithOutputPaths = outputText.Replace(exePath & "/" & iconShortName & ".png", outputPath.Replace("\", "/") & "/" & iconShortName & ".png")
+                'replaceIconPathsWithOutputPaths = outputText.Replace(exePath & "/" & iconShortName & ".png", outputPath.Replace("\", "/") & "/" & iconShortName & ".png")
+                replaceIconPathsWithOutputPaths = replaceIconPathsWithOutputPaths.Replace(exePath & "/" & iconShortName & ".png", iconShortName & ".png")
                 listOfIconsToCopyFrom.Add(exePath.Replace("/", "\") & "\" & iconShortName & ".png")
                 listOfIconsToCopyTo.Add(outputPath & "\" & iconShortName & ".png")
             End If
