@@ -16,8 +16,9 @@ Public Class OL3BasemapTiledRaster
     Public scaleFactor As Double = 1
     Public scaleMultiplier As Double
     Public finalTileSize As Integer
+    Public parentMapList As OL3Maps
 
-
+    Public copiedFromMap As String = ""
 
     Private _ZoomLevels As List(Of zoomLevel)
     Public Property ZoomLevels() As List(Of zoomLevel)
@@ -44,6 +45,19 @@ Public Class OL3BasemapTiledRaster
 
     Private Sub TiledRaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         refreshZoomList()
+
+    End Sub
+
+    Sub populateMapList()
+        copiedFromMap = ToolStripComboBox1.Text
+
+        ToolStripComboBox1.Items.Clear()
+        ToolStripComboBox1.Items.Add("New")
+        For n As Integer = 0 To parentMapList.mapList.Count
+            'ToolStripComboBox1.Items.Add("map " & parentMapList.mapList(n).mapNumber)
+        Next
+
+
     End Sub
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click

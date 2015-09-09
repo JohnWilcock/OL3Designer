@@ -10,6 +10,7 @@
 
             Case "Image Files"
                 Dim tiledImageControl As OL3BasemapTiledRaster = Panel1.Controls(0)
+                'tiledImageControl.parentMapList = parentMapOptions.theParentLayerList.parentMapList
 
                 'first tile the images
                 tiledImageControl.createAllTileLevels(outputPath, mapNumber, outputName)

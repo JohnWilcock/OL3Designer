@@ -265,16 +265,18 @@ Partial Class OL3BasemapTiledRaster
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ToolStripSeparator1, Me.ToolStripLabel1, Me.ToolStripComboBox1})
         Me.ToolStrip3.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(340, 25)
+        Me.ToolStrip3.Size = New System.Drawing.Size(297, 25)
         Me.ToolStrip3.TabIndex = 0
         '
         'ToolStripButton3
         '
+        Me.ToolStripButton3.CheckOnClick = True
         Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
         Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton3.Name = "ToolStripButton3"
         Me.ToolStripButton3.Size = New System.Drawing.Size(72, 22)
         Me.ToolStripButton3.Text = "Override"
+        Me.ToolStripButton3.ToolTipText = "Override existing tiles if found" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(uncheck if image have been previously tiled))"
         '
         'ToolStripSeparator1
         '
@@ -290,7 +292,7 @@ Partial Class OL3BasemapTiledRaster
         'ToolStripComboBox1
         '
         Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
-        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 25)
+        Me.ToolStripComboBox1.Size = New System.Drawing.Size(80, 25)
         '
         'OL3BasemapTiledRaster
         '

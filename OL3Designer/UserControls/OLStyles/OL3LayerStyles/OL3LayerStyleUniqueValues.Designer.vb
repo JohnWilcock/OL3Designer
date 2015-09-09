@@ -25,11 +25,12 @@ Partial Class OL3LayerStyleUniqueValues
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SizeRamps1 = New OL3Designer.SizeRamps()
         Me.OLStyle = New System.Windows.Forms.DataGridViewImageColumn()
         Me.OLValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SizeRamps1 = New OL3Designer.SizeRamps()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -60,6 +61,25 @@ Partial Class OL3LayerStyleUniqueValues
         Me.DataGridView1.Size = New System.Drawing.Size(304, 141)
         Me.DataGridView1.TabIndex = 0
         '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Column2"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.Width = 80
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Label"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Width = 80
+        '
+        'SizeRamps1
+        '
+        Me.SizeRamps1.Location = New System.Drawing.Point(186, 45)
+        Me.SizeRamps1.Name = "SizeRamps1"
+        Me.SizeRamps1.Size = New System.Drawing.Size(121, 30)
+        Me.SizeRamps1.TabIndex = 3
+        '
         'OLStyle
         '
         Me.OLStyle.HeaderText = "Style"
@@ -72,6 +92,7 @@ Partial Class OL3LayerStyleUniqueValues
         '
         Me.OLValue.HeaderText = "Value"
         Me.OLValue.Name = "OLValue"
+        Me.OLValue.ReadOnly = True
         Me.OLValue.Width = 80
         '
         'Label
@@ -79,18 +100,6 @@ Partial Class OL3LayerStyleUniqueValues
         Me.Label.HeaderText = "Label"
         Me.Label.Name = "Label"
         Me.Label.Width = 80
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Column2"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        '
-        'SizeRamps1
-        '
-        Me.SizeRamps1.Location = New System.Drawing.Point(186, 45)
-        Me.SizeRamps1.Name = "SizeRamps1"
-        Me.SizeRamps1.Size = New System.Drawing.Size(121, 30)
-        Me.SizeRamps1.TabIndex = 3
         '
         'OL3LayerStyleUniqueValues
         '
@@ -110,9 +119,10 @@ Partial Class OL3LayerStyleUniqueValues
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SizeRamps1 As OL3Designer.SizeRamps
     Friend WithEvents OLStyle As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents OLValue As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SizeRamps1 As OL3Designer.SizeRamps
+    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

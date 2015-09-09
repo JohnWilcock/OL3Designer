@@ -41,15 +41,17 @@
     Public Function getKeyText() As String
         getKeyText = ""
         For x As Integer = 0 To DataGridView1.Rows.Count - 1
-            getKeyText = getKeyText & "," & Chr(34) & DataGridView1.Rows(x).Cells(1).Value.ToString & Chr(34)
+            If DataGridView1.Rows(x).Cells(2).Value IsNot Nothing Then 'check for blank values
+                getKeyText = getKeyText & "," & Chr(34) & DataGridView1.Rows(x).Cells(2).Value.ToString & Chr(34)
+            Else
+                getKeyText = getKeyText & "," & Chr(34) & " " & Chr(34)
+            End If
+
         Next
         getKeyText = getKeyText.Substring(1)
     End Function
 
     Sub refreshUniqueStyles()
-        'clear previous
-        DataGridView1.Rows.Clear()
-        Dim currentRowIndex As Integer = 0
 
         'get the unique styles for chosen column - return as array
         'run function her to return distinct elements of chosen field
@@ -57,6 +59,15 @@
         Dim UVs As List(Of String) = GDAL.getFieldValues(layerPath, ComboBox1.Text, True)
 
         Dim chosenColumnUniqueValues As String() = UVs.ToArray '{"type1", "type2", "unknown Type"}
+
+        'check for sensible amount - as using webrowser controls is slow and clunky it would take hours to load 1000s of styles
+        If UVs.Count > 5 Then
+            If MsgBox("There are more than 5 unique values in this field, loading styles for all values many be slow. Continue ?", MsgBoxStyle.OkCancel) = MsgBoxResult.Cancel Then Exit Sub
+        End If
+
+        'clear previous
+        DataGridView1.Rows.Clear()
+        Dim currentRowIndex As Integer = 0
 
         Dim layerFieldList As List(Of String) = GDAL.getFieldList(layerPath)
 
@@ -89,7 +100,7 @@
             DataGridView1.Rows(currentRowIndex).Cells("OLStyle").Value = currentRow.uniqueStyle.PanelToBitmap
             'DataGridView1.Rows(currentRowIndex).Cells("OLStyle").Value = theStylePicker.PanelToBitmap
             DataGridView1.Rows(currentRowIndex).Cells("OLValue").Value = currentRow.uniqueValue
-
+            DataGridView1.Rows(currentRowIndex).Cells("Label").Value = currentRow.uniqueLabel
         Next
 
     End Sub
