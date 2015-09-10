@@ -18,7 +18,8 @@ Public Class OL3BasemapTiledRaster
     Public finalTileSize As Integer
     Public parentMapList As OL3Maps
 
-    Public copiedFromMap As String = ""
+    Public copiedFromMapID As String = ""
+    Public listOfMapIDs As New List(Of String)
 
     Private _ZoomLevels As List(Of zoomLevel)
     Public Property ZoomLevels() As List(Of zoomLevel)
@@ -31,32 +32,74 @@ Public Class OL3BasemapTiledRaster
 
     End Property
 
-    Sub New()
+    Sub New(ByVal theParent As OL3Maps)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
         ZoomLevels = New List(Of zoomLevel)
-
+        parentMapList = theParent
 
     End Sub
 
 
     Private Sub TiledRaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         refreshZoomList()
-
+        populateMapList()
     End Sub
 
     Sub populateMapList()
-        copiedFromMap = ToolStripComboBox1.Text
+        Dim TR As OL3BasemapTiledRaster
 
         ToolStripComboBox1.Items.Clear()
+        listOfMapIDs.Clear()
+
         ToolStripComboBox1.Items.Add("New")
-        For n As Integer = 0 To parentMapList.mapList.Count
-            'ToolStripComboBox1.Items.Add("map " & parentMapList.mapList(n).mapNumber)
+        listOfMapIDs.Add("New")
+
+        For n As Integer = 0 To parentMapList.mapList.Count - 1
+            'is a control present
+            If parentMapList.mapList(n).mapOptions.OL3Basemaps1.Panel1.Controls.Count > 0 Then
+                '1. is a tms used ?
+                If TypeOf parentMapList.mapList(n).mapOptions.OL3Basemaps1.Panel1.Controls(0) Is OL3BasemapTiledRaster And parentMapList.mapList(n).mapOptions.OL3Basemaps1.Panel1.Controls(0) IsNot Me Then
+                    TR = parentMapList.mapList(n).mapOptions.OL3Basemaps1.Panel1.Controls(0)
+                    '2. is it bounced off another TMS ?
+                    If TR.ToolStripComboBox1.SelectedIndex = 0 Then
+                        ToolStripComboBox1.Items.Add("map " & parentMapList.mapList(n).mapNumber)
+                        listOfMapIDs.Add(parentMapList.mapList(n).mapID)
+                    End If
+
+                End If
+            End If
         Next
 
+        'check if previous map still exists and if so select it, else select new TMS
+        checkCopyFromMap("New")
+
+    End Sub
+
+    Sub checkCopyFromMap(Optional ByVal setTo As String = "OSM")
+        If copiedFromMapID = "New" Then Exit Sub
+
+        Dim found As Boolean = False
+        'cycle through other maps and check a chosen one still exists - if not set to OSM or "new"
+        For n As Integer = 0 To parentMapList.mapList.Count - 1
+            If parentMapList.mapList(n).mapID = copiedFromMapID Then
+                found = True
+                Continue For
+            End If
+        Next
+
+        Dim mapOpt As OL3MapOptions = Me.ParentForm
+
+        If found = False Then
+            If setTo = "OSM" Then
+                mapOpt.OL3Basemaps1.TreeView1.SelectedNode = mapOpt.OL3Basemaps1.TreeView1.Nodes("Web based files").Nodes("OpenStreetMap")
+            Else
+                ToolStripComboBox1.SelectedIndex = 0
+            End If
+        End If
 
     End Sub
 
@@ -354,6 +397,11 @@ Public Class OL3BasemapTiledRaster
         Dim combinedImage As Bitmap
         Dim tempRes As Double
 
+        'is TMS copy from other map active, if so skip
+        If ToolStripComboBox1.SelectedIndex > 0 Then
+            Exit Sub
+        End If
+
         For t As Integer = 0 To listOfAllTiles.Count - 1
 
             'does image curently exist ?
@@ -443,6 +491,21 @@ Public Class OL3BasemapTiledRaster
 
     Function getBasemapJS(ByVal outputFolder As String, ByVal mapNumber As Integer, ByVal outName As String) As String
 
+        'is TMS copy from other map active, if so skip
+        If ToolStripComboBox1.SelectedIndex > 0 Then
+            'get this function from chosen map
+            For n As Integer = 0 To parentMapList.mapList.Count
+                If parentMapList.mapList(n).mapID = copiedFromMapID Then
+                    Dim TR As OL3BasemapTiledRaster = parentMapList.mapList(n).mapOptions.OL3Basemaps1.Panel1.Controls(0)
+                    Return TR.getBasemapJS(outputFolder, parentMapList.mapList(n).mapNumber, outName)
+
+                End If
+            Next
+
+            'then exit function 
+
+        End If
+
         'outputFolder = outputFolder.Replace("\", "/")
         outputFolder = outName & "/" & mapNumber & "/"
         getBasemapJS = ""
@@ -474,6 +537,10 @@ Public Class OL3BasemapTiledRaster
 
 
 
+    Private Sub mapListChanged() Handles ToolStripComboBox1.SelectedIndexChanged
+        copiedFromMapID = listOfMapIDs(ToolStripComboBox1.SelectedIndex)
+
+    End Sub
 End Class
 
 

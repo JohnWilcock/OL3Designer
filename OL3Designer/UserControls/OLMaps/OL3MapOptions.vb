@@ -105,8 +105,21 @@
         'check restricted extent layers are still present
         refreshCheckedListBox2()
 
+        'if tms 'copy from other map' is active - check map still exists
+        checkTMSMapCopy()
+
 
         hasLoaded = 1
+    End Sub
+
+    Sub checkTMSMapCopy()
+        Dim TR As OL3BasemapTiledRaster
+        If OL3Basemaps1.Panel1.Controls.Count > 0 Then
+            If TypeOf OL3Basemaps1.Panel1.Controls(0) Is OL3BasemapTiledRaster Then
+                TR = OL3Basemaps1.Panel1.Controls(0)
+                TR.checkCopyFromMap()
+            End If
+        End If
     End Sub
 
     Sub refreshMinMax()

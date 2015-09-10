@@ -182,6 +182,15 @@ Public Class OL3Des
             'refersh all layout designer keys to remove layers and controls from removed map
             LayoutDesigner1.refreshAllKeysAndControls(LayoutDesigner1.Sp1)
 
+            'trigger refresh map depentant settings (sync windows and tms copy)
+            For z As Integer = 0 To maps.mapList.Count - 1
+                '1. map sync
+                maps.mapList(z).mapOptions.checkSyncedMap()
+
+                '2. tms copy
+                maps.mapList(z).mapOptions.checkTMSMapCopy()
+            Next
+
         Else
             MsgBox("Cannot delete, there must be at least one map")
         End If

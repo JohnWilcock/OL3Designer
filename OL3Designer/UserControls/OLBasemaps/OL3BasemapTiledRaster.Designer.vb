@@ -265,7 +265,7 @@ Partial Class OL3BasemapTiledRaster
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ToolStripSeparator1, Me.ToolStripLabel1, Me.ToolStripComboBox1})
         Me.ToolStrip3.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(297, 25)
+        Me.ToolStrip3.Size = New System.Drawing.Size(299, 25)
         Me.ToolStrip3.TabIndex = 0
         '
         'ToolStripButton3

@@ -10,7 +10,7 @@
 
             Case "Image Files"
                 Dim tiledImageControl As OL3BasemapTiledRaster = Panel1.Controls(0)
-                'tiledImageControl.parentMapList = parentMapOptions.theParentLayerList.parentMapList
+
 
                 'first tile the images
                 tiledImageControl.createAllTileLevels(outputPath, mapNumber, outputName)
@@ -52,7 +52,8 @@
                 End If
 
                 Panel1.Controls.Clear()
-                Panel1.Controls.Add(New OL3BasemapTiledRaster)
+                Panel1.Controls.Add(New OL3BasemapTiledRaster(parentMapOptions.theParentLayerList.parentMapList))
+                'set parent
 
 
             Case "None"
