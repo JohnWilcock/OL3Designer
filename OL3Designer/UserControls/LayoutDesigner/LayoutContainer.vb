@@ -325,6 +325,9 @@ Public Class SP
                 p1Img.Hide()
                 p1ImageType.Hide()
                 p1ControlsButton.Hide()
+
+                Dim propertiesPanel As modifiedPanel = properties
+                p1KeyOptions.OL3mapsObject = propertiesPanel.OL3MapsObject
             Case "Ima" ' Image
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
@@ -374,6 +377,9 @@ Public Class SP
                 p2Img.Hide()
                 p2ImageType.Hide()
                 p2ControlsButton.Hide()
+
+                Dim propertiesPanel As modifiedPanel = properties
+                p2KeyOptions.OL3mapsObject = propertiesPanel.OL3MapsObject
             Case "Ima"
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
