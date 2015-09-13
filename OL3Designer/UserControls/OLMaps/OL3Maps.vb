@@ -1,8 +1,9 @@
 ﻿Imports System.IO
+Imports System.Security.Cryptography
 
 <Serializable()> Public Class OL3Maps
     Public mapList As New List(Of OL3LayerList)
-    Public linkedBox As ComboBox
+    Public linkedBox As ToolStripComboBox 'ComboBox
     'Public layerControl As OL3LayerList
     Public layerPanel As Panel
     Public currentSelectedIndex As Integer
@@ -10,7 +11,7 @@
     Public outputLocation As String
 
 
-    Sub New(ByRef linkedCB As ComboBox, ByVal linkedLayerPanel As Panel, ByVal theLayout As LayoutDesigner)
+    Sub New(ByRef linkedCB As ToolStripComboBox, ByVal linkedLayerPanel As Panel, ByVal theLayout As LayoutDesigner)
         linkedBox = linkedCB
         'layerControl = layerC
 
@@ -221,9 +222,95 @@
         Dim helper As New HelperFunctions
         Dim scriptTags As String = helper.writeAllLibraries(outputPath)
 
-        theHTML = "<!doctype html><html style='height: 100%;'><body style='height: 100%;'><head>" & scriptTags & layout.collapseScript & "</head><body>" & theHTML & ""
+        theHTML = "<!doctype html><html style='height: 100%;'><head>" & scriptTags & layout.collapseScript & "</head><body style='height: 100%; width:100%'>" & theHTML & ""
         System.IO.File.WriteAllText(outputPath, theHTML & theJS & "</body></html>" & vbCrLf)
 
     End Sub
+
+    Function isLayerDuplicated(ByVal layerPath As String, ByVal mapNum As Integer, ByVal layerNum As Integer) As Integer() 'returns lowest number duplicate mapnum & layerNum. -1 if no duplicate found
+        'by checking this, the application can divert a layer to the source of a different layer, this avoids duplicating long geoJson strings 
+
+        Dim theLayer As OLLayer
+
+        'for each map
+        For u As Integer = 0 To mapList.Count - 1
+
+            'for each layer
+            For a As Integer = 0 To mapList(u).DataGridView1.Rows.Count - 1
+                'do files match  
+                theLayer = mapList(u).DataGridView1.Rows(a)
+                If FileCompare(layerPath, theLayer.OL3LayerPath) Then ' identical layer sources
+
+                    'if so, are map num and layer num identical - if then not a duplicate
+                    If mapNum = u + 1 And layerNum = a Then
+                        'layer is querying itself
+                        Return {-1, -1}
+                    Else
+                        Return {u, a}
+                    End If
+
+                Else 'layers not identical - do  nothing
+
+
+                End If
+
+
+
+            Next
+
+        Next
+
+        Return {-1, -1}
+    End Function
+
+ 
+
+    'https://support.microsoft.com/en-us/kb/320348
+    Private Function FileCompare(file1 As String, file2 As String) As Boolean
+        Dim file1byte As Integer
+        Dim file2byte As Integer
+        Dim fs1 As FileStream
+        Dim fs2 As FileStream
+
+        ' Determine if the same file was referenced two times.
+        If file1 = file2 Then
+            ' Return true to indicate that the files are the same.
+            Return True
+        End If
+
+        ' Open the two files.
+        fs1 = New FileStream(file1, FileMode.Open)
+        fs2 = New FileStream(file2, FileMode.Open)
+
+        ' Check the file sizes. If they are not the same, the files 
+        ' are not the same.
+        If fs1.Length <> fs2.Length Then
+            ' Close the file
+            fs1.Close()
+            fs2.Close()
+
+            ' Return false to indicate files are different
+            Return False
+        End If
+
+        ' Read and compare a byte from each file until either a
+        ' non-matching set of bytes is found or until the end of
+        ' file1 is reached.
+        Do
+            ' Read one byte from each file.
+            file1byte = fs1.ReadByte()
+            file2byte = fs2.ReadByte()
+        Loop While (file1byte = file2byte) AndAlso (file1byte <> -1)
+
+        ' Close the files.
+        fs1.Close()
+        fs2.Close()
+
+        ' Return the success of the comparison. "file1byte" is 
+        ' equal to "file2byte" at this point only if the files are 
+        ' the same.
+        Return ((file1byte - file2byte) = 0)
+    End Function
+
 
 End Class

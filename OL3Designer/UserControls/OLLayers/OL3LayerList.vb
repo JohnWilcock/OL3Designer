@@ -33,14 +33,14 @@ Public Class OL3LayerList
 
     Public Sub add(ByVal layer As String)
         'get file path
-        Dim newOLLayer As New OLLayer(layer, mapNumber)
+        Dim newOLLayer As New OLLayer(layer, mapNumber, Me)
         Dim layerIndex As Integer = DataGridView1.Rows.Add(newOLLayer)
         DataGridView1.Rows(layerIndex).Cells(0).Value = newOLLayer.layerName
 
         parentMapList.layout.addLayerToAllKeys(parentMapList.layout.Sp1, mapNumber, layerIndex)
     End Sub
 
-    'places X and edit pencil in remove column button cell
+    'places red X and edit pencil in remove column button cell
     Private Sub removeRow_CellPainting(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellPaintingEventArgs) Handles DataGridView1.CellPainting
         If e.ColumnIndex = 1 AndAlso e.RowIndex >= 0 Then
             e.Paint(e.CellBounds, DataGridViewPaintParts.All)
@@ -482,6 +482,17 @@ Public Class OL3LayerList
         Dim gps As New GPSPhotographs
         gps.importGPSPhotos(Me)
     End Sub
+
+    Function getLayerNumberByID(ByVal layerID As Integer) As Integer
+        Dim theLayer As OLLayer
+        For t As Integer = 0 To DataGridView1.Rows.Count - 1
+            theLayer = DataGridView1.Rows(t)
+            If theLayer.layerID = layerID Then
+                Return t
+            End If
+        Next
+        Return -1
+    End Function
 End Class
 
 Class layerType
@@ -498,6 +509,7 @@ Class OLLayer
     Public OL3Edit As OL3EditLayer
     Public useLayerForDefaultExtent As Boolean = 1
     Public useLayerForRestrictedExtent As Boolean = 0
+    Public parentLayerList As OL3LayerList
 
     Public MinX As Double
     Public MinY As Double
@@ -505,7 +517,8 @@ Class OLLayer
     Public MaxY As Double
 
 
-    Public Sub New(ByVal layerPath As String, ByVal mapNum As Integer)
+    Public Sub New(ByVal layerPath As String, ByVal mapNum As Integer, ByVal theParentLayerList As OL3LayerList)
+        parentLayerList = theParentLayerList
         Dim randomNum As Random = New Random()
         layerID = randomNum.Next(1, 50000)
         Dim GDAL As New GDALImport
@@ -675,25 +688,30 @@ Class OLLayer
     Public Function getLayerSource() As String
         getLayerSource = ""
         Dim GDAL As New GDALImport
+        'for duplicate layer test -> see further down
+        Dim duplicateIds As Integer() = parentLayerList.parentMapList.isLayerDuplicated(OL3LayerPath, mapNumber, parentLayerList.getLayerNumberByID(layerID))
+
 
         '///////////////function to re-set layer source to all feature -> prefixed by "a" ///////////////
-        'setup var
-        getLayerSource = getLayerSource & " map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "a  = new ol.source.GeoJSON({" & Chr(10)
-        'add projection (out, i.e. the map projection)
-        getLayerSource = getLayerSource & "projection: 'USER:" & mapNumber & "999'," & Chr(10) 'map projection is always called <map number>999
+        If duplicateIds(0) = -1 Then 'not required a duplicate layer
+            'setup var
+            getLayerSource = getLayerSource & " map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "a  = new ol.source.GeoJSON({" & Chr(10)
+            'add projection (out, i.e. the map projection)
+            getLayerSource = getLayerSource & "projection: 'USER:" & mapNumber & "999'," & Chr(10) 'map projection is always called <map number>999
 
-        'add features
-        getLayerSource = getLayerSource & "object: " & GDAL.getGeoJson({OL3LayerPath}) & Chr(10)
+            'add features
+            getLayerSource = getLayerSource & "object: " & GDAL.getGeoJson({OL3LayerPath}) & Chr(10)
 
-        'add IN projection (i.e. the source data projection)
-        getLayerSource = getLayerSource.Replace("{" & Chr(34) & "type" & Chr(34) & ":" & Chr(34) & "FeatureCollection" & Chr(34) & ",", "{'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:" & mapNumber & "00" & Me.Cells.Item(0).RowIndex & "'}},")
-        '{'type':'FeatureCollection', crs': { 'type': 'name','properties': {'name': 'USER:0'}},
+            'add IN projection (i.e. the source data projection)
+            getLayerSource = getLayerSource.Replace("{" & Chr(34) & "type" & Chr(34) & ":" & Chr(34) & "FeatureCollection" & Chr(34) & ",", "{'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:" & mapNumber & "00" & Me.Cells.Item(0).RowIndex & "'}},")
+            '{'type':'FeatureCollection', crs': { 'type': 'name','properties': {'name': 'USER:0'}},
 
-        'finish
-        getLayerSource = getLayerSource & "});" & Chr(10) & Chr(10)
-        '///////////////////////////////////////////////////////////////////////////////////////////////////
+            'finish
+            getLayerSource = getLayerSource & "});" & Chr(10) & Chr(10)
+            '///////////////////////////////////////////////////////////////////////////////////////////////////
+        End If
 
-        '*********************variabls to hold empty source and call to function to populate it will all features***********************
+        '*********************variabls to hold empty source and call to function to populate it with all features(alows filtering and re-seting)***********************
         getLayerSource = getLayerSource & "var map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & " =  new ol.source.GeoJSON({projection: 'USER:" & mapNumber & "999'});" & Chr(10)
         getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "_SetSource();" & Chr(10) & Chr(10)
         '*******************************************************************************************************************************
@@ -701,7 +719,16 @@ Class OLLayer
         '\\\\\\\\\\\\\\\\\\\\\Function to set re-set layer source to original (after all to a filter)\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         getLayerSource = getLayerSource & "function map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "_SetSource() {" & Chr(10)
         getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & ".clear('fast');" & Chr(10)
-        getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & ".addFeatures(map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "a.getFeatures());" & Chr(10)
+
+        'check for multiple use of same layer (so as not to duplicate geojson strings)
+        If duplicateIds(0) = -1 Then
+            'layer is unique or first occurance of itself
+            getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & ".addFeatures(map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "a.getFeatures());" & Chr(10)
+        Else
+            'layer is a duplicate - point it to another layer source
+            getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & ".addFeatures(map" & duplicateIds(0) + 1 & "_vectorSource_" & duplicateIds(1) & "a.getFeatures());" & Chr(10)
+        End If
+
         getLayerSource = getLayerSource & "}" & Chr(10) & Chr(10) & Chr(10)
         '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 

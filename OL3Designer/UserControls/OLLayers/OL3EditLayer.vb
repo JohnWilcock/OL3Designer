@@ -20,11 +20,23 @@
         End If
 
         'set a default layer style - individual feature style. must be done after layer type has been set
-        OL3LayerStylePicker1.TreeView1.SelectedNode = OL3LayerStylePicker1.TreeView1.Nodes(0)
-        'use dummy values to trigger the change handler
-        Dim TVArg As New TreeViewEventArgs(OL3LayerStylePicker1.TreeView1.Nodes(0))
+        Dim gdal As New GDALImport
+        Dim TVArg As TreeViewEventArgs
         Dim object1 As Object = -1
-        OL3LayerStylePicker1.TreeView1_AfterSelect(object1, TVArg)
+
+        If layerT = "Point" And gdal.getFeatureCount(layerPath) > 1000 Then 'if a large point layer then auto cluster
+            OL3LayerStylePicker1.TreeView1.SelectedNode = OL3LayerStylePicker1.TreeView1.Nodes(3).Nodes(0)
+            'use dummy values to trigger the change handler
+            TVArg = New TreeViewEventArgs(OL3LayerStylePicker1.TreeView1.Nodes(3).Nodes(0))
+            OL3LayerStylePicker1.TreeView1_AfterSelect(object1, TVArg)
+        Else
+            OL3LayerStylePicker1.TreeView1.SelectedNode = OL3LayerStylePicker1.TreeView1.Nodes(0)
+            'use dummy values to trigger the change handler
+            TVArg = New TreeViewEventArgs(OL3LayerStylePicker1.TreeView1.Nodes(0))
+            OL3LayerStylePicker1.TreeView1_AfterSelect(object1, TVArg)
+        End If
+
+
 
 
         'set a default filter user control

@@ -540,6 +540,11 @@ Public Class OL3BasemapTiledRaster
     Private Sub mapListChanged() Handles ToolStripComboBox1.SelectedIndexChanged
         copiedFromMapID = listOfMapIDs(ToolStripComboBox1.SelectedIndex)
 
+        If ToolStripComboBox1.SelectedIndex = 0 Then 'if "New"
+            GroupBox1.Visible = True
+        Else
+            GroupBox1.Visible = False
+        End If
     End Sub
 End Class
 

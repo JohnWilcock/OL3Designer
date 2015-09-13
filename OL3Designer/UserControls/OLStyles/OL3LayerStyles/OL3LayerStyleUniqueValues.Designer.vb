@@ -25,25 +25,31 @@ Partial Class OL3LayerStyleUniqueValues
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SizeRamps1 = New OL3Designer.SizeRamps()
         Me.OLStyle = New System.Windows.Forms.DataGridViewImageColumn()
         Me.OLValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SizeRamps1 = New OL3Designer.SizeRamps()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboBox1
         '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(3, 29)
+        Me.ComboBox1.Location = New System.Drawing.Point(6, 18)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(99, 21)
         Me.ComboBox1.TabIndex = 1
         '
         'ComboBox2
         '
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(186, 18)
         Me.ComboBox2.Name = "ComboBox2"
@@ -54,31 +60,12 @@ Partial Class OL3LayerStyleUniqueValues
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.OLStyle, Me.OLValue, Me.Label})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.OLStyle, Me.OLValue, Me.Label, Me.Column1})
         Me.DataGridView1.Location = New System.Drawing.Point(3, 81)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 20
         Me.DataGridView1.Size = New System.Drawing.Size(304, 141)
         Me.DataGridView1.TabIndex = 0
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Column2"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.Width = 80
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Label"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.Width = 80
-        '
-        'SizeRamps1
-        '
-        Me.SizeRamps1.Location = New System.Drawing.Point(186, 45)
-        Me.SizeRamps1.Name = "SizeRamps1"
-        Me.SizeRamps1.Size = New System.Drawing.Size(121, 30)
-        Me.SizeRamps1.TabIndex = 3
         '
         'OLStyle
         '
@@ -101,10 +88,68 @@ Partial Class OL3LayerStyleUniqueValues
         Me.Label.Name = "Label"
         Me.Label.Width = 80
         '
+        'Column1
+        '
+        Me.Column1.HeaderText = ""
+        Me.Column1.Name = "Column1"
+        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column1.Width = 20
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(3, 4)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(29, 13)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Field"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(143, 21)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(37, 13)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Colour"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(153, 52)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(27, 13)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Size"
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Column2"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Width = 80
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Label"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Width = 80
+        '
+        'SizeRamps1
+        '
+        Me.SizeRamps1.Location = New System.Drawing.Point(186, 45)
+        Me.SizeRamps1.Name = "SizeRamps1"
+        Me.SizeRamps1.Size = New System.Drawing.Size(121, 30)
+        Me.SizeRamps1.TabIndex = 3
+        '
         'OL3LayerStyleUniqueValues
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.SizeRamps1)
         Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.ComboBox1)
@@ -113,6 +158,7 @@ Partial Class OL3LayerStyleUniqueValues
         Me.Size = New System.Drawing.Size(320, 260)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
@@ -120,9 +166,13 @@ Partial Class OL3LayerStyleUniqueValues
     Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SizeRamps1 As OL3Designer.SizeRamps
+    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents OLStyle As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents OLValue As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewButtonColumn
 
 End Class

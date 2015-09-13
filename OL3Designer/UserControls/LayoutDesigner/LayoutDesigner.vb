@@ -1,6 +1,8 @@
-﻿Public Class LayoutDesigner
+﻿Imports System.Text.RegularExpressions
+
+Public Class LayoutDesigner
     Public linkedLayoutPreview As LayoutPreview
-    Public WithEvents mapList As New ComboBox
+    Public WithEvents mapList As New ToolStripComboBox
     Public OL3mapsObject As OL3Maps
     Public Event onLayoutItemsChange()
 
@@ -97,7 +99,7 @@
         Else
             'if its a key get the key num , else returns blank
             keyDivNumber = addKeyObjectLiterol(theSP.aL1, theSP.p1KeyOptions)
-            If theSP.p1Type.Text = "Text" Then HTMLText = theSP.p1Text.HTMLedit.DocumentText Else  'HTMLText = ""
+            If theSP.p1Type.Text = "Text" Then HTMLText = StripHTMLHead(theSP.p1Text.HTMLedit.DocumentText) Else  'HTMLText = ""
             If theSP.p1Type.Text = "Image" Then HTMLText = "<img style='max-width:100%;max-height:100%;' src='" & theSP.p1ImageType.getPath(theSP.p1Img.ImageLocation, OL3mapsObject.outputLocation) & "'></img>" ' Else HTMLText = ""
             If theSP.p1Type.Text = "Controls" Then HTMLText = theSP.p1ControlOptions.getControlHTML
 
@@ -124,7 +126,7 @@
         Else
             'if its a key get the key num , else returns blank
             keyDivNumber = addKeyObjectLiterol(theSP.aL2, theSP.p2KeyOptions)
-            If theSP.p2Type.Text = "Text" Then HTMLText = theSP.p2Text.HTMLedit.DocumentText 'Else HTMLText = ""
+            If theSP.p2Type.Text = "Text" Then HTMLText = StripHTMLHead(theSP.p2Text.HTMLedit.DocumentText) 'Else HTMLText = ""
             If theSP.p2Type.Text = "Image" Then HTMLText = "<img style='max-width:100%;max-height:100%;' src='" & theSP.p2ImageType.getPath(theSP.p2Img.ImageLocation, OL3mapsObject.outputLocation) & "'></img>" 'Else HTMLText = ""
             If theSP.p2Type.Text = "Controls" Then HTMLText = theSP.p1ControlOptions.getControlHTML
 
@@ -150,6 +152,17 @@
         'reset labels
         addAllLabels(Sp1)
         Return convertToHTML
+    End Function
+
+    Function StripHTMLHead(ByVal htmlText As String) As String
+        'remove head eleemnts from auto created html
+
+        StripHTMLHead = ""
+        StripHTMLHead = Regex.Replace(htmlText, "</?(!DOCTYPE).*?>", "")
+        StripHTMLHead = Regex.Replace(StripHTMLHead, "</?(HTML).*?>", "")
+        StripHTMLHead = Regex.Replace(StripHTMLHead, "</?(HEAD).*?>", "")
+        StripHTMLHead = Regex.Replace(StripHTMLHead, "</?(META).*?>", "")
+        StripHTMLHead = Regex.Replace(StripHTMLHead, "</?(BODY).*?>", "")
     End Function
 
     Sub addLayerToAllKeys(ByVal theSP As SP, ByVal mapNumber As Integer, ByVal layerNum As Integer)

@@ -14,7 +14,7 @@ Public Class OL3Des
         ' Add any initialization after the InitializeComponent() call.
         EnvironmentalGdal.MakeEnvironment(Application.StartupPath)
 
-        maps = New OL3Maps(ComboBox1, Panel1, LayoutDesigner1)
+        maps = New OL3Maps(ToolStripComboBox1, Panel1, LayoutDesigner1)
 
         'maps.add()
     End Sub
@@ -47,9 +47,6 @@ Public Class OL3Des
     End Sub
 
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        maps.add()
-    End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim newHTML As String = LayoutDesigner1.getHTML
@@ -67,16 +64,6 @@ Public Class OL3Des
     End Sub
 
 
-
-
-    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-
-    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs)
-
-    End Sub
 
 
     Private Sub ToolStripButton2_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
@@ -172,7 +159,12 @@ Public Class OL3Des
         ab.Show()
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+
+    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        maps.add()
+    End Sub
+
+    Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButton8.Click
         'remove map
         If maps.mapList.Count > 1 Then
             maps.mapList.RemoveAt(maps.linkedBox.SelectedIndex)

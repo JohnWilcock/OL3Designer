@@ -38,6 +38,18 @@
         applyColourRamp()
     End Sub
 
+    'places red X  in remove column button cell
+    Private Sub removeRow_CellPainting(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellPaintingEventArgs) Handles DataGridView1.CellPainting
+        If e.ColumnIndex = 3 AndAlso e.RowIndex >= 0 Then
+            e.Paint(e.CellBounds, DataGridViewPaintParts.All)
+
+            Dim bmpFind As Bitmap = My.Resources.Offline_16xLG__2
+            e.Graphics.DrawImage(bmpFind, e.CellBounds.Left + 2, e.CellBounds.Top + 2)
+            e.Handled = True
+        End If
+
+    End Sub
+
     Public Function getKeyText() As String
         getKeyText = ""
         For x As Integer = 0 To DataGridView1.Rows.Count - 1
@@ -116,8 +128,14 @@
 
                 selectedRow.uniqueStyle.showPicker()
                 DataGridView1.Rows(e.RowIndex).Cells("OLStyle").Value = selectedRow.uniqueStyle.PanelToBitmap
-            Case Else
 
+
+            Case 3 ' remove row
+                DataGridView1.Rows.RemoveAt(e.RowIndex)
+ 
+
+
+            Case Else
         End Select
 
 
@@ -193,25 +211,31 @@
         Dim copyRow As uniqueRow = DataGridView1.Rows(0)
         Dim copyStyleSettings As StyleProperties = copyRow.uniqueStyle.OLStyleSettings
 
+
         For u As Integer = 0 To DataGridView1.Rows.Count - 1
             currentRow = DataGridView1.Rows(u)
             pasteStyleSettings = currentRow.uniqueStyle.OLStyleSettings
-            'pasteStyleSettings.active = False
+            pasteStyleSettings.active = False
 
             pasteStyleSettings.OLTextCol = copyStyleSettings.OLTextCol
-            'pasteStyleSettings.OLTextColour = copyStyleSettings.OLTextColour
-            'pasteStyleSettings.OLTextFont = copyStyleSettings.OLTextFont
-            'pasteStyleSettings.OLTextHAlign = copyStyleSettings.OLTextHAlign
-            'pasteStyleSettings.OLTextRotation = copyStyleSettings.OLTextRotation
-            'pasteStyleSettings.OLTextSize = copyStyleSettings.OLTextSize
-            'pasteStyleSettings.OlTextTransparancy = copyStyleSettings.OlTextTransparancy
-            'pasteStyleSettings.OLTextVAlign = copyStyleSettings.OLTextVAlign
-            'pasteStyleSettings.OLTextXOffset = copyStyleSettings.OLTextXOffset
-            'pasteStyleSettings.OLTextYOffset = copyStyleSettings.OLTextYOffset
 
-            ' pasteStyleSettings.active = True
+            pasteStyleSettings.OLTextColour = copyStyleSettings.OLTextColour
+            pasteStyleSettings.OLTextFont = copyStyleSettings.OLTextFont
+            pasteStyleSettings.OLTextHAlign = copyStyleSettings.OLTextHAlign
+            pasteStyleSettings.OLTextRotation = copyStyleSettings.OLTextRotation
+            pasteStyleSettings.OLTextSize = copyStyleSettings.OLTextSize
+            pasteStyleSettings.OlTextTransparancy = copyStyleSettings.OlTextTransparancy
+            pasteStyleSettings.OLTextVAlign = copyStyleSettings.OLTextVAlign
+            pasteStyleSettings.OLTextXOffset = copyStyleSettings.OLTextXOffset
+            pasteStyleSettings.OLTextYOffset = copyStyleSettings.OLTextYOffset
+
+            pasteStyleSettings.active = True
+
+
         Next
     End Sub
+
+ 
 
 End Class
 
