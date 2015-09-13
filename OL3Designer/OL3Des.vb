@@ -187,5 +187,9 @@ Public Class OL3Des
             MsgBox("Cannot delete, there must be at least one map")
         End If
 
+        'refresh linked layout component list
+        maps.refreshList()
+
+
     End Sub
 End Class

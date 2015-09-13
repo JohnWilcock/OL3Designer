@@ -94,15 +94,16 @@ Public Class LayoutKeyOptions
         For Each map As OL3LayerList In OL3mapsObject.mapList
             For Each mapLayer As OLLayer In map.DataGridView1.Rows
 
-                If mapLayer.layerID = keyItems(keyItemCount).LayerID And keyItems.Count >= keyItemCount Then
-                    'update layer info if names have changed etc
-                    keyItems(keyItemCount).layerName = mapLayer.layerName
-                    keyItems(keyItemCount).label = mapLayer.layerName & " (Map " & mapLayer.mapNumber & ")"
-                    ListBox1.Items(keyItemCount) = keyItems(keyItemCount).label
+                If keyItems.Count >= keyItemCount - 1 Then
+                    If mapLayer.layerID = keyItems(keyItemCount).LayerID Then
+                        'update layer info if names have changed etc
+                        keyItems(keyItemCount).layerName = mapLayer.layerName
+                        keyItems(keyItemCount).label = mapLayer.layerName & " (Map " & mapLayer.mapNumber & ")"
+                        ListBox1.Items(keyItemCount) = keyItems(keyItemCount).label
 
-                    Return True
+                        Return True
+                    End If
                 End If
-
             Next
         Next
         Return False

@@ -75,7 +75,7 @@ Imports System.Security.Cryptography
 
     End Function
 
-    Private Sub refreshList()
+    Sub refreshList()
         If Not linkedBox Is Nothing Then
 
             Dim currentItem As Integer = linkedBox.SelectedIndex
