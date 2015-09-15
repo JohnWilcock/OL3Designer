@@ -133,7 +133,6 @@ Partial Class OL3DesAbout
         '
         'TextBox1
         '
-        Me.TextBox1.Enabled = False
         Me.TextBox1.Location = New System.Drawing.Point(313, 5)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"

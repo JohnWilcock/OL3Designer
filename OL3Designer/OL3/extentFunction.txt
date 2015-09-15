@@ -27,7 +27,7 @@ if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
 }
 }
 if (hasVectorLayer == 1){
-view.fitExtent(theExtent , theMap.getSize());
+view.fit(theExtent , theMap.getSize());
 }
 //}
 }
@@ -60,7 +60,7 @@ if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
 }
 }
 if (hasVectorLayer == 1){
-view.fitExtent(theExtent , theMap.getSize());
+view.fit(theExtent , theMap.getSize());
 }
 //}
 }
@@ -92,7 +92,7 @@ theExtent[2] = theCoords[2];
 theExtent[3] = theCoords[3];
 
 
-view.fitExtent(theExtent , theMap.getSize());
+view.fit(theExtent , theMap.getSize());
 
 }
 

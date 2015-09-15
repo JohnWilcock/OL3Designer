@@ -527,12 +527,6 @@ view.fitExtent(theExtent , theMap.getSize());
     <value />
     <comment>For popup preview</comment>
   </data>
-  <data name="ol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\OL3\ol.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ol1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\OL3\ol.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="POPUPJSPREVEW" xml:space="preserve">
     <value> </value>
   </data>
@@ -746,5 +740,11 @@ view.fitExtent(theExtent , theMap.getSize());
   </data>
   <data name="olstyle_polygon_Transparent_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\olstyle_polygon_Transparent Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ol.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ol1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ol.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

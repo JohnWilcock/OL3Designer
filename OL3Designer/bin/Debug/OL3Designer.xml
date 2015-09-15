@@ -86,7 +86,7 @@ OL3Designer
 * Copyright 2012 Twitter, Inc.
 * http://www.apache.org/licenses/LICENSE-2.0.txt
 */
-!function(e){"use strict";e(function(){e.support.transition=function(){var e=function(){var e=document.createElement("bootstrap"),t={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"},n;for(n in t)if(e.style[n]!==undefined)return t[n]}();return e&amp;&amp;{end:e}}()})}(window.jQuery),!function(e){"use stric [rest of string was truncated]";.
+!function(e){"use strict";e(function(){e.support.transition=function(){var e=function(){var e=document.createElement("bootstrap"),t={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"},n;for(n in t)if(e.style[n]!==undefined)return t[n]}();return e&amp;&amp;{end:e}}()})}(window.jQuery),!function(e){"use strict";va [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.colourRamps">
 	<summary>
@@ -117,7 +117,7 @@ Green Pin:1,0,bottom-left,0.5,fraction,0.5,fraction;
 Orange Pin:1,0,bottom-left,0.5,fraction,0.5,fraction;
 Straight Blue Pin:1,0,bottom-left,0.5,fraction,0.5,fraction;
 Blue Dashed:2,#0000FF,round,round,0,4;
-Red Lin [rest of string was truncated]";.
+Red Line:2,#FF00 [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.dialog_16xLG">
 	<summary>
@@ -145,7 +145,8 @@ if (hasVectorLayer != 1){
 theExtent = theMap.getLayers().item(i).getSource().getExtent();
 }
 //alert(theMap.getLayers().item(i).get('name'));
-hasVec [rest of string was truncated]";.
+hasVectorLayer = 1;
+te [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.HeatmapPreview">
 	<summary>
@@ -162,12 +163,12 @@ hasVec [rest of string was truncated]";.
 &lt;script src='OLFILEPATHproj4.js' type='text/javascript'&gt;&lt;/script&gt; 
 
 
-&lt;script src='OLFILEPATHbase.js' type='text/jav [rest of string was truncated]";.
+&lt;script src='OLFILEPATHbase.js' type='text/javascript [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.jQuery">
 	<summary>
   Looks up a localized string similar to /*! jQuery v1.7.2 jquery.com | jquery.org/license */
-(function(a,b){function cy(a){return f.isWindow(a)?a:a.nodeType===9?a.defaultView||a.parentWindow:!1}function cu(a){if(!cj[a]){var b=c.body,d=f("&lt;"+a+"&gt;").appendTo(b),e=d.css("display");d.remove();if(e==="none"||e===""){ck||(ck=c.createElement("iframe"),ck.frameBorder=ck.width=ck.height=0),b.appendChild(ck);if(!cl||!ck.createElement)cl=(ck.contentWindow||ck.contentDocument).document,cl.write((f.support.boxModel?"&lt;!doctype html&gt;":"")+"&lt;html&gt;&lt;body&gt;"),cl.cl [rest of string was truncated]";.
+(function(a,b){function cy(a){return f.isWindow(a)?a:a.nodeType===9?a.defaultView||a.parentWindow:!1}function cu(a){if(!cj[a]){var b=c.body,d=f("&lt;"+a+"&gt;").appendTo(b),e=d.css("display");d.remove();if(e==="none"||e===""){ck||(ck=c.createElement("iframe"),ck.frameBorder=ck.width=ck.height=0),b.appendChild(ck);if(!cl||!ck.createElement)cl=(ck.contentWindow||ck.contentDocument).document,cl.write((f.support.boxModel?"&lt;!doctype html&gt;":"")+"&lt;html&gt;&lt;body&gt;"),cl.clo [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.keyFunction">
 	<summary>
@@ -186,7 +187,7 @@ document.getElementById(keyDiv).innerHTML = "";
 var numberOfKeyLayers = keyLayers.length;
 var theKeyHTML = "&lt;div  style='padding:" + keyPadding + "px;'&gt;" + keyHeading;
 
-//for each layer you need 1. the styles . 2. the  [rest of string was truncated]";.
+//for each layer you need 1. the styles . 2. the values which re [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.LABELJS">
 	<summary>
@@ -205,7 +206,8 @@ var theKeyHTML = "&lt;div  style='padding:" + keyPadding + "px;'&gt;" + keyHeadi
 &lt;script&gt;
 
 var PointFeature = new ol.Feature({
-  geometry: new ol.geom.Point([0,  [rest of string was truncated]";.
+  geometry: new ol.geom.Point([0, 0]),
+  name: 'S [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.Offline_16xLG__2">
 	<summary>
@@ -213,7 +215,7 @@ var PointFeature = new ol.Feature({
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.ol">
 	<summary>
-  Looks up a localized string similar to .ol-attribution{position:absolute;text-align:right;bottom:0;right:0;padding:6px;color:#000;color:rgba(238,238,238,1);background:rgba(0,60,136,0.3)}.ol-attribution a{text-decoration:none;color:#7b98bc;color:rgba(255,255,255,1)}.ol-attribution ul{margin:0;padding:0;font-size:10px;line-height:12px}.ol-attribution li{display:inline;list-style:none;line-height:inherit}.ol-attribution li:not(:last-child):after{content:"\002003"}.ol-attribution-bing-tos{float:right;padding-top:2px;white-space:nowrap}.ol-logo{botto [rest of string was truncated]";.
+  Looks up a localized string similar to .ol-mouse-position{top:8px;right:8px;position:absolute}.ol-scale-line{background:#95b9e6;background:rgba(0,60,136,.3);border-radius:4px;bottom:8px;left:8px;padding:2px;position:absolute}.ol-scale-line-inner{border:1px solid #eee;border-top:none;color:#eee;font-size:10px;text-align:center;margin:1px;will-change:contents,width}.ol-overlay-container{will-change:left,right,top,bottom}.ol-unsupported{display:none}.ol-viewport .ol-unselectable{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.ol_deps">
 	<summary>
@@ -227,19 +229,19 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
 	<summary>
   Looks up a localized string similar to // OpenLayers 3. See http://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/ol3/master/LICENSE.md
-// Version: v3.4.0
+// Version: v3.9.0
 
 (function (root, factory) {
-  if (typeof define === "function" &amp;&amp; define.amd) {
-    define([], factory);
-  } else if (typeof exports === "object") {
+  if (typeof exports === "object") {
     module.exports = factory();
+  } else if (typeof define === "function" &amp;&amp; define.amd) {
+    define([], factory);
   } else {
     root.ol = factory();
   }
 }(this, function () {
   var OPENLAYERS = {};
-  var l,aa=aa||{},ba=this;function m(b){return void 0!==b}function t(b,c,d){b=b.split(".");d=d||ba;b[0] [rest of string was truncated]";.
+  var l,aa=aa||{},ba=this;function m(a){return void 0!==a}function v(a,c,d){a=a.split(".");d=d||ba;a[0] [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.olstyle_icon__Direction_Marker">
 	<summary>
@@ -353,7 +355,11 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
 }
 
 .clearfix:after {
- [rest of string was truncated]";.
+  clear: both;
+}
+
+.hide-text {
+  font: [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.POPUPJSPREVEW">
 	<summary>
@@ -373,7 +379,7 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
  * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- *//*! normalize.css v3.0.1 | MIT License | git.io/normalize */html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,foot [rest of string was truncated]";.
+ *//*! normalize.css v3.0.1 | MIT License | git.io/normalize */html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hg [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.proj4">
 	<summary>
@@ -396,7 +402,8 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
 &lt;script&gt;
 
 var PointFeature = new ol.Feature({
-  geometry: new ol.geom.Point([0,  [rest of string was truncated]";.
+  geometry: new ol.geom.Point([0, 0]),
+  name: 'S [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.URI">
 	<summary>

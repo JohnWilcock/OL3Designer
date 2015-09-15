@@ -688,21 +688,43 @@ Class OLLayer
     Public Function getLayerSource() As String
         getLayerSource = ""
         Dim GDAL As New GDALImport
+        Dim ProjectionString As String = ""
         'for duplicate layer test -> see further down
         Dim duplicateIds As Integer() = parentLayerList.parentMapList.isLayerDuplicated(OL3LayerPath, mapNumber, parentLayerList.getLayerNumberByID(layerID))
 
+        ''///////////////OL3.4/////////////
+        ''///////////////function to re-set layer source to all feature -> prefixed by "a" ///////////////
+        'If duplicateIds(0) = -1 Then 'not required a duplicate layer
+        '    'setup var
+        '    getLayerSource = getLayerSource & " map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "a  = new ol.source.GeoJSON({" & Chr(10)
+        '    'add projection (out, i.e. the map projection)
+        '    getLayerSource = getLayerSource & "projection: 'USER:" & mapNumber & "999'," & Chr(10) 'map projection is always called <map number>999
 
+        '    'add features
+        '    getLayerSource = getLayerSource & "object: " & GDAL.getGeoJson({OL3LayerPath}) & Chr(10)
+
+        '    'add IN projection (i.e. the source data projection)
+        '    getLayerSource = getLayerSource.Replace("{" & Chr(34) & "type" & Chr(34) & ":" & Chr(34) & "FeatureCollection" & Chr(34) & ",", "{'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:" & mapNumber & "00" & Me.Cells.Item(0).RowIndex & "'}},")
+        '    '{'type':'FeatureCollection', crs': { 'type': 'name','properties': {'name': 'USER:0'}},
+
+        '    'finish
+        '    getLayerSource = getLayerSource & "});" & Chr(10) & Chr(10)
+        '    '///////////////////////////////////////////////////////////////////////////////////////////////////
+        'End If
+
+        '///////////////OL3.9/////////////////////////
         '///////////////function to re-set layer source to all feature -> prefixed by "a" ///////////////
         If duplicateIds(0) = -1 Then 'not required a duplicate layer
             'setup var
-            getLayerSource = getLayerSource & " map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "a  = new ol.source.GeoJSON({" & Chr(10)
-            'add projection (out, i.e. the map projection)
-            getLayerSource = getLayerSource & "projection: 'USER:" & mapNumber & "999'," & Chr(10) 'map projection is always called <map number>999
+            getLayerSource = getLayerSource & " map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "a  = new ol.source.Vector({" & Chr(10)
+            'add projection (in and out, in = the data projection and out = the projection the source data is available to openlayers, i.e. the map projection)
+            'feature projection = 'out' projection.  Data projection = 'in' projection
+            ProjectionString = ",{featureProjection:  'USER:" & mapNumber & "999', dataProjection:'USER:" & mapNumber & "00" & Me.Cells.Item(0).RowIndex & "'}"  'map projection ('out' projection) is always called <map number>999. layer projection ('in' projection) allways called <map number>00<layer number>
 
             'add features
-            getLayerSource = getLayerSource & "object: " & GDAL.getGeoJson({OL3LayerPath}) & Chr(10)
+            getLayerSource = getLayerSource & "features: (new ol.format.GeoJSON()).readFeatures(" & GDAL.getGeoJson({OL3LayerPath}) & ProjectionString & ")" & Chr(10)
 
-            'add IN projection (i.e. the source data projection)
+            'add IN projection in to the geojson (i.e. the source data projection)
             getLayerSource = getLayerSource.Replace("{" & Chr(34) & "type" & Chr(34) & ":" & Chr(34) & "FeatureCollection" & Chr(34) & ",", "{'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:" & mapNumber & "00" & Me.Cells.Item(0).RowIndex & "'}},")
             '{'type':'FeatureCollection', crs': { 'type': 'name','properties': {'name': 'USER:0'}},
 
@@ -711,8 +733,15 @@ Class OLLayer
             '///////////////////////////////////////////////////////////////////////////////////////////////////
         End If
 
+        '///////OL3.4
+        ''*********************variabls to hold empty source and call to function to populate it with all features(alows filtering and re-seting)***********************
+        'getLayerSource = getLayerSource & "var map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & " =  new ol.source.GeoJSON({projection: 'USER:" & mapNumber & "999'});" & Chr(10)
+        'getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "_SetSource();" & Chr(10) & Chr(10)
+        ''*******************************************************************************************************************************
+
+        '/////OL3.8
         '*********************variabls to hold empty source and call to function to populate it with all features(alows filtering and re-seting)***********************
-        getLayerSource = getLayerSource & "var map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & " =  new ol.source.GeoJSON({projection: 'USER:" & mapNumber & "999'});" & Chr(10)
+        getLayerSource = getLayerSource & "var map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & " =  new ol.source.Vector({defaultDataProjection: 'USER:" & mapNumber & "999', format: new ol.format.GeoJSON()});" & Chr(10)
         getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "_SetSource();" & Chr(10) & Chr(10)
         '*******************************************************************************************************************************
 

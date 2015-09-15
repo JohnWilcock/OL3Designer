@@ -306,9 +306,13 @@ Public Class OLStylePickerDialog
 
         For Each item As String In defaultStrings
             currentStyle = item.Split(":")
-            Dim a As String = currentStyle(0).Replace(vbCrLf, "").ToString.Trim(" ")
-            Dim b As String = styleName.ToString.Trim(" ")
-            If currentStyle(0).Replace(vbCrLf, "").ToString.Trim(" ") = styleName.ToString.Trim(" ") Then
+
+            Dim rgx As New Regex("[^a-zA-Z0-9 -]")
+
+            Dim a As String = rgx.Replace(currentStyle(0).Replace(vbCrLf, "").ToString.Trim(" "), "")
+            Dim b As String = rgx.Replace(styleName.ToString.Trim(" "), "")
+
+            If a = b Then
                 Return currentStyle(1)
             End If
         Next

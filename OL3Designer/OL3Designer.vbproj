@@ -697,6 +697,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ol.js" />
+    <None Include="Resources\ol.css" />
     <None Include="Icons\olstyle_polygon_Thick Black Outline.png" />
     <None Include="Icons\olstyle_polygon_Transparent Green.png" />
     <Content Include="logo.ico" />

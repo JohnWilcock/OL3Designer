@@ -11,7 +11,7 @@ Public Class ColourRamps
 
         'get ramp settings file
         Dim rampFile As String = My.Resources.colourRamps
-        Dim allRamps() As String = rampFile.Split(vbCrLf)
+        Dim allRamps() As String = rampFile.Split(vbLf)
         Dim currentRamp() As String
         Dim currentRampClass As singleRamp
         Dim currentFullRampClass As fullRamp

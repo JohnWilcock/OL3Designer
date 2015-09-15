@@ -129,7 +129,7 @@ Customize the application's assembly information in the Application pane of Proj
 OpenLayers 3.4
 http://openlayers.org/
 OpenLayers 3 powers all the output interactive maps created by the application.
-Due to the ever changing core API of OL3, only version 3.4 is used.
+Version 3.9 (Sept 2015)
 
 GDAL 1.9:
 http://www.gdal.org/
