@@ -196,8 +196,8 @@ Public Class HelperFunctions
 
         For Each item As String In defaultStrings
             currentStyle = item.Split(":")
-            iconName = "olstyle_icon_" & currentStyle(0).Replace(vbCrLf, "").ToString.Trim(" ")
-            iconShortName = "OL3Icon_" & currentStyle(0).Replace(vbCrLf, "_").Replace(" ", "_").ToString
+            iconName = "olstyle_icon_" & currentStyle(0).Replace(vbLf, "").ToString.Trim(" ")
+            iconShortName = "OL3Icon_" & currentStyle(0).Replace(vbLf, "_").Replace(" ", "_").ToString
 
             'is icon referenced in output
             If outputText.IndexOf(iconShortName) <> -1 And iconShortName.Length > 4 Then

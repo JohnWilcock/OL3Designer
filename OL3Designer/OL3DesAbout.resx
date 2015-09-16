@@ -126,7 +126,7 @@ Customize the application's assembly information in the Application pane of Proj
   <data name="TextBox1.Text" xml:space="preserve">
     <value>This application uses the following open source libraries:
 
-OpenLayers 3.4
+OpenLayers 3.9
 http://openlayers.org/
 OpenLayers 3 powers all the output interactive maps created by the application.
 Version 3.9 (Sept 2015)
