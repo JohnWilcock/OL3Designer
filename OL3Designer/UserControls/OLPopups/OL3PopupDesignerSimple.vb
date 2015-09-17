@@ -175,7 +175,7 @@ Public Class OL3PopupDesignerSimple
                         Case "preview"
                             popupHTML = popupHTML & "<tr style='width:100%;'><td ><img style='" & popupCSS & "' src='" & imageType.getPath(feature, "") & "'></img></td></tr>"
                         Case "output"
-                            popupHTML = popupHTML & "<tr style='width:100%;'><td ><img style='" & popupCSS & "' onclick= " & Chr(34) & " + String.fromCharCode(34) + " & Chr(34) & " window.open('" & Chr(34) & " + getCorrectPath(feature,'pic','rel') + " & Chr(34) & "')" & Chr(34) & " + String.fromCharCode(34) + " & Chr(34) & "   src='" & imageType.getPopupImageFetcher(DataGridView1.Rows(x).Cells("Column1").FormattedValue) & "'></img></td></tr>"
+                            popupHTML = popupHTML & "<tr style='width:100%;'><td ><img style='" & popupCSS & "' onclick= " & Chr(34) & " + String.fromCharCode(34) + " & Chr(34) & " window.open('" & Chr(34) & " + getCorrectPath(feature,'" & DataGridView1.Rows(x).Cells("Column1").FormattedValue & "','rel') + " & Chr(34) & "')" & Chr(34) & " + String.fromCharCode(34) + " & Chr(34) & "   src='" & imageType.getPopupImageFetcher(DataGridView1.Rows(x).Cells("Column1").FormattedValue) & "'></img></td></tr>"
                     End Select
             End Select
 

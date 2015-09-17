@@ -10,6 +10,7 @@ Public Class SP
     Public aL1 As New Label
     Public aL2 As New Label
 
+
     Dim selectedPanel As SplitterPanel
     Dim rows As Boolean
 
@@ -175,7 +176,8 @@ Public Class SP
         showAdd(Panel2)
     End Sub
 
-  
+
+
     Sub showAdd(ByVal thePanel As SplitterPanel)
 
         'aC.Text = "C+"

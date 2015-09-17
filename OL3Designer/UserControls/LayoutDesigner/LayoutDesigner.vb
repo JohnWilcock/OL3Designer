@@ -82,7 +82,7 @@ Public Class LayoutDesigner
         Dim keyDivNumber As String
         Dim HTMLText As String = ""
 
-        convertToHTML = convertToHTML & "<table style='height:100%;width:100%;'>"
+        convertToHTML = convertToHTML & "<table style='height:100%;width:100%;margin:0px;padding:0px;border-collapse:collapse;border-spacing:0px;'>"
         If theSP.Orientation = Orientation.Horizontal Then
             Ori = "<tr>"
             OriEnd = "</tr>"

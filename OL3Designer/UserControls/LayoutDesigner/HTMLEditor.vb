@@ -58,4 +58,34 @@ Public Class HTMLEditor
         HTMLedit.Document.ExecCommand("CreateLink", True, Nothing)
 
     End Sub
+
+    Private Sub ToolStripButton9_Click(sender As Object, e As EventArgs) Handles ToolStripButton9.Click
+        fontPick()
+    End Sub
+
+    Sub fontPick()
+
+
+        Dim FP As New FontDialog
+        FP.ScriptsOnly = True
+        FP.ShowColor = True
+        FP.ShowHelp = False
+
+        If FP.ShowDialog = DialogResult.OK Then
+            'apply chosen settings
+            HTMLedit.Document.ExecCommand("fontName", True, FP.Font.Name)
+            HTMLedit.Document.ExecCommand("fontSize", True, FP.Font.Size)
+            HTMLedit.Document.ExecCommand("foreColor", True, ColorTranslator.ToHtml(FP.Color))
+
+            If FP.Font.Strikeout Then
+                HTMLedit.Document.ExecCommand("strikeThrough", True, Nothing)
+            End If
+
+            If FP.Font.Underline Then
+                HTMLedit.Document.ExecCommand("Underline", False, Nothing)
+            End If
+
+        End If
+
+    End Sub
 End Class
