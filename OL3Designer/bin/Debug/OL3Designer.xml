@@ -287,6 +287,14 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:OL3Designer.My.Resources.Resources.olstyle_marker_Green_Triangle">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:OL3Designer.My.Resources.Resources.olstyle_marker_Orange_Square">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.olstyle_marker_Red_Point">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

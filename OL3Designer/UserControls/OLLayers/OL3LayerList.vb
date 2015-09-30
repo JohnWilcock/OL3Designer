@@ -223,15 +223,17 @@ Public Class OL3LayerList
         Dim tempListOfStyles As New List(Of String)
         Dim tempLayerStyleFunctions As New List(Of String)
         Dim tempLayerStyleLabelExpresions As New List(Of String)
+        Dim tempLayerStyleRotationExpresions As New List(Of String)
         Dim tempLayerStyleLabelVars As New List(Of String)
         Dim tempLayerStyleLabelRes As New List(Of String)
-        Dim tempUniqueFilter As OLLayerFilterUniqueValues
+
 
         'for each layer
         For x As Integer = 0 To DataGridView1.Rows.Count - 1
             theLayer = DataGridView1.Rows(x)
             tempListOfStyles = theLayer.OL3Edit.OL3LayerStylePicker1.getAllStyles
             tempLayerStyleLabelExpresions = theLayer.OL3Edit.OL3LayerStylePicker1.getAllLabelExpresions
+            tempLayerStyleRotationExpresions = theLayer.OL3Edit.OL3LayerStylePicker1.getAllRotationExpresions
             tempLayerStyleFunctions = theLayer.OL3Edit.OL3LayerStylePicker1.getAllConditions
             tempLayerStyleLabelVars = theLayer.OL3Edit.OL3LayerStylePicker1.getAllLabelVars
 
@@ -239,7 +241,7 @@ Public Class OL3LayerList
             For y As Integer = 0 To tempListOfStyles.Count - 1
                 'getAllLayersStyle = getAllLayersStyle & "var map" & mapNumber & "_vectorLayer_" & x & "_Style" & y & " = " & tempListOfStyles(y) & ";" & Chr(10)
                 'get layer style array(these have no knownledge of conditions
-                getAllLayersStyle = getAllLayersStyle & "function map" & mapNumber & "_vectorLayer_" & x & "_Style" & y & "(feature, resolution) {" & tempLayerStyleLabelVars(y) & " if ( feature != 'key'  ){" & tempLayerStyleLabelExpresions(y) & "} return {" & tempListOfStyles(y) & "}; };" & Chr(10)
+                getAllLayersStyle = getAllLayersStyle & "function map" & mapNumber & "_vectorLayer_" & x & "_Style" & y & "(feature, resolution) {" & tempLayerStyleLabelVars(y) & " if ( feature != 'key'  ){" & tempLayerStyleRotationExpresions(y) & ";" & tempLayerStyleLabelExpresions(y) & "} return {" & tempListOfStyles(y) & "}; };" & Chr(10)
 
                 'get layer style function
                 allLayerStyleFunctions = allLayerStyleFunctions & "var map" & mapNumber & "_vectorLayer_" & x & "_Style" & y & "_Function = function(feature, resolution) {" & Chr(10)

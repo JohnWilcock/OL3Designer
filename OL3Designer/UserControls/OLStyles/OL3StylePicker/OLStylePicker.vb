@@ -49,9 +49,32 @@ Public Class OLStylePicker
                 ChangeOLStylePickerdialog.OLLabelPicker.ComboBox1.Items.AddRange(fieldList.ToArray)
             End If
 
+            setRotationFieldList()
         End If
     End Sub
 
+    Sub setRotationFieldList()
+        Dim gdal As New GDALImport
+
+
+        If isCluster Then
+            'hmmmmm ??
+        Else
+            ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Items.Clear()
+            ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Items.Add("Custom")
+            ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.SelectedIndex = 0
+
+            For u As Integer = 0 To fieldList.Count - 1
+                If gdal.getFieldType(layerPath, fieldList(u)) = "Real" Or gdal.getFieldType(layerPath, fieldList(u)) = "Integer" Then
+                    ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Items.Add(fieldList(u))
+                End If
+
+            Next
+
+        End If
+
+
+    End Sub
 
     Sub New()
 
@@ -86,11 +109,22 @@ Public Class OLStylePicker
 
     Function getIndividualStyleString(Optional styleNum As Integer = 9999) As String
 
+        'get rotation js string
+        Dim rotationString As String
+        If styleNum = 9999 Then 'if preview just show  rotation field directly
+            rotationString = OLStyleSettings.OLRotation / 57.2957795
+        Else
+            rotationString = "tempRotation" & styleNum
+        End If
+
+
         Select Case OLStyleSettings.OLGeomType
             Case "Icon"
-                getIndividualStyleString = "new ol.style.Style({image: new ol.style.Icon( ({scale: " & OLStyleSettings.OLScale & ", rotation: " & OLStyleSettings.OLRotation & ", anchor: [" & OLStyleSettings.OLXAnchor & ", " & OLStyleSettings.OLYAnchor & "],anchorXUnits: '" & OLStyleSettings.OLXAnchorUnit & "',anchorYUnits: '" & OLStyleSettings.OLYAnchorUnit & "',opacity: 1,src: '" & OLStyleSettings.OLSRC & "'})) " & getIndividualLabelString(styleNum) & "  })"
+                getIndividualStyleString = "new ol.style.Style({image: new ol.style.Icon( ({scale: " & OLStyleSettings.OLScale & ", rotation: " & rotationString & ", anchor: [" & OLStyleSettings.OLXAnchor & ", " & OLStyleSettings.OLYAnchor & "],anchorXUnits: '" & OLStyleSettings.OLXAnchorUnit & "',anchorYUnits: '" & OLStyleSettings.OLYAnchorUnit & "',opacity: 1,src: '" & OLStyleSettings.OLSRC & "'})) " & getIndividualLabelString(styleNum) & "  })"
             Case Else
-                getIndividualStyleString = "new ol.style.Style({image: new ol.style.Circle({radius: " & OLStyleSettings.OLSize & ",fill: new ol.style.Fill({color: '" & ColorTranslator.ToHtml(OLStyleSettings.OLFillColour) & "'}),stroke: new ol.style.Stroke({color: '" & ColorTranslator.ToHtml(OLStyleSettings.OLStrokeColor) & "', width: " & OLStyleSettings.OLStrokeWidth & ",lineCap: '" & OLStyleSettings.OLLineCap & "', lineJoin: '" & OLStyleSettings.OLLineJoin & "', lineDash: [" & OLStyleSettings.OLLineDash + 0 & "], miterLimit:" & OLStyleSettings.OLMiterLimit & "})}),stroke: new ol.style.Stroke({color:  '" & ColorTranslator.ToHtml(OLStyleSettings.OLStrokeColor) & "',width: " & OLStyleSettings.OLStrokeWidth & ",lineCap: '" & OLStyleSettings.OLLineCap & "', lineJoin: '" & OLStyleSettings.OLLineJoin & "', lineDash: [" & OLStyleSettings.OLLineDash + 1 & "], miterLimit:" & OLStyleSettings.OLMiterLimit & "}),	fill: new ol.style.Fill({color:  'rgba(" & OLStyleSettings.OLFillColour.R & ", " & OLStyleSettings.OLFillColour.G & ", " & OLStyleSettings.OLFillColour.B & ", " & OLStyleSettings.OlTransparancy & ")'}) " & getIndividualLabelString(styleNum) & "  })"
+                getIndividualStyleString = "new ol.style.Style({image: new ol.style." & OLStyleSettings.OLPointType & "({rotation:" & rotationString & " ,points:" & OLStyleSettings.OLVertices & ",radius: " & OLStyleSettings.OLSize & ",fill: new ol.style.Fill({color: '" & ColorTranslator.ToHtml(OLStyleSettings.OLFillColour) & "'}),stroke: new ol.style.Stroke({color: '" & ColorTranslator.ToHtml(OLStyleSettings.OLStrokeColor) & "', width: " & OLStyleSettings.OLStrokeWidth & ",lineCap: '" & OLStyleSettings.OLLineCap & "', lineJoin: '" & OLStyleSettings.OLLineJoin & "', lineDash: [" & OLStyleSettings.OLLineDash + 0 & "], miterLimit:" & OLStyleSettings.OLMiterLimit & "})}),stroke: new ol.style.Stroke({color:  '" & ColorTranslator.ToHtml(OLStyleSettings.OLStrokeColor) & "',width: " & OLStyleSettings.OLStrokeWidth & ",lineCap: '" & OLStyleSettings.OLLineCap & "', lineJoin: '" & OLStyleSettings.OLLineJoin & "', lineDash: [" & OLStyleSettings.OLLineDash + 1 & "], miterLimit:" & OLStyleSettings.OLMiterLimit & "}),	fill: new ol.style.Fill({color:  'rgba(" & OLStyleSettings.OLFillColour.R & ", " & OLStyleSettings.OLFillColour.G & ", " & OLStyleSettings.OLFillColour.B & ", " & OLStyleSettings.OlTransparancy & ")'}) " & getIndividualLabelString(styleNum) & "  })"
+
+                'getIndividualStyleString = "new ol.style.Style({image: new ol.style.Circle({radius: " & OLStyleSettings.OLSize & ",fill: new ol.style.Fill({color: '" & ColorTranslator.ToHtml(OLStyleSettings.OLFillColour) & "'}),stroke: new ol.style.Stroke({color: '" & ColorTranslator.ToHtml(OLStyleSettings.OLStrokeColor) & "', width: " & OLStyleSettings.OLStrokeWidth & ",lineCap: '" & OLStyleSettings.OLLineCap & "', lineJoin: '" & OLStyleSettings.OLLineJoin & "', lineDash: [" & OLStyleSettings.OLLineDash + 0 & "], miterLimit:" & OLStyleSettings.OLMiterLimit & "})}),stroke: new ol.style.Stroke({color:  '" & ColorTranslator.ToHtml(OLStyleSettings.OLStrokeColor) & "',width: " & OLStyleSettings.OLStrokeWidth & ",lineCap: '" & OLStyleSettings.OLLineCap & "', lineJoin: '" & OLStyleSettings.OLLineJoin & "', lineDash: [" & OLStyleSettings.OLLineDash + 1 & "], miterLimit:" & OLStyleSettings.OLMiterLimit & "}),	fill: new ol.style.Fill({color:  'rgba(" & OLStyleSettings.OLFillColour.R & ", " & OLStyleSettings.OLFillColour.G & ", " & OLStyleSettings.OLFillColour.B & ", " & OLStyleSettings.OlTransparancy & ")'}) " & getIndividualLabelString(styleNum) & "  })"
                 'getIndividualStyleString = "new ol.style.Style({image: new ol.style.Circle({radius: " & OLStyleSettings.OLSize & ",fill: new ol.style.Fill({color: '" & ColorTranslator.ToHtml(OLStyleSettings.OLFillColour) & "'}),stroke: new ol.style.Stroke({color: '" & ColorTranslator.ToHtml(OLStyleSettings.OLStrokeColor) & "', width: " & OLStyleSettings.OLStrokeWidth & ",lineCap: '" & OLStyleSettings.OLLineCap & "', lineJoin: '" & OLStyleSettings.OLLineJoin & "', lineDash: [" & OLStyleSettings.OLLineDash & "], miterLimit:" & OLStyleSettings.OLMiterLimit & "})}),stroke: new ol.style.Stroke({color:  '" & ColorTranslator.ToHtml(OLStyleSettings.OLStrokeColor) & "',width: " & OLStyleSettings.OLStrokeWidth & ",lineCap: '" & OLStyleSettings.OLLineCap & "', lineJoin: '" & OLStyleSettings.OLLineJoin & "', lineDash: [" & OLStyleSettings.OLLineDash & "], miterLimit:" & OLStyleSettings.OLMiterLimit & "}),	fill: new ol.style.Fill({color:  '" & ColorTranslator.ToHtml(OLStyleSettings.OLFillColour) & "'})})"
         End Select
 
@@ -107,6 +141,22 @@ Public Class OLStylePicker
 
         Else
             getLabelExpresion = "feature.get('" & ChangeOLStylePickerdialog.OLLabelPicker.ComboBox1.Text & "')"
+        End If
+
+
+
+    End Function
+
+    Function getRotationExpresion() As String
+        ' / 57.2957795 required for conversion from radians
+
+        If isCluster Then
+            getRotationExpresion = "0"
+
+        ElseIf ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Text = "Custom" Or ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Text = "" Then
+            getRotationExpresion = ChangeOLStylePickerdialog.OLPointPicker.styleSettings.OLRotation / 57.2957795
+        Else
+            getRotationExpresion = "feature.get('" & ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Text & "')  / 57.2957795"
         End If
 
 
@@ -342,6 +392,28 @@ Public Class StyleProperties
         End Set
     End Property
 
+    Private _OLVertices As Integer = 0
+    Public Property OLVertices As Integer
+        Get
+            Return _OLVertices
+        End Get
+        Set(ByVal value As Integer)
+            _OLVertices = value
+            If active Then RaiseEvent onChange()
+        End Set
+    End Property
+
+    Private _OLPointType As String = "Circle"
+    Public Property OLPointType As String
+        Get
+            Return _OLPointType
+        End Get
+        Set(ByVal value As String)
+            _OLPointType = value
+            If active Then RaiseEvent onChange()
+        End Set
+    End Property
+
     Private _OlTransparancy As Double = 1
     Public Property OlTransparancy As Double
         Get
@@ -360,6 +432,17 @@ Public Class StyleProperties
         End Get
         Set(ByVal value As Integer)
             _OLRotation = value
+            If active Then RaiseEvent onChange()
+        End Set
+    End Property
+
+    Private _OLRotationField As String = "Custom"
+    Public Property OLRotationField As String
+        Get
+            Return _OLRotationField
+        End Get
+        Set(ByVal value As String)
+            _OLRotationField = value
             If active Then RaiseEvent onChange()
         End Set
     End Property

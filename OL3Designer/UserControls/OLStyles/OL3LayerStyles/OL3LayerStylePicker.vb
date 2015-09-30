@@ -312,6 +312,17 @@ Public Class OL3LayerStylePicker
 
     End Function
 
+    Function getAllRotationExpresions() As List(Of String)
+        getAllRotationExpresions = New List(Of String)
+
+        Dim currentStyle As styleRow
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            currentStyle = DataGridView1.Rows(i)
+            getAllRotationExpresions.Add(getSingleRotationExpresion(currentStyle.StyleControl, currentStyle.StyleType))
+        Next
+
+    End Function
+
     Function getAllLabelVars() As List(Of String)
         getAllLabelVars = New List(Of String)
 
@@ -396,12 +407,13 @@ Public Class OL3LayerStylePicker
 
     Function getsingleLabelVars(ByVal StyleControl As UserControl, ByVal StyleType As String, Optional ByVal styleNum As Integer = 0) As String
         'a case for each feature type
+        'this has also been amended to hold the rotation values of points - as direct reference to the feature attribute through feature.get causes errors in the key
 
         Select Case StyleType
 
             Case "Single Feature Style"
                 Dim currentUserControl As OL3LayerStyleFeatureStyle = StyleControl
-                Return "var tempLabel" & styleNum & " = '';"
+                Return "var tempLabel" & styleNum & " = ''; var tempRotation" & styleNum & " = 0;"
 
             Case "Unique Values"
                 Dim currentUserControl As OL3LayerStyleUniqueValues = StyleControl
@@ -411,7 +423,7 @@ Public Class OL3LayerStylePicker
                 'for each unique style row
                 For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
                     tempUniqueRow = currentUserControl.DataGridView1.Rows(g)
-                    allUniques = allUniques & "var tempLabel" & g & " = '';"
+                    allUniques = allUniques & "var tempLabel" & g & " = ''; var tempRotation" & g & " = 0;"
                 Next
                 Return allUniques
 
@@ -423,7 +435,7 @@ Public Class OL3LayerStylePicker
                 'for each unique style row
                 For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
                     tempNumericRangesRow = currentUserControl.DataGridView1.Rows(g)
-                    allNumericRanges = allNumericRanges & "var tempLabel" & g & " = '';"
+                    allNumericRanges = allNumericRanges & "var tempLabel" & g & " = ''; var tempRotation" & g & " = 0;"
                 Next
                 Return allNumericRanges
 
@@ -435,7 +447,7 @@ Public Class OL3LayerStylePicker
                 'for each unique style row
                 For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
                     tempDateRangesRow = currentUserControl.DataGridView1.Rows(g)
-                    allDateRanges = allDateRanges & "var tempLabel" & g & " = '';"
+                    allDateRanges = allDateRanges & "var tempLabel" & g & " = ''; var tempRotation" & g & " = 0;"
                 Next
                 Return allDateRanges
 
@@ -443,7 +455,7 @@ Public Class OL3LayerStylePicker
                 Dim currentUserControl As OL3LayerStyleCluster = StyleControl
                 'cycle through all style pickers getting multistylestrings...hmm do in unique style usercontrol
 
-                Return "var tempLabel" & styleNum & " = '';"
+                Return "var tempLabel" & styleNum & " = '';  var tempRotation" & styleNum & " = 0;"
 
 
             Case "Cluster and Statistics"
@@ -458,11 +470,11 @@ Public Class OL3LayerStylePicker
                     'for each unique style row
                     For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
                         tempClusterRangesRow = currentUserControl.DataGridView1.Rows(g)
-                        allClusterRanges = allClusterRanges & "var tempLabel" & g & " = '';"
+                        allClusterRanges = allClusterRanges & "var tempLabel" & g & " = '';  var tempRotation" & g & " = 0;"
                     Next
                     Return allClusterRanges
                 Else
-                    Return "var tempLabel" & styleNum & " = '';"
+                    Return "var tempLabel" & styleNum & " = '';  var tempRotation" & styleNum & " = 0;"
                 End If
         End Select
     End Function
@@ -476,7 +488,7 @@ Public Class OL3LayerStylePicker
 
             Case "Single Feature Style"
                 Dim currentUserControl As OL3LayerStyleFeatureStyle = StyleControl
-                Return currentUserControl.OlStylePicker1.ChangeOLStylePickerdialog.getLabelResolution & "{ tempLabel" & styleNum & " = " & currentUserControl.OlStylePicker1.getLabelExpresion & "} "
+                Return currentUserControl.OlStylePicker1.ChangeOLStylePickerdialog.getLabelResolution & "{ tempLabel" & styleNum & " = " & currentUserControl.OlStylePicker1.getLabelExpresion & ";} "
 
             Case "Unique Values"
                 Dim currentUserControl As OL3LayerStyleUniqueValues = StyleControl
@@ -533,6 +545,78 @@ Public Class OL3LayerStylePicker
                     For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
                         tempClusterRangesRow = currentUserControl.DataGridView1.Rows(g)
                         allClusterRanges = allClusterRanges & tempClusterRangesRow.ClusterRangesStyle.ChangeOLStylePickerdialog.getLabelResolution & "{ tempLabel" & g & " = " & tempClusterRangesRow.ClusterRangesStyle.getLabelExpresion & ";}"
+                    Next
+                    Return allClusterRanges
+                Else
+
+                End If
+        End Select
+    End Function
+
+    Function getSingleRotationExpresion(ByVal StyleControl As UserControl, ByVal StyleType As String, Optional ByVal styleNum As Integer = 0) As String
+        'a case for each feature type
+        'add conditional resolution "If" before assigning vars to ensurethey only dispay when needed.
+        Select Case StyleType
+
+            Case "Single Feature Style"
+                Dim currentUserControl As OL3LayerStyleFeatureStyle = StyleControl
+                Return "{ tempRotation" & styleNum & " = " & currentUserControl.OlStylePicker1.getRotationExpresion & ";} "
+
+            Case "Unique Values"
+                Dim currentUserControl As OL3LayerStyleUniqueValues = StyleControl
+                'cycle through all style pickers getting label expesions (i.e column to label features with)
+
+                Dim allUniques As String = ""
+                Dim tempUniqueRow As uniqueRow
+                'for each unique style row
+                For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
+                    tempUniqueRow = currentUserControl.DataGridView1.Rows(g)
+                    allUniques = allUniques & "{ tempRotation" & g & " = " & tempUniqueRow.uniqueStyle.getRotationExpresion & ";} "
+                Next
+                Return allUniques
+
+            Case "Numeric Ranges"
+                Dim currentUserControl As OL3LayerStyleNumericRanges = StyleControl
+
+                Dim allNumericRanges As String = ""
+                Dim tempNumericRangesRow As NumericRangesRow
+                'for each unique style row
+                For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
+                    tempNumericRangesRow = currentUserControl.DataGridView1.Rows(g)
+                    allNumericRanges = allNumericRanges & "{ tempRotation" & g & " = " & tempNumericRangesRow.NumericRangesStyle.getRotationExpresion & ";}"
+                Next
+                Return allNumericRanges
+
+            Case "Date Ranges"
+                Dim currentUserControl As OL3LayerStyleDateRanges = StyleControl
+
+                Dim allDateRanges As String = ""
+                Dim tempDateRangesRow As DateRangesRow
+                'for each unique style row
+                For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
+                    tempDateRangesRow = currentUserControl.DataGridView1.Rows(g)
+                    allDateRanges = allDateRanges & "{ tempRotation" & g & " = " & tempDateRangesRow.DateRangesStyle.getRotationExpresion & ";}"
+                Next
+                Return allDateRanges
+
+            Case "Simple Cluster"
+                Dim currentUserControl As OL3LayerStyleCluster = StyleControl
+
+                Return "{ tempRotation" & styleNum & " = " & currentUserControl.OlStylePicker1.getRotationExpresion & ";}"
+
+
+            Case "Cluster and Statistics"
+                Dim currentUserControl As OL3LayerStyleClusterStats = StyleControl
+
+
+                If currentUserControl.ComboBox1.Text <> "None" Then
+                    'if stats then cycle through rows
+                    Dim allClusterRanges As String = ""
+                    Dim tempClusterRangesRow As ClusterStatsRow
+                    'for each unique style row
+                    For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
+                        tempClusterRangesRow = currentUserControl.DataGridView1.Rows(g)
+                        allClusterRanges = allClusterRanges & "{ tempRotation" & g & " = " & tempClusterRangesRow.ClusterRangesStyle.getRotationExpresion & ";}"
                     Next
                     Return allClusterRanges
                 Else

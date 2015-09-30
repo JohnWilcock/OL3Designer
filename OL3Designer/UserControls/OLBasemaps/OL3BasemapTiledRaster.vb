@@ -352,10 +352,10 @@ Public Class OL3BasemapTiledRaster
                 tempTile.x = x
                 tempTile.y = y + 1
                 'tempTile.y = Math.Floor(((maxY - minY) * TiledRaster1.ZoomLevels(zLevel).Resolution) / tilesize) - y - 1
-                tempTile.z = ZoomLevels.Count - zLevel
+                tempTile.z = ZoomLevels.Count - zLevel - 1
                 tempTile.resolution = ZoomLevels(zLevel).Resolution
 
-                tempTile.outputFileName = outputpath & (tempTile.z - 1).ToString & "_" & x.ToString & "_" & tempTile.y & ".jpg"
+                tempTile.outputFileName = outputpath & (tempTile.z).ToString & "_" & x.ToString & "_" & tempTile.y & ".jpg"
 
                 tempTile.intersectingImages = New List(Of imagefile)
                 For i As Integer = 0 To listOfAllImageFiles.Count - 1
@@ -472,7 +472,8 @@ Public Class OL3BasemapTiledRaster
     Function getOriginsJSArray() As String
         getOriginsJSArray = ""
         For v As Integer = 0 To ZoomLevels.Count - 1
-            getOriginsJSArray = getOriginsJSArray & ",[" & ZoomLevels(v).minX & ", " & ZoomLevels(v).maxY & "]"
+            'getOriginsJSArray = getOriginsJSArray & ",[" & ZoomLevels(v).minX & ", " & ZoomLevels(v).maxY & "]"
+            getOriginsJSArray = getOriginsJSArray & ",[" & ZoomLevels(ZoomLevels.Count - 1 - v).minX & ", " & ZoomLevels(ZoomLevels.Count - 1 - v).maxY & "]"
 
         Next
 
@@ -482,7 +483,8 @@ Public Class OL3BasemapTiledRaster
     Function getResolutionsJSArray() As String
         getResolutionsJSArray = ""
         For v As Integer = 0 To ZoomLevels.Count - 1
-            getResolutionsJSArray = getResolutionsJSArray & "," & ZoomLevels(v).OL3Resolution
+            'getResolutionsJSArray = getResolutionsJSArray & "," & ZoomLevels(v).OL3Resolution
+            getResolutionsJSArray = getResolutionsJSArray & "," & ZoomLevels(ZoomLevels.Count - 1 - v).OL3Resolution
 
         Next
 
@@ -546,6 +548,8 @@ Public Class OL3BasemapTiledRaster
             GroupBox1.Visible = False
         End If
     End Sub
+
+
 End Class
 
 

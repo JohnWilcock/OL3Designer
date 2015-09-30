@@ -247,6 +247,8 @@ Public Class OLStylePickerDialog
                     styleSettings.OLStrokeWidth = defStyle(1)
                     styleSettings.OLStrokeColor = ColorTranslator.FromHtml(defStyle(2))
                     styleSettings.OLFillColour = ColorTranslator.FromHtml(defStyle(3))
+                    styleSettings.OLVertices = defStyle(4)
+                    styleSettings.OLRotation = defStyle(5)
 
                     'place style values into dialog controls
                     OLPointPicker.loadValuesToControls()

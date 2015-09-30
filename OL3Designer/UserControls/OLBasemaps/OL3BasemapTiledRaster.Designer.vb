@@ -24,6 +24,7 @@ Partial Class OL3BasemapTiledRaster
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OL3BasemapTiledRaster))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -81,11 +82,21 @@ Partial Class OL3BasemapTiledRaster
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "New tiled raster background map"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.LightCoral
+        Me.Label4.Location = New System.Drawing.Point(5, 60)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(54, 65)
+        Me.Label4.TabIndex = 9
+        Me.Label4.Text = "Only 1 " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "zoom " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "level " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "currently " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "supported"
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.LightCoral
-        Me.Label1.Location = New System.Drawing.Point(17, 26)
+        Me.Label1.Location = New System.Drawing.Point(6, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(334, 13)
         Me.Label1.TabIndex = 8
@@ -122,6 +133,7 @@ Partial Class OL3BasemapTiledRaster
         '
         'ToolStripContainer1.ContentPanel
         '
+        Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.Label4)
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.ListBox1)
         Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(62, 143)
         Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -265,7 +277,7 @@ Partial Class OL3BasemapTiledRaster
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ToolStripSeparator1, Me.ToolStripLabel1, Me.ToolStripComboBox1})
         Me.ToolStrip3.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(299, 25)
+        Me.ToolStrip3.Size = New System.Drawing.Size(266, 25)
         Me.ToolStrip3.TabIndex = 0
         '
         'ToolStripButton3
@@ -305,6 +317,7 @@ Partial Class OL3BasemapTiledRaster
         Me.GroupBox1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.ToolStripContainer1.ContentPanel.ResumeLayout(False)
+        Me.ToolStripContainer1.ContentPanel.PerformLayout()
         Me.ToolStripContainer1.TopToolStripPanel.ResumeLayout(False)
         Me.ToolStripContainer1.TopToolStripPanel.PerformLayout()
         Me.ToolStripContainer1.ResumeLayout(False)
@@ -354,5 +367,6 @@ Partial Class OL3BasemapTiledRaster
     Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents ToolStripComboBox1 As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 
 End Class
