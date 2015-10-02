@@ -58,8 +58,12 @@ Public Class OLStylePicker
 
 
         If isCluster Then
-            'hmmmmm ??
+            'hmmmmm ?? for now disable
+            ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Enabled = False
+
         Else
+            ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Enabled = True
+
             ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Items.Clear()
             ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.Items.Add("Custom")
             ChangeOLStylePickerdialog.OLPointPicker.ComboBox1.SelectedIndex = 0
