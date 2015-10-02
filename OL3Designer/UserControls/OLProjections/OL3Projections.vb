@@ -98,18 +98,10 @@ Public Class OL3Projections
     End Sub
 
     Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
-        If TextBox2.Text <> "" Then
-            SearchCSbyName(TextBox2.Text)
-        End If
-        ShowAll()
+
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-        If TextBox1.Text <> "" Then
-            SearchCSbyID(TextBox1.Text)
-        Else
-            ShowAll()
-        End If
 
     End Sub
 
@@ -140,5 +132,23 @@ Public Class OL3Projections
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         TextBox1.Enabled = True
         TextBox2.Enabled = True
+    End Sub
+
+    Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles TextBox4.TextChanged
+        If TextBox4.Text <> "" Then
+            SearchCSbyName(TextBox4.Text)
+        Else
+            ShowAll()
+        End If
+
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+        If TextBox3.Text <> "" Then
+            SearchCSbyID(TextBox3.Text)
+        Else
+            ShowAll()
+        End If
+
     End Sub
 End Class

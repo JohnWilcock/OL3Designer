@@ -9,8 +9,6 @@
     Public syncEventActive As Boolean = True
     Public numberOfZoomLevels As Integer = 22
 
-
-
     Sub New()
 
         ' This call is required by the designer.
@@ -22,6 +20,9 @@
         OL3Projections1.TextBox1.Text = "3857"
         OL3Projections1.TextBox2.Text = "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs"
         mapProjectionWKT = "PROJCS[" & Chr(34) & "Google Maps Global Mercator" & Chr(34) & ",GEOGCS[" & Chr(34) & "WGS 84" & Chr(34) & ",DATUM[" & Chr(34) & "WGS_1984" & Chr(34) & ",SPHEROID[" & Chr(34) & "WGS 84" & Chr(34) & ",6378137,298.257223563,AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "7030" & Chr(34) & "]],AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "6326" & Chr(34) & "]],PRIMEM[" & Chr(34) & "Greenwich" & Chr(34) & ",0,AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "8901" & Chr(34) & "]],UNIT[" & Chr(34) & "degree" & Chr(34) & ",0.01745329251994328,AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "9122" & Chr(34) & "]],AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "4326" & Chr(34) & "]],PROJECTION[" & Chr(34) & "Mercator_2SP" & Chr(34) & "],PARAMETER[" & Chr(34) & "standard_parallel_1" & Chr(34) & ",0],PARAMETER[" & Chr(34) & "latitude_of_origin" & Chr(34) & ",0],PARAMETER[" & Chr(34) & "central_meridian" & Chr(34) & ",0],PARAMETER[" & Chr(34) & "false_easting" & Chr(34) & ",0],PARAMETER[" & Chr(34) & "false_northing" & Chr(34) & ",0],UNIT[" & Chr(34) & "Meter" & Chr(34) & ",1],EXTENSION[" & Chr(34) & "PROJ4" & Chr(34) & "," & Chr(34) & "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs" & Chr(34) & "],AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "900913" & Chr(34) & "]]"
+        OL3Projections1.ChosenCoordSystemWKT = "PROJCS[" & Chr(34) & "Google Maps Global Mercator" & Chr(34) & ",GEOGCS[" & Chr(34) & "WGS 84" & Chr(34) & ",DATUM[" & Chr(34) & "WGS_1984" & Chr(34) & ",SPHEROID[" & Chr(34) & "WGS 84" & Chr(34) & ",6378137,298.257223563,AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "7030" & Chr(34) & "]],AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "6326" & Chr(34) & "]],PRIMEM[" & Chr(34) & "Greenwich" & Chr(34) & ",0,AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "8901" & Chr(34) & "]],UNIT[" & Chr(34) & "degree" & Chr(34) & ",0.01745329251994328,AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "9122" & Chr(34) & "]],AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "4326" & Chr(34) & "]],PROJECTION[" & Chr(34) & "Mercator_2SP" & Chr(34) & "],PARAMETER[" & Chr(34) & "standard_parallel_1" & Chr(34) & ",0],PARAMETER[" & Chr(34) & "latitude_of_origin" & Chr(34) & ",0],PARAMETER[" & Chr(34) & "central_meridian" & Chr(34) & ",0],PARAMETER[" & Chr(34) & "false_easting" & Chr(34) & ",0],PARAMETER[" & Chr(34) & "false_northing" & Chr(34) & ",0],UNIT[" & Chr(34) & "Meter" & Chr(34) & ",1],EXTENSION[" & Chr(34) & "PROJ4" & Chr(34) & "," & Chr(34) & "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs" & Chr(34) & "],AUTHORITY[" & Chr(34) & "EPSG" & Chr(34) & "," & Chr(34) & "900913" & Chr(34) & "]]"
+        OL3Projections1.ChosenCoordSystemEPSG = "3857"
+
         ComboBox1.Items.Add("none")
 
         OL3Basemaps1.parentMapOptions = Me
@@ -47,42 +48,54 @@
         CheckedListBox1.Items.Clear()
         CheckedListBox2.Items.Clear()
 
+        If OL3Projections1.ChosenCoordSystemWKT <> Nothing Then
+            mapProjectionWKT = OL3Projections1.ChosenCoordSystemWKT
+        End If
+
+        'set list of layers in checkboxes - checkboxlist 2 is dependant on this
         For i As Integer = 0 To theParentLayerList.DataGridView1.Rows.Count - 1
             theLayer = theParentLayerList.DataGridView1.Rows(i)
-
-            'convert to same coords as map
-            Dim layerTopLeftPoint As Double() = New Double() {theLayer.MinX, theLayer.MaxY}
-            Dim layerBottomRightPoint As Double() = New Double() {theLayer.MaxX, theLayer.MinY}
-
-            'what is the map coords ?
-            layerTopLeftPoint = projConv.convertCoords(layerTopLeftPoint(0), layerTopLeftPoint(1), theLayer.layerProjWKT, mapProjectionWKT)
-            layerBottomRightPoint = projConv.convertCoords(layerBottomRightPoint(0), layerBottomRightPoint(1), theLayer.layerProjWKT, mapProjectionWKT)
-
-
             CheckedListBox1.Items.Add(theLayer.layerName)
             CheckedListBox2.Items.Add(theLayer.layerName)
-            If theLayer.useLayerForDefaultExtent Then
-                CheckedListBox1.SetItemChecked(i, True)
-
-                'get the extents for the coordinates option
-                If firstCheck = 0 Then
-                    defaultExtentCoordinates.XtopLeft.Value = layerTopLeftPoint(0) 'theLayer.MinX
-                    defaultExtentCoordinates.YbottomRight.Value = layerBottomRightPoint(1) 'theLayer.MinY
-                    defaultExtentCoordinates.YtopLeft.Value = layerTopLeftPoint(1) 'theLayer.MaxY
-                    defaultExtentCoordinates.XbottomRight.Value = layerBottomRightPoint(0) 'theLayer.MaxX
-                    firstCheck = 1
-                Else
-                    defaultExtentCoordinates.XtopLeft.Value = Math.Min(layerTopLeftPoint(0), defaultExtentCoordinates.XtopLeft.Value)
-                    defaultExtentCoordinates.YbottomRight.Value = Math.Min(layerBottomRightPoint(1), defaultExtentCoordinates.YbottomRight.Value)
-                    defaultExtentCoordinates.YtopLeft.Value = Math.Max(layerTopLeftPoint(1), defaultExtentCoordinates.YtopLeft.Value)
-                    defaultExtentCoordinates.XbottomRight.Value = Math.Max(layerBottomRightPoint(0), defaultExtentCoordinates.XbottomRight.Value)
-                End If
-
-            Else
-                CheckedListBox1.SetItemChecked(i, False)
-            End If
         Next
 
+        'only refesh coords if coord view NOT selected as it is not to be refeshed if mannualy altered
+        If Button3.Text = "Coordinates" Then
+
+            For i As Integer = 0 To theParentLayerList.DataGridView1.Rows.Count - 1
+                theLayer = theParentLayerList.DataGridView1.Rows(i)
+
+                'convert to same coords as map
+                Dim layerTopLeftPoint As Double() = New Double() {theLayer.MinX, theLayer.MaxY}
+                Dim layerBottomRightPoint As Double() = New Double() {theLayer.MaxX, theLayer.MinY}
+
+                'what is the map coords ?
+                layerTopLeftPoint = projConv.convertCoords(layerTopLeftPoint(0), layerTopLeftPoint(1), theLayer.layerProjWKT, mapProjectionWKT)
+                layerBottomRightPoint = projConv.convertCoords(layerBottomRightPoint(0), layerBottomRightPoint(1), theLayer.layerProjWKT, mapProjectionWKT)
+
+
+                If theLayer.useLayerForDefaultExtent Then
+                    CheckedListBox1.SetItemChecked(i, True)
+
+                    'get the extents for the coordinates option
+                    If firstCheck = 0 Then
+                        defaultExtentCoordinates.XtopLeft.Value = layerTopLeftPoint(0) 'theLayer.MinX
+                        defaultExtentCoordinates.YbottomRight.Value = layerBottomRightPoint(1) 'theLayer.MinY
+                        defaultExtentCoordinates.YtopLeft.Value = layerTopLeftPoint(1) 'theLayer.MaxY
+                        defaultExtentCoordinates.XbottomRight.Value = layerBottomRightPoint(0) 'theLayer.MaxX
+                        firstCheck = 1
+                    Else
+                        defaultExtentCoordinates.XtopLeft.Value = Math.Min(layerTopLeftPoint(0), defaultExtentCoordinates.XtopLeft.Value)
+                        defaultExtentCoordinates.YbottomRight.Value = Math.Min(layerBottomRightPoint(1), defaultExtentCoordinates.YbottomRight.Value)
+                        defaultExtentCoordinates.YtopLeft.Value = Math.Max(layerTopLeftPoint(1), defaultExtentCoordinates.YtopLeft.Value)
+                        defaultExtentCoordinates.XbottomRight.Value = Math.Max(layerBottomRightPoint(0), defaultExtentCoordinates.XbottomRight.Value)
+                    End If
+
+                Else
+                    CheckedListBox1.SetItemChecked(i, False)
+                End If
+            Next
+        End If
 
 
         'create list of other maps - for map sync options
@@ -204,6 +217,10 @@
 
         Dim projConv As New ProjectionsAndTransformations
 
+        If OL3Projections1.ChosenCoordSystemWKT <> Nothing Then
+            mapProjectionWKT = OL3Projections1.ChosenCoordSystemWKT
+        End If
+
         For i As Integer = 0 To theParentLayerList.DataGridView1.Rows.Count - 1
             theLayer = theParentLayerList.DataGridView1.Rows(i)
             'convert to same coords as map
@@ -248,8 +265,10 @@
 
         If Button3.Text = "Coordinates" Then
             Button3.Text = "Layers"
-            Panel1.Controls.Add(defaultExtentCoordinates)
             mapProjectionWKT = OL3Projections1.ChosenCoordSystemWKT
+            refreshDefaultExtents()
+            Panel1.Controls.Add(defaultExtentCoordinates)
+
         Else
             Button3.Text = "Coordinates"
             Panel1.Controls.Add(CheckedListBox1)
