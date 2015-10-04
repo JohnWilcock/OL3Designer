@@ -1,0 +1,868 @@
+<!doctype html><html style='height: 100%;'><head>
+<script src='ol.js' type='text/javascript'></script> <link rel='stylesheet' href='ol.css' type='text/css'>
+<script src='proj4.js' type='text/javascript'></script> 
+<script src='jQuery.js' type='text/javascript'></script>
+<script src='bootstrap.js' type='text/javascript'></script> <link rel='stylesheet' href='bootstrap.css' type='text/css'>
+<script src='base.js' type='text/javascript'></script>
+<script src='ol-deps.js' type='text/javascript'></script>
+<script src='URI.js' type='text/javascript'></script><script type='text/javascript'>function collapsePanel(panelID,oppPanelID,one,two,orientation) {if (document.getElementById(panelID).style.display != 'none'){document.getElementById(panelID).style.display = 'none';if (orientation == 0){document.getElementById(panelID).style.width = '0%';document.getElementById(oppPanelID).style.width = '100%';}else{document.getElementById(panelID).style.height = '0%';document.getElementById(oppPanelID).style.height = '100%';}}else{document.getElementById(panelID).style.display = '';if (orientation == 0){document.getElementById(oppPanelID).style.width = one + '%';document.getElementById(panelID).style.width = two + '%';}else{document.getElementById(oppPanelID).style.height = one + '%';document.getElementById(panelID).style.height = two + '%';}}}</script></head><body style='height: 100%; width:100%'><table style='height:100%;width:100%;margin:0px;padding:0px;border-collapse:collapse;border-spacing:0px;'><tr><td  id='table0_1' style='height:12%;width:100%;'><div id='text' style='position:relative;overflow:auto;height:100%;width:100%;'>
+
+
+
+
+<P><STRONG><U>OpenLayer 3 Designer - Example map: GPS 
+Photographs</U></STRONG></P>
+<P>This example map has been automaticly created by the <A 
+href="https://github.com/JohnWilcock/OL3Designer">OpenLayers&nbsp;3 
+Designer.</A> No code was written mannualy to produce this page, only button 
+pushing was involved.</P>
+</div></td></tr><tr><td  id='table0_2'  style='width:100%;'><table style='height:100%;width:100%;margin:0px;padding:0px;border-collapse:collapse;border-spacing:0px;'><tr><td id='table8508_1' style='width:24%;'><table style='height:100%;width:100%;margin:0px;padding:0px;border-collapse:collapse;border-spacing:0px;'><tr><td  id='table2874_1' style='height:17%;width:100%;'><div id='key0' style='position:relative;overflow:auto;height:100%;width:100%;'></div></td></tr><tr><td  id='table2874_2' style='height:81%;width:100%;'><div id='text' style='position:relative;height:100%;width:100%;'>
+
+
+
+Got some gps tagged photos ? Then these can be plotted to.&nbsp; Each 
+photo is given a point and a popup with various information.&nbsp; Click on an 
+image to enlarge it.&nbsp; Clustering is enabled by default.
+</div></td></tr></table></td><td  id='table8508_2' style='height:100%;width:75%;'><div id='map1' style='position:relative;height:100%;width:100%;'></div></td></tr></table></td></tr></table><script type='text/javascript'>
+//*************original output path DO NOT ALTER EVEN IF YOU MOVE THE FILE, required to determine relative paths*****************
+mapOutputPath = 'C:/Users/John/Documents/GitHub/OL3Designer/OL3Designer/bin/Debug/Outputs/';
+
+//*************layer Style Types*****************
+var mapStyleTypes = {'1':{'0':['Simple Cluster']
+}}
+
+var mapHeatmapParameters = {'1':{'0':[[]]
+}}
+
+
+
+
+
+
+//************** MAP 1*******************>>>
+
+//**************Create popup elements ******************
+
+var map1_vectorLayer_0_popup = document.createElement('Div'); 
+map1_vectorLayer_0_popup.id = 'map1_vectorLayer_0_popupDiv';
+document.getElementById('map1').appendChild(map1_vectorLayer_0_popup);
+$('.map1_vectorLayer_0_popupDiv').addClass($('.popup'));
+
+//**************Layer declarations******************
+var map1_vectorLayer_0;
+var map1_vectorSource_0;
+
+var registerOfLayerNames = ["GPS"];
+
+
+
+//**************Projection definition******************
+
+proj4.defs('USER:1000',"+proj=longlat +datum=WGS84 +no_defs "); 
+proj4.defs('USER:1999',"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs");
+
+
+//**************basemaps******************
+var map1_Basemap = new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})});
+
+//**************Layer sources******************
+ map1_vectorSource_0a  = new ol.source.Vector({
+features: (new ol.format.GeoJSON()).readFeatures({'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:1000'}},"features":[{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -104.987052777778, 39.7384972222222 ] },"properties": {"x":"-104.987052777778","y":"39.7384972222222","Filename":"R0010812","FilePath":"C:/Users/John/Documents/GitHub/OL3Designer/OL3Designer/bin/Debug/Outputs/GPSPhotos/R0010812.JPG","Direction":"335","Altitude":"1576","Date":"11/09/2005 15:34:50"}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -104.990369444444, 39.739202777777798 ] },"properties": {"x":"-104.990369444444","y":"39.7392027777778","Filename":"R0010816","FilePath":"C:/Users/John/Documents/GitHub/OL3Designer/OL3Designer/bin/Debug/Outputs/GPSPhotos/R0010816.JPG","Direction":"136","Altitude":"1576","Date":"11/09/2005 15:40:50"}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -104.991561111111, 39.739341666666697 ] },"properties": {"x":"-104.991561111111","y":"39.7393416666667","Filename":"R0010817","FilePath":"C:/Users/John/Documents/GitHub/OL3Designer/OL3Designer/bin/Debug/Outputs/GPSPhotos/R0010817.JPG","Direction":"244","Altitude":"1577","Date":"11/09/2005 15:43:55"}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -104.99163611111101, 39.739336111111101 ] },"properties": {"x":"-104.991636111111","y":"39.7393361111111","Filename":"R0010818","FilePath":"C:/Users/John/Documents/GitHub/OL3Designer/OL3Designer/bin/Debug/Outputs/GPSPhotos/R0010818.JPG","Direction":"261","Altitude":"1577","Date":"11/09/2005 15:44:08"}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -104.98952777777799, 39.739944444444397 ] },"properties": {"x":"-104.989527777778","y":"39.7399444444444","Filename":"R0010819","FilePath":"C:/Users/John/Documents/GitHub/OL3Designer/OL3Designer/bin/Debug/Outputs/GPSPhotos/R0010819.JPG","Direction":"162","Altitude":"1570","Date":"11/09/2005 15:48:07"}}]},{featureProjection:  'USER:1999', dataProjection:'USER:1000'})
+});
+
+var map1_vectorSource_0 =  new ol.source.Vector({defaultDataProjection: 'USER:1999', format: new ol.format.GeoJSON()});
+map1_vectorSource_0_SetSource();
+
+function map1_vectorSource_0_SetSource() {
+map1_vectorSource_0.clear('fast');
+map1_vectorSource_0.addFeatures(map1_vectorSource_0a.getFeatures());
+}
+
+
+
+//**************Cluster sources******************
+ map1_clusterSource_0_Style0 = new ol.source.Cluster({distance:40,source:   map1_vectorSource_0})
+
+
+//**************Layer layers******************
+// '//////////Declare layer first as avector layer so other code will not error///////////////
+ map1_vectorLayer_0  = new ol.layer.Vector({
+title: 'GPS',
+geoType: 'Point',
+name: 'map1_vectorLayer_0',
+source: map1_vectorSource_0
+});
+
+// '//////////get style index if there are multiple user switchable styles///////////////
+var map1_vectorLayer_0_currentSelectedStyle;
+var map1_vectorLayer_0_currentSelectedStyleIndex;
+map1_vectorLayer_0_currentSelectedStyle = document.getElementById('styleSelectmap1_vectorLayer_0');
+if (map1_vectorLayer_0_currentSelectedStyle == null){
+map1_vectorLayer_0_currentSelectedStyleIndex = 0;
+}else{
+map1_vectorLayer_0_currentSelectedStyle 
+}
+
+ map1_vectorLayer_0_SwitchLayerDeclaration(map1_vectorLayer_0_currentSelectedStyleIndex);
+
+function map1_vectorLayer_0_SwitchLayerDeclaration (styleID){
+var theFlag = false ; 
+if (map1 != null){
+map1.removeLayer(map1_vectorLayer_0);}
+if(theFlag == false){
+ map1_vectorLayer_0  = new ol.layer.Vector({
+title: 'GPS',
+geoType: 'Point',
+name: 'map1_vectorLayer_0',
+source: map1_vectorSource_0
+});
+}
+
+if (map1 != null){
+map1.addLayer(map1_vectorLayer_0);}
+}
+
+
+//**************Filter vars and onchange fuction******************
+
+
+
+function changeFilter_map_1_layer_0_Filters(){
+var allfeatures = map1_vectorSource_0.getFeatures();
+var feature ;
+for (i = 0; i < allfeatures.length; i++) { 
+feature = allfeatures[i];
+
+
+
+}
+}
+
+
+
+//**************Layer styles******************
+function map1_vectorLayer_0_Style0(feature, resolution) {var tempLabel0 = ''; if ( feature != 'key'  ){{ tempLabel0 = '';}} return {'0':[new ol.style.Style({image: new ol.style.Icon( ({scale: 1, rotation: 0, anchor: [0.5, 0.5],anchorXUnits: 'fraction',anchorYUnits: 'fraction',opacity: 1,src: 'OL3Icon__Orange_Pin.png'}))   })]}; };
+
+
+//********** STYLE FUNCTIONS ********
+var map1_vectorLayer_0_Style0_Function = function(feature, resolution) {
+map1_vectorLayer_0.setSource(map1_clusterSource_0_Style0);
+
+
+if('0' == '0'){return map1_vectorLayer_0_Style0(feature, resolution)[0];}}
+
+
+//********** SET STYLES ********
+if (mapStyleTypes['1']['0'][0] != 'Heatmap'){
+map1_vectorLayer_0.setStyle(map1_vectorLayer_0_Style0_Function);
+
+}
+
+//**************Map Parameters******************
+var map1_View =  new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:1999',minZoom:1, maxZoom:22})
+var map1 = new ol.Map({
+layers: [map1_Basemap,map1_vectorLayer_0],
+target: document.getElementById('map1'),
+controls: [new ol.control.Zoom()],
+view: map1_View
+
+});
+setMaxExtent(map1);
+
+// display popup on click
+map1.on('click', function(evt) { 
+var feature_map1 = map1.forEachFeatureAtPixel(evt.pixel, 
+function(feature, layer) { 
+currentLayer = layer 
+ return feature; 
+}); 
+if (feature_map1) {
+var geometry_map1 = feature_map1.getGeometry(); 
+var coord_map1 = geometry_map1.getCoordinates(); 
+
+
+if(currentLayer.get('name') == 'map1_vectorLayer_0'){
+$(map1_vectorLayer_0_popup).popover('destroy');
+coord_map1 = evt.coordinate; 
+Overlay_map1_vectorLayer_0_popup.setPosition(coord_map1); 
+$(map1_vectorLayer_0_popup).popover({
+'placement': 'top',
+'html': true,
+'content': map1_vectorLayer_0_popup_function(feature_map1)
+});
+$(map1_vectorLayer_0_popup).popover('show');
+} else {
+$(map1_vectorLayer_0_popup).popover('destroy');
+}
+
+
+
+}else{$(map1_vectorLayer_0_popup).popover('destroy');}
+});
+//**************Popup overlays******************
+
+var Overlay_map1_vectorLayer_0_popup = new ol.Overlay({
+element: map1_vectorLayer_0_popup,
+positioning: 'bottom-center',
+stopEvent: true
+});
+map1.addOverlay(Overlay_map1_vectorLayer_0_popup);
+
+//**************Get popup functions******************
+function map1_vectorLayer_0_popup_function(feature){
+var popupString = '';
+var allFeatures = feature.get('features');
+if (typeof allFeatures == 'undefined'){
+popupString = "<div style='max-height:200px;overflow:auto;'>" + map1_vectorLayer_0_popupHTML(feature) + "</div>";
+}else{
+popupString = "<div style='max-height:200px;width:100%;overflow:auto;padding:2px;'>" + returnClusterPP(feature,'map1_vectorLayer_0') + "</div>";
+}
+return popupString 
+}
+
+function map1_vectorLayer_0_popupHTML(feature){
+return "<html style='width:100%;height:100%;'><body style='width:100%;height:100%;'><div style='overflow:auto;padding:2px;'><table style='width:100%;border-collapse:collapse;padding:3px;border-spacing: 0px;'><tr style='width:100%;'><td style='max-width:122px;max-height:450px;'><p>"+ feature.get('x') + "</p></td></tr><tr style='width:100%;'><td style='max-width:122px;max-height:450px;'><p>"+ feature.get('y') + "</p></td></tr><tr style='width:100%;'><td style='max-width:122px;max-height:450px;'><p>"+ feature.get('Filename') + "</p></td></tr><tr style='width:100%;'><td ><img style='max-width:122px;max-height:450px;' onclick= " + String.fromCharCode(34) + " window.open('" + getCorrectPath(feature,'FilePath','rel') + "')" + String.fromCharCode(34) + "   src='" + getCorrectPath(feature,'FilePath','rel') + "'></img></td></tr><tr style='width:100%;'><td style='max-width:122px;max-height:450px;'><p>"+ feature.get('Direction') + "</p></td></tr><tr style='width:100%;'><td style='max-width:122px;max-height:450px;'><p>"+ feature.get('Altitude') + "</p></td></tr><tr style='width:100%;'><td style='max-width:122px;max-height:450px;'><p>"+ feature.get('Date') + "</p></td></tr></table></div></body></html>"
+}
+
+
+//****************Extent Functions ********************
+//only add once , not with every map
+
+function setMaxExtent(theMap){
+var hasVectorLayer = 0;
+//get map view
+var view = theMap.getView();
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+
+//cycle through layers
+for (i = 0; i < theMap.getLayers().getLength(); i++) { 
+if (theMap.getLayers().item(i) instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = theMap.getLayers().item(i).getSource().getExtent();
+}
+//alert(theMap.getLayers().item(i).get('name'));
+hasVectorLayer = 1;
+tempExtent = theMap.getLayers().item(i).getSource().getExtent();
+//minx
+if(tempExtent[0] < theExtent[0]){theExtent[0] = tempExtent[0]}
+//miny
+if(tempExtent[1] < theExtent[1]){theExtent[1] = tempExtent[1]}
+//maxx
+if(tempExtent[2] > theExtent[2]){theExtent[2] = tempExtent[2]}
+//maxy
+if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
+}
+}
+if (hasVectorLayer == 1){
+view.fit(theExtent , theMap.getSize());
+}
+//}
+}
+
+
+function setMaxExtentByLayer(theMap,layerArray){
+var hasVectorLayer = 0;
+//get map view
+var view = theMap.getView();
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+
+//cycle through layers
+for (i = 0; i < layerArray.length; i++) { 
+if (theMap.getLayers().item(layerArray[i]) instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = theMap.getLayers().item(layerArray[i]).getSource().getExtent();
+}
+
+hasVectorLayer = 1;
+tempExtent = theMap.getLayers().item(layerArray[i]).getSource().getExtent();
+//minx
+if(tempExtent[0] < theExtent[0]){theExtent[0] = tempExtent[0]}
+//miny
+if(tempExtent[1] < theExtent[1]){theExtent[1] = tempExtent[1]}
+//maxx
+if(tempExtent[2] > theExtent[2]){theExtent[2] = tempExtent[2]}
+//maxy
+if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
+}
+}
+if (hasVectorLayer == 1){
+view.fit(theExtent , theMap.getSize());
+}
+//}
+}
+
+
+function setMaxExtentCoords(theMap,theCoords){
+var hasVectorLayer = 0;
+//get map view
+var view = theMap.getView();
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+//cycle through layers
+for (i = 0; i < theMap.getLayers().getLength(); i++) { 
+if (theMap.getLayers().item(i) instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = theMap.getLayers().item(i).getSource().getExtent();
+}
+hasVectorLayer = 1;
+}
+}
+
+//minx
+theExtent[0] = theCoords[0];
+//miny
+theExtent[1] = theCoords[1];
+//maxx
+theExtent[2] = theCoords[2];
+//maxy
+theExtent[3] = theCoords[3];
+
+
+view.fit(theExtent , theMap.getSize());
+
+}
+
+
+
+function getMaxExtentByLayerAndMargin(layerArray, margin){
+var hasVectorLayer = 0;
+
+//set up blank extent
+var theExtent = new ol.extent.createEmpty();
+
+//cycle through layers
+for (i = 0; i < layerArray.length; i++) { 
+if (layerArray[i] instanceof ol.layer.Tile ){}else{
+if (hasVectorLayer != 1){
+theExtent = layerArray[i].getSource().getExtent();
+}
+
+hasVectorLayer = 1;
+tempExtent = layerArray[i].getSource().getExtent();
+//minx
+if(tempExtent[0] < theExtent[0]){theExtent[0] = tempExtent[0]}
+//miny
+if(tempExtent[1] < theExtent[1]){theExtent[1] = tempExtent[1]}
+//maxx
+if(tempExtent[2] > theExtent[2]){theExtent[2] = tempExtent[2]}
+//maxy
+if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
+
+}
+}
+
+var xDiff = (theExtent[2] - theExtent[0]) * margin;
+var yDiff = (theExtent[3] - theExtent[1]) * margin;
+
+theExtent[0] = theExtent[0] - xDiff;
+theExtent[1] = theExtent[1] - yDiff;
+theExtent[2] =  theExtent[2] + xDiff;
+theExtent[3] = theExtent[3] + yDiff;
+
+
+return theExtent;
+}
+
+//****************Key Functions************************
+function createKey(keyObject){
+var changeHandlerEvals = "";
+keyLayers = keyObject['keyLayers'];
+keyDiv = keyObject['keyDiv'];
+keyHeading = keyObject['keyTitle'];
+keyPadding = keyObject['keyPadding'];
+keyPatchSize = keyObject['keyPatchSize'];
+
+//blank anything in div
+document.getElementById(keyDiv).innerHTML = "";
+
+//get info
+var numberOfKeyLayers = keyLayers.length;
+var theKeyHTML = "<div  style='padding:" + keyPadding + "px;'>" + keyHeading;
+
+//for each layer you need 1. the styles . 2. the values which relate to them
+//alert(keyLayers[0].get('title'));
+for (i = 0; i < keyLayers.length; i++) { 
+var layerName = keyLayers[i].get('name');
+var styleSelectorIndex = 0;
+
+//get number of dynamic styles
+var numStyles = getNumStyles(layerName + "_Style");
+layerStyle = getCurrentLayerStyle(keyLayers[i]);
+styleSelectorIndex = getSelectedStyleIndex(layerName);
+var numSymbols = countLiterols(layerStyle);
+patchPad = "<td>&nbsp &nbsp</td>";
+var numControls = 0;
+
+
+//create header html
+var table1row1 = "<table style='width:100%;'><tr><td>";
+table1row1 = table1row1 + "<table style='width:100%;'><tr><td style='width:15px;'>  <input  id='" +  layerName + "_switch' type='checkbox' checked='true' onclick='switchLayerVisibility(" + String.fromCharCode(34) + layerName + String.fromCharCode(34) + ")'>";
+table1row1 = table1row1 + "</td>";
+if (numSymbols == 1){
+	table1row1 = table1row1   + "<td style='width:50px;'> <div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_header" + "' style='width:50px;height:" + keyPatchSize + "px;'></div> </td>";
+	table1row1 = table1row1 + "<td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_Description_header" + "'>" + getKeyText(keyObject,i,0,0) + "</div></td>";
+} else {
+	//table1row1 = table1row1 + "<td>" + keyLayers[i].get('title') + "</td>";
+	table1row1 = table1row1   + "<td style='width:50px;'> <div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_header" + "' style='width:50px;height:" + keyPatchSize + "px;'></div> </td>";
+	table1row1 = table1row1 + "<td>" + keyLayers[i].get('title') + "</td>";
+
+}
+table1row1 = table1row1 + "</tr></table></tr>";
+
+
+//create expander html if needed
+var table1row2 = "";
+if (numSymbols != 1 || numStyles > 1 || numControls > 0){
+	table1row2 = table1row2 + "<tr style='width:100%'><td style='width:100%;height:15px;'>"
+	table1row2 = table1row2 + "<button id='" + layerName + "_Style" + styleSelectorIndex + "_Button" + "' onClick='CE("  + String.fromCharCode(34) +   layerName + String.fromCharCode(34) + ")' style='width:100%;height:15px;line-height:0.8em;'>-</button>"
+	table1row2 = table1row2 + "</td></tr>";
+}
+
+
+
+//Create style selector if needed
+var table2row1 = "";
+var table2row1 = "<tr style='width:100%'><td style='width:100%;'><div id='" + layerName + "_Styles' style='width:100%;'>"
+if(numStyles > 1 && keyObject['stylePickerInKey'][i] == 1){
+	table2row1 = table2row1 + "<select style='width:100%;height:35px;' id='styleSelect" + layerName + "'>";
+	for (a = 0; a < numStyles; a++) { 
+		table2row1 = table2row1 + '<option value="' + layerName + "_Style" + a + '_Function">' + getStyleText(keyObject,i,a) + '</option>';
+	}
+	table2row1 = table2row1 + '</select>';
+	//*create change handler 
+	changeHandlerEvals = changeHandlerEvals + "document.getElementById('styleSelect" + layerName + "').onchange = function(){ eval(" + layerName + "_SwitchLayerDeclaration( document.getElementById('styleSelect" + layerName + "').selectedIndex)); if(mapStyleTypes['" + getMapNumFromLayerName(layerName) + "']['" + getLayerNumFromLayerName(layerName) + "'][document.getElementById('styleSelect" + layerName + "').selectedIndex] != 'Heatmap'){" + layerName + ".setStyle(eval(document.getElementById('styleSelect" + layerName + "').value));refreshKey(" + keyDiv + ")}else{refreshKey(" + keyDiv + ")}  };";
+}
+var table2row1 = table2row1 + "</div></td></tr>";
+
+
+
+
+//create control html if needed
+var table2row2 = "";
+table2row2 = table2row2 + "<tr><td><div id='" + layerName + "_Controls' style='width:100%;'>";
+//var allLayerControls = document.getElementById(layerName + "_controlHTML");
+var allLayerControls = null;
+if(eval("typeof " + layerName + "_controlHTML") != 'undefined'){
+allLayerControls = eval(layerName + "_controlHTML");
+}
+	if (allLayerControls != null && keyObject['controlPickerInKey'][i] == 1) {
+		table2row2 = table2row2 + allLayerControls;
+	}
+table2row2 = table2row2 + "</div></td></tr>";
+
+
+
+
+//create key html
+var table2row3 = "";
+var table2row3 = "<tr><td><div id='" + layerName + "_Keys' style='width:100%;'>";
+//if lots of symbolizer
+if (numSymbols > 1) {
+table2row3 = table2row3 + "<table id='" + layerName + "_keyTable'>";
+	//create divs andtds for each symbolizer
+	for (j = 0; j < numSymbols; j++) { 
+		table2row3 = table2row3 + "<tr><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "_PaddingCell'>&nbsp &nbsp</div></td><td><div  id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "' style='width:50px;height:" + keyPatchSize + "px;'></div></td><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "_Description'>" + getKeyText(keyObject,i,0,j) + "</div></td></tr>";
+	}
+table2row3 = table2row3 + "</table>";
+}else{
+table2row3 = table2row3 + "<table id='" + layerName + "_keyTable'></table>";
+}
+var table2row3 = table2row3 + "</div></td></tr>";
+
+
+
+//combine
+var table1row3 = "";
+var combinedKeyHTML = "";
+combinedKeyHTML = combinedKeyHTML + table1row1 + table1row2 + "<tr style='width:100%;><td style='width:100%;><table id='keyTableAndControls_" + layerName + "' style='width:100%;'>" + table2row1 + table2row2 + table2row3 + "</table></td></tr></table>";
+theKeyHTML = theKeyHTML  + combinedKeyHTML;
+
+
+} //end for 
+
+theKeyHTML = theKeyHTML + "</div>";
+
+
+//place key html into correct div
+document.getElementById(keyDiv).innerHTML = theKeyHTML;
+
+//run evals for change handlers now html has been created
+eval(changeHandlerEvals);
+
+//now cycle back through styles and create ol3 maps, must be done after html is in place
+for (s = 0; s < keyLayers.length; s++) { 
+var layerName = keyLayers[s].get('name');
+layerStyle = getCurrentLayerStyle(keyLayers[s])
+styleSelectorIndex = getSelectedStyleIndex(layerName)
+
+if (countLiterols(layerStyle) == 1) {
+	//if (mapStyleTypes[getMapNumFromLayerName(layerName)][getLayerNumFromLayerName(layerName)][layerStyle] != 'Heatmap'){
+		createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule0_header",keyLayers[s].get('geoType'),layerStyle['0']) 
+	//}
+	} else{
+		//if (mapStyleTypes[getMapNumFromLayerName(layerName)][getLayerNumFromLayerName(layerName)][layerStyle] != 'Heatmap'){
+		for (d = 0; d < countLiterols(layerStyle); d++) { 
+			createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule" + d, keyLayers[s].get('geoType'),layerStyle[d]) 
+		//}
+		}
+	}
+}
+
+//end key function
+}
+
+//************************************************************************************
+//*******************************************KEY REFRESH******************************
+//************************************************************************************
+function refreshKey(keyDivName){
+//get key literol from keydivname
+var theKeylitoral = eval(keyDivName)
+keyLayers = theKeylitoral['keyLayers'];
+var patchPad = "";
+
+//same as what was/is on end of create key function
+for (s = 0; s < keyLayers.length; s++) { 
+var layerName = keyLayers[s].get('name');
+layerStyle = getCurrentLayerStyle(keyLayers[s])
+styleSelectorIndex = getSelectedStyleIndex(layerName)
+
+//wipe header key if present
+if (document.getElementById( layerName + "_Style0_Rule0_header") != null){
+document.getElementById( layerName + "_Style0_Rule0_header").innerHTML = "";
+}
+
+//original keymaps will have been created in style0
+if (countLiterols(layerStyle) == 1) {
+	//clear out old key
+	//eval("document.getElementById('" + layerName + "_Style0_Rule0').innerHTML = '';");
+	//delete old key
+	document.getElementById(layerName + "_keyTable").innerHTML = "";
+
+	//add div to keytable
+	var checkbox = "";
+	styleSelectorTypeLayer = document.getElementById("styleSelect" + layerName);
+	patchPad = "<td>&nbsp &nbsp</td>";
+	if (styleSelectorTypeLayer == null) {
+		checkbox = "<input  id='" +  layerName + "_switch' type='checkbox' checked='true' onclick='switchLayerVisibility(" + String.fromCharCode(34) + layerName + String.fromCharCode(34) + ")'>"
+		patchPad = "";
+	} else {patchPad = "&nbsp &nbsp";}
+	//document.getElementById(layerName + "_keyTable").innerHTML = "<tr><td>" + checkbox  + "</td><td>" + patchPad + "</td><td><div  id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_header' style='width:50px;height:" + keyPatchSize + "px;'></div></td><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule0_Description_header" + "'>" + getKeyText(theKeylitoral,s,styleSelectorIndex,0) + "</div></tr></tr>";
+	//create key symbol
+	//style index number will allways be "0" for the header row ... was previously + styleSelectorIndex +
+	createKeyMap(layerName + "_Style" + "0" + "_Rule0_header",keyLayers[s].get('geoType'),layerStyle[0]) 
+} else{
+
+//re create divs as there may be a different amount
+theKeyHTML = "";
+
+	//create divs/tds for each symbolizer
+	for (j = 0; j < countLiterols(layerStyle); j++) { 
+		theKeyHTML = theKeyHTML + "<tr><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "_PaddingCell'>&nbsp &nbsp</div></td><td><div  id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "' style='width:50px;height:" + keyPatchSize + "px;'></div></td><td><div id='" + layerName + "_Style" + styleSelectorIndex + "_Rule" + j + "_Description'>" + getKeyText(theKeylitoral,s,styleSelectorIndex,j) + "</div></td></tr>";
+	}
+	//replace with new divs for new style/s
+	document.getElementById(layerName + "_keyTable").innerHTML = theKeyHTML;
+	//always expand key before refreshing key maps
+	if(document.getElementById(layerName + "_Styles").style.display == 'none'){
+		CE(layerName);
+	}
+	
+	
+	for (d = 0; d < countLiterols(layerStyle); d++) { 
+		//clear out old key - need to do for all divs that previous style had. but what happen when style is changed to one with more divs....they will not exist
+		//eval("document.getElementById('" + layerName + "_Style" + styleSelectorIndex + "_Rule" + d + "').innerHTML = '';");
+		
+		createKeyMap(layerName + "_Style" + styleSelectorIndex + "_Rule" + d, keyLayers[s].get('geoType'),layerStyle[d]) 
+	}
+}
+}
+}
+//************************************************************************************
+
+function getKeyText(keyLiterol,layerNum,styleNum,ruleNum){
+return keyLiterol['keyDescriptions'][layerNum][styleNum][ruleNum];
+}
+
+function getStyleText(keyLiterol,layerNum,styleNum,ruleNum){
+return keyLiterol['styleDescriptions'][layerNum][styleNum];
+}
+
+function countLiterols(theObj){
+if(theObj == 'Heatmap'){
+	return 1
+}
+
+theCount = 0;
+for (var key in theObj) {
+   if (theObj.hasOwnProperty(key)) {
+            theCount = theCount + 1;
+   }
+}
+return theCount
+}
+
+function getCurrentLayerStyle(theLayer){
+//**************get current layer style ********************
+layerName = theLayer.get('name');
+//get element by id of style picker combo box
+styleSelector = document.getElementById("styleSelect" + layerName);
+//if fetched element is null, then only one style present (simply fetch style0 array)
+// assemeble eval of map1_vectorLayer_1_StyleX(from layer name property) to get the style array -> cycle through each item in array and create ol map
+styleSelectorIndex = getSelectedStyleIndex(layerName);
+
+var layerNum = getLayerNumFromLayerName(layerName);
+var mapNum = getMapNumFromLayerName(layerName);
+var StyleNum = styleSelectorIndex;
+if(mapStyleTypes[mapNum][layerNum][StyleNum] == 'Heatmap'){
+	return "Heatmap"
+}
+
+layerStyle = eval(layerName + "_Style" + styleSelectorIndex + "('key')");
+//*********************************************************
+
+return layerStyle
+}
+
+function getSelectedStyleIndex(theLayerName){
+styleSelector = document.getElementById("styleSelect" + theLayerName);
+	if (styleSelector != null) {
+		styleSelectorIndex = styleSelector.selectedIndex;
+	} else { // no multiple style, only one style present for layer
+		styleSelectorIndex = 0;
+	}
+return 	styleSelectorIndex
+}
+
+function switchLayerVisibility(theLayer){
+//get the layer object
+layerToSwitch = eval(theLayer);
+switchCheckbox = eval("document.getElementById(" + String.fromCharCode(34) + theLayer + "_switch" + String.fromCharCode(34) + ")");
+if(switchCheckbox.checked == true){
+	layerToSwitch.setVisible(true);
+} else {
+	layerToSwitch.setVisible(false);
+}
+}
+
+function getNumStyles(layerNameAndStyle){
+var theStyleCount = 0;
+var tempStyle = eval(layerNameAndStyle + theStyleCount);
+
+while (tempStyle != false){
+	theStyleCount = theStyleCount + 1;
+	tempStyle = eval("if (typeof " + layerNameAndStyle + theStyleCount + " != 'undefined'){true}else{false}" );
+}
+
+return theStyleCount;
+}
+
+
+
+function createKeyMap(divID,geoType,layerSymbolizer){
+//creates a ol3 map in the given div id
+var mapEvalExp;
+var layerEvalExp;
+var sourceEvalExp;
+var evaledLayer;
+
+var layerName = divID.split('_Style')[0];
+var layerNum = getLayerNumFromLayerName(layerName);
+var mapNum = getMapNumFromLayerName(layerName);
+var StyleNum = divID.split('_Style')[1];
+StyleNum  = StyleNum.split('_Rule')[0];
+
+//select correct gemoetry
+var theGeometry;
+switch(geoType) {
+    case 'Polygon':
+		theGeometry = "{'type': 'Polygon','coordinates': [[[0, 0], [0, 10], [4, 7], [10, 10], [10, 0]]]  }";
+		break;
+	case 'Point':
+		theGeometry = " {'type': 'Point','coordinates': [0, 0]}";
+		break;
+	case 'Line':
+		theGeometry = "{'type': 'LineString','coordinates': [[0, 0], [10, 0]]}";
+		break;
+}	
+
+sourceEvalExp = divID + "_source = new ol.source.Vector({   features: (new ol.format.GeoJSON()).readFeatures(  {'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:1999'}},'features':[{'type': 'Feature','geometry': " + theGeometry + ",'properties': {'key_weight':'1'}  }]})  });"; //OL3.8
+
+
+if(mapStyleTypes[mapNum][layerNum][StyleNum] == 'Heatmap'){
+	layerEvalExp = divID + "_layer = new ol.layer.Heatmap({title:'key_" + divID + "',source: " + divID + "_source,weight:'key_weight',blur:" + mapHeatmapParameters[mapNum][layerNum][StyleNum][0] + ",radius:" + mapHeatmapParameters[mapNum][layerNum][StyleNum][1] + ",gradient:[" + mapHeatmapParameters[mapNum][layerNum][StyleNum][2] + "]});";
+}else{
+	layerEvalExp = divID + "_layer = new ol.layer.Vector({title:'key_" + divID + "',source: " + divID + "_source});";
+}
+
+mapEvalExp = "var key_" + divID + "= new ol.Map({layers: [" + divID + "_layer], interactions:[], target: document.getElementById('" + divID + "'), controls:[], view: new ol.View({center: [0, 0],zoom: 3,  projection: 'USER:1999'})});setMaxExtent(key_" + divID + ")";
+
+
+eval(sourceEvalExp);
+eval(layerEvalExp);
+evaledLayer = eval(divID + "_layer");
+if(mapStyleTypes[mapNum][layerNum][StyleNum] != 'Heatmap'){
+	evaledLayer.setStyle(layerSymbolizer);
+}
+
+eval(mapEvalExp);
+}
+
+function CE(layerName){
+var layerTableID = "keyTableAndControls_" + layerName ;
+var layerTable = document.getElementById(layerTableID);
+var layerStyles = document.getElementById(layerName + "_Styles");
+var layerControls = document.getElementById(layerName + "_Controls");
+var layerKeys = document.getElementById(layerName + "_Keys");
+
+if(layerStyles.style.display == 'none'){
+	layerStyles.style.display = 'block';
+	layerControls.style.display = 'block';
+	layerKeys.style.display = 'block';
+	document.getElementById(layerName + "_Style0_Button").innerHTML = '-';
+}else{
+	layerStyles.style.display = 'none';
+	layerControls.style.display = 'none';
+	layerKeys.style.display = 'none';
+	document.getElementById(layerName + "_Style0_Button").innerHTML = '+';
+}
+}
+
+//**************************Cluster Statistic Function********************
+function returnClusterStatistics(clusteredFeature,field,statisticType){
+//get all features in cluster
+var allFeatures = clusteredFeature.get('features');
+if (typeof allFeatures == 'undefined'){
+return 0
+}
+
+var numFeatures = allFeatures.length;
+
+//cycle though features getting the statistic column
+if (statisticType != 'Count'){
+var currentStatValue = Number(allFeatures[0].get(field));
+for (o = 0; o < numFeatures; o++) { 
+	if(statisticType == "Min"){currentStatValue = Math.min(Number(currentStatValue,allFeatures[o].get(field)))}
+	if(statisticType == "Max"){currentStatValue = Math.max(Number(currentStatValue,allFeatures[o].get(field)))}
+	if((statisticType == "Mean" || statisticType == "Sum") && o > 0){currentStatValue = currentStatValue + Number(allFeatures[o].get(field))}
+}
+}
+if(statisticType == "Count"){currentStatValue = allFeatures.length}
+
+if(statisticType == "Mean"){currentStatValue = currentStatValue/numFeatures}	
+return currentStatValue
+}
+
+function getLayerNumFromLayerName (layerName) {
+var theArr;
+theArr = layerName.split("vectorLayer_")
+return theArr[1];
+}
+
+function getMapNumFromLayerName (layerName) {
+var theArr;
+theArr = layerName.split("_vectorLayer_")
+return theArr[0].substring(3);
+}
+
+
+
+
+//**************************Cluster popups Function********************
+function returnClusterPP(clusteredFeature,layerName){
+//get all features in cluster
+var allFeatures = clusteredFeature.get('features');
+if (typeof allFeatures == 'undefined'){
+return ""
+}
+
+var numFeatures = allFeatures.length;
+var allPopupHTML = "<div style='height:200px;overflow:auto;'>"
+
+//if 1 feature just show it
+if (numFeatures == 1){
+	return allPopupHTML + eval(layerName + "_popupHTML(allFeatures[0])") + "</div>";
+}
+
+//cycle though features getting the pp div
+var bgCol;
+for (o = 0; o < numFeatures; o++) { 
+	//
+
+	allPopupHTML = allPopupHTML + "<table style='width:100%;'><tr><td>";
+	allPopupHTML = allPopupHTML + "<table><tr ><td ><button id='popupButtonID" + o + "' style='width:30px;height:25px;' onclick='expandClusteredPopup(" + o + ")'> + </button></td><td>Feature " + o + "</td></tr></table>";
+	allPopupHTML = allPopupHTML + "</td></tr><tr><td><div id='popupDivHTML" + o + "' style='display:none;'>";
+	allPopupHTML = allPopupHTML + eval(layerName + "_popupHTML(allFeatures[" + o + "])") + "";
+	allPopupHTML = allPopupHTML + "</div></td></tr></table>";
+	//allPopupHTML = allPopupHTML + "</td></tr></table>";
+}
+
+allPopupHTML = allPopupHTML + "</div>"
+return allPopupHTML
+}
+
+
+
+function expandClusteredPopup(ref){
+//get element
+var popupDiv = document.getElementById("popupDivHTML" + ref);
+	if (popupDiv.style.display == "none"){
+		popupDiv.style.display = "block"
+		document.getElementById("popupButtonID" + ref).innerHTML = "-";
+	}else{ 
+		popupDiv.style.display = "none"
+		document.getElementById("popupButtonID" + ref).innerHTML = "+";
+	}
+}
+
+
+function abs2rel(theAbs, newPath){
+//remove everything before first "/"
+if (theAbs.indexOf(":") != -1){
+	theAbs = theAbs.substring(theAbs.indexOf("/"))
+}
+
+if (newPath.indexOf(":") != -1){
+	newPath = newPath.substring(newPath.indexOf("/"))
+}
+
+ 
+var uri = new URI(theAbs);
+var theRel = uri.relativeTo(newPath);
+return theRel;
+
+}
+
+function getCorrectPath(feature,field,type){
+var thePath;
+if(type == 'abs'){ 
+	return feature.get(field);
+}
+if(type == 'rel'){
+	return abs2rel(feature.get(field), mapOutputPath)
+}
+
+}
+
+//*************Keys*****************
+var key0 = {
+'keyLayers':[map1_vectorLayer_0],
+'keyDiv':'key0',
+'keyTitle':'Key',
+'keyPadding':'7',
+'keyPatchSize':'30',
+'keyDescriptions':[[["GPS Photographs"]] ],
+'styleDescriptions':[["Style 1"] ],
+'stylePickerInKey':[1 ],
+'controlPickerInKey':[1]
+};
+createKey(key0);
+
+
+
+
+//*************Full key refresh*****************
+function refreshAllKeys(){var numKeys = 1;for (o = 0; o < numKeys; o++) {if (document.getElementById('key' + o) != null){refreshKey('key' + o);}}}
+
+
+</script></body></html>
