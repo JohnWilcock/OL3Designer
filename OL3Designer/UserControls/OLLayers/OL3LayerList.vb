@@ -743,7 +743,7 @@ Class OLLayer
 
         '/////OL3.8
         '*********************variabls to hold empty source and call to function to populate it with all features(alows filtering and re-seting)***********************
-        getLayerSource = getLayerSource & "var map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & " =  new ol.source.Vector({defaultDataProjection: 'USER:" & mapNumber & "999', format: new ol.format.GeoJSON()});" & Chr(10)
+        getLayerSource = getLayerSource & "var map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & " =  new ol.source.Vector({defaultDataProjection: 'USER:" & mapNumber & "999', format: new ol.format.GeoJSON(), attributions:" & Me.OL3Edit.OL3General1.getAttributionsJS & "});" & Chr(10)
         getLayerSource = getLayerSource & "map" & mapNumber & "_vectorSource_" & Me.Cells.Item(0).RowIndex & "_SetSource();" & Chr(10) & Chr(10)
         '*******************************************************************************************************************************
 

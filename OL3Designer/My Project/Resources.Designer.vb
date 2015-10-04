@@ -80,6 +80,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Blank() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Blank", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to /*!
         ''' * Bootstrap v2.3.1
         ''' *
@@ -180,7 +190,7 @@ Namespace My.Resources
         '''Orange Pin:1,0,bottom-left,0.5,fraction,0.5,fraction;
         '''Straight Blue Pin:1,0,bottom-left,0.5,fraction,0.5,fraction;
         '''Blue Dashed:2,#0000FF,round,round,0,4;
-        '''Red Line:2,#FF00 [rest of string was truncated]&quot;;.
+        '''Red Lin [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property DefaultStyleSettings() As String
             Get
@@ -306,8 +316,7 @@ Namespace My.Resources
         '''&lt;script&gt;
         '''
         '''var PointFeature = new ol.Feature({
-        '''  geometry: new ol.geom.Point([0, 0]),
-        '''  name: &apos;S [rest of string was truncated]&quot;;.
+        '''  geometry: new ol.geom.Point([0,  [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property LABELJS() As String
             Get
@@ -675,8 +684,7 @@ Namespace My.Resources
         '''&lt;script&gt;
         '''
         '''var PointFeature = new ol.Feature({
-        '''  geometry: new ol.geom.Point([0, 0]),
-        '''  name: &apos;S [rest of string was truncated]&quot;;.
+        '''  geometry: new ol.geom.Point([0,  [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property STYLEJS() As String
             Get

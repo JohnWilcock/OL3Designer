@@ -278,6 +278,12 @@
     <Compile Include="UserControls\OLMaps\OL3BBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\OLMaps\OL3MapControls.Designer.vb">
+      <DependentUpon>OL3MapControls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLMaps\OL3MapControls.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControls\OLMaps\OL3MapOptions.Designer.vb">
       <DependentUpon>OL3MapOptions.vb</DependentUpon>
     </Compile>
@@ -479,6 +485,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OLMaps\OL3BBox.resx">
       <DependentUpon>OL3BBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLMaps\OL3MapControls.resx">
+      <DependentUpon>OL3MapControls.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OLMaps\OL3MapOptions.resx">
       <DependentUpon>OL3MapOptions.vb</DependentUpon>
@@ -703,6 +712,7 @@
     <None Include="Icons\olstyle_polygon_Transparent Green.png" />
     <None Include="Icons\olstyle_marker_Green Triangle.png" />
     <None Include="Icons\olstyle_marker_Orange Square.png" />
+    <None Include="Icons\FormIcons\Blank.png" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
