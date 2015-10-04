@@ -515,7 +515,7 @@ if(tempExtent[3]&gt; theExtent[3]){theExtent[3] = tempExtent[3]}
 }
 }
 if (hasVectorLayer == 1){
-view.fitExtent(theExtent , theMap.getSize());
+view.fit(theExtent , theMap.getSize());
 }
 //}
 }
@@ -753,5 +753,8 @@ view.fitExtent(theExtent , theMap.getSize());
   </data>
   <data name="olstyle_marker_Orange_Square" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\olstyle_marker_Orange Square.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\FormIcons\Blank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
