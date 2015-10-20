@@ -1,4 +1,6 @@
-﻿Public Class OL3LayerStyleNumericRanges
+﻿Imports System.IO
+
+Public Class OL3LayerStyleNumericRanges
 
     Public NumericRangesStyleList As New List(Of StyleProperties)
     Public theStylePicker As New OLStylePicker
@@ -199,7 +201,60 @@
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
         refreshNumericRangesStyles()
     End Sub
+
+
+    Public Function save() As OL3LayerNumericValueSaveObject
+        save = New OL3LayerNumericValueSaveObject
+        Dim tempRow As NumericRangesRow
+
+        For y As Integer = 0 To DataGridView1.Rows.Count - 1
+            tempRow = New NumericRangesRow
+            tempRow = DataGridView1.Rows(y)
+            save.styles.Add(tempRow.save())
+        Next
+
+        save.colourRamp = cr.rampPicker.SelectedIndex
+        save.field = ComboBox1.Text
+        save.fromSize = SizeRamps1.sizeFrom
+        save.toSize = SizeRamps1.sizeTo
+        save.numRanges = CInt(ComboBox3.Text)
+
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerNumericValueSaveObject)
+        firstLoaded = False
+
+        cr.rampPicker.SelectedIndex = saveObj.colourRamp
+        ComboBox1.Text = saveObj.field
+        SizeRamps1.sizeFrom = saveObj.fromSize
+        SizeRamps1.sizeTo = saveObj.toSize
+
+        Dim tempRow As NumericRangesRow
+        DataGridView1.Rows.Clear()
+        For y As Integer = 0 To saveObj.styles.Count - 1
+            tempRow = New NumericRangesRow
+            tempRow.loadObj(saveObj.styles(y))
+            DataGridView1.Rows.Add(tempRow)
+
+            DataGridView1.Rows(y).Cells(0).Value = tempRow.NumericRangesBitmap
+            DataGridView1.Rows(y).Cells(1).Value = tempRow.NumericRangesValue
+            DataGridView1.Rows(y).Cells(2).Value = tempRow.NumericRangesValueTo
+            DataGridView1.Rows(y).Cells(3).Value = tempRow.NumericRangesLabel
+
+            tempRow.NumericRangesStyle.refreshControl()
+
+        Next
+
+        firstLoaded = True
+    End Sub
+
 End Class
+
+
+
+
 
 Public Class NumericRangesRow
     Inherits DataGridViewRow
@@ -207,6 +262,7 @@ Public Class NumericRangesRow
     'Public uniqueStyle2 As StyleProperties
     Public NumericRangesBitmap As Bitmap
     Public NumericRangesValue As String
+    Public NumericRangesValueTo As String
     Public NumericRangesEndValue As String
     Public NumericRangesLabel As String
 
@@ -215,6 +271,63 @@ Public Class NumericRangesRow
         'uniqueStyle2 = New StyleProperties
     End Sub
 
+    Public Function save() As OL3LayerSingleNumericValueSaveObject
+        save = New OL3LayerSingleNumericValueSaveObject
+        save.styleProp = NumericRangesStyle.OLStyleSettings
 
+        save.numericValueFrom = Cells(1).Value
+        save.numericValueTo = Cells(2).Value
+
+        save.numericLabel = NumericRangesLabel
+        NumericRangesBitmap = Cells(0).Value
+
+        Dim ms As New System.IO.MemoryStream()
+        NumericRangesBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+        Dim byteImage As Byte() = ms.ToArray()
+        save.numericBitmapBase64 = Convert.ToBase64String(byteImage)
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerSingleNumericValueSaveObject)
+        NumericRangesStyle.OLStyleSettings = saveObj.styleProp
+        NumericRangesStyle.ChangeOLStylePickerdialog.styleSettings = saveObj.styleProp
+
+        NumericRangesValue = saveObj.numericValueFrom
+        NumericRangesValueTo = saveObj.numericValueTo
+
+        NumericRangesLabel = saveObj.numericLabel
+
+        Dim byteImage As Byte() = Convert.FromBase64String(saveObj.numericBitmapBase64)
+        Dim ms As New MemoryStream(byteImage, 0, byteImage.Length)
+
+        ' Convert byte[] to Image
+        ms.Write(byteImage, 0, byteImage.Length)
+        NumericRangesBitmap = Image.FromStream(ms, True)
+
+
+    End Sub
+End Class
+
+
+
+
+<Serializable()> _
+Public Class OL3LayerSingleNumericValueSaveObject
+    Public styleProp As StyleProperties
+    Public numericValueFrom As String
+    Public numericValueTo As String
+    Public numericLabel As String
+    Public numericBitmap As Bitmap
+    Public numericBitmapBase64 As String
+End Class
+
+<Serializable()> _
+Public Class OL3LayerNumericValueSaveObject
+    Public styles As New List(Of OL3LayerSingleNumericValueSaveObject)
+    Public field As String
+    Public colourRamp As Integer
+    Public fromSize As Double
+    Public toSize As Double
+    Public numRanges As Integer
 End Class
 

@@ -1,4 +1,9 @@
-﻿Public Class OL3LayerStyleUniqueValues
+﻿Imports System.Xml.Serialization
+Imports System.IO
+Imports System.Reflection
+Imports System.Runtime.Serialization.Formatters.Binary
+
+Public Class OL3LayerStyleUniqueValues
 
     Public uniqueStyleList As New List(Of StyleProperties)
     Public theStylePicker As New OLStylePicker
@@ -6,6 +11,7 @@
     Public layerType As String
     Public cr As New ColourRamps
     Dim firstLoaded As Boolean = False
+    Dim test As String
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
         refreshUniqueStyles()
@@ -132,7 +138,7 @@
 
             Case 3 ' remove row
                 DataGridView1.Rows.RemoveAt(e.RowIndex)
- 
+
 
 
             Case Else
@@ -235,9 +241,62 @@
         Next
     End Sub
 
- 
+    Public Function save() As OL3LayerUniqueValuesSaveObject
+        save = New OL3LayerUniqueValuesSaveObject
+        Dim tempRow As uniqueRow
+
+        For y As Integer = 0 To DataGridView1.Rows.Count - 1
+            tempRow = New uniqueRow
+            tempRow = DataGridView1.Rows(y)
+            save.styles.Add(tempRow.save())
+        Next
+
+        save.colourRamp = cr.rampPicker.SelectedIndex
+        save.field = ComboBox1.Text
+        save.fromSize = SizeRamps1.sizeFrom
+        save.toSize = SizeRamps1.sizeTo
+        save.layerPath = layerPath
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerUniqueValuesSaveObject)
+        firstLoaded = False
+        layerPath = saveObj.layerPath
+
+        populateComboBoxes()
+
+        cr.rampPicker.SelectedIndex = saveObj.colourRamp
+        ComboBox1.Text = saveObj.field
+        SizeRamps1.sizeFrom = saveObj.fromSize
+        SizeRamps1.sizeTo = saveObj.toSize
+
+
+
+        Dim tempRow As uniqueRow
+        DataGridView1.Rows.Clear()
+        For y As Integer = 0 To saveObj.styles.Count - 1
+            tempRow = New uniqueRow
+            tempRow.loadObj(saveObj.styles(y))
+            DataGridView1.Rows.Add(tempRow)
+
+            DataGridView1.Rows(y).Cells(0).Value = tempRow.uniqueBitmap
+            DataGridView1.Rows(y).Cells(1).Value = tempRow.uniqueValue
+            DataGridView1.Rows(y).Cells(2).Value = tempRow.uniqueLabel
+
+            tempRow.uniqueStyle.refreshControl()
+
+        Next
+
+        firstLoaded = True
+    End Sub
+
 
 End Class
+
+
+
+
 
 Public Class uniqueRow
     Inherits DataGridViewRow
@@ -252,6 +311,55 @@ Public Class uniqueRow
         'uniqueStyle2 = New StyleProperties
     End Sub
 
+    Public Function save() As OL3LayerSingleUniqueValueSaveObject
+        save = New OL3LayerSingleUniqueValueSaveObject
+        save.styleProp = uniqueStyle.OLStyleSettings
+        save.uniqueValue = uniqueValue
+        save.uniqueLabel = uniqueLabel
+        'save.uniqueBitmap = Cells(0).Value
+        uniqueBitmap = Cells(0).Value
 
+        Dim ms As New System.IO.MemoryStream()
+        uniqueBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+        Dim byteImage As Byte() = ms.ToArray()
+        save.uniqueBitmapBase64 = Convert.ToBase64String(byteImage)
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerSingleUniqueValueSaveObject)
+        uniqueStyle.OLStyleSettings = saveObj.styleProp
+        uniqueStyle.ChangeOLStylePickerdialog.styleSettings = saveObj.styleProp
+        uniqueValue = saveObj.uniqueValue
+        uniqueLabel = saveObj.uniqueLabel
+
+        Dim byteImage As Byte() = Convert.FromBase64String(saveObj.uniqueBitmapBase64)
+        Dim ms As New MemoryStream(byteImage, 0, byteImage.Length)
+
+        ' Convert byte[] to Image
+        ms.Write(byteImage, 0, byteImage.Length)
+        uniqueBitmap = Image.FromStream(ms, True)
+
+
+    End Sub
+
+   
 End Class
 
+<Serializable()> _
+Public Class OL3LayerSingleUniqueValueSaveObject
+    Public styleProp As StyleProperties
+    Public uniqueValue As String
+    Public uniqueLabel As String
+    Public uniqueBitmap As Bitmap
+    Public uniqueBitmapBase64 As String
+End Class
+
+<Serializable()> _
+Public Class OL3LayerUniqueValuesSaveObject
+    Public styles As New List(Of OL3LayerSingleUniqueValueSaveObject)
+    Public layerPath As String
+    Public field As String
+    Public colourRamp As Integer
+    Public fromSize As Double
+    Public toSize As Double
+End Class

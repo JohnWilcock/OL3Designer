@@ -151,4 +151,30 @@ Public Class OL3Projections
         End If
 
     End Sub
+
+
+
+
+    Public Function save() As OL3ProjectionSaveObject
+        save = New OL3ProjectionSaveObject
+
+        save.EPSGCode = TextBox1.Text
+        save.proj4String = TextBox2.Text
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3ProjectionSaveObject)
+        TextBox1.Text = saveObj.EPSGCode
+        TextBox2.Text = saveObj.proj4String
+
+    End Sub
+End Class
+
+
+
+<Serializable()> _
+Public Class OL3ProjectionSaveObject
+    Public proj4String As String
+    Public EPSGCode As Integer
+
 End Class

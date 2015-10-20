@@ -30,6 +30,7 @@
         If TreeView1.SelectedNode.Text <> previousPopupPick Then 'esures it is not fired onload events
             Select Case TreeView1.SelectedNode.Text
                 Case "Single Popup Style"
+
                     Panel1.Controls.Clear()
                     tempOL3LayerPopupDesigner = New OL3PopupDesignerSimple
                     tempOL3LayerPopupDesigner.layerPath = layerPath
@@ -41,6 +42,46 @@
         previousPopupPick = TreeView1.SelectedNode.Text
     End Sub
 
+    Public Function save() As OL3PopupObject
+        save = New OL3PopupObject
+        save.layerPath = layerPath
+
+        'check for no popups
+        If TreeView1.SelectedNode Is Nothing Then
+            save.popupType = "None"
+            Exit Function
+        End If
+
+        save.popupType = TreeView1.SelectedNode.Text
+
+        Select Case TreeView1.SelectedNode.Text
+            Case "Single Popup Style"
+                Dim tempUC As OL3PopupDesignerSimple = Panel1.Controls(0)
+                save.popupControl = tempUC.save()
+
+
+        End Select
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3PopupObject)
+        layerPath = saveObj.layerPath
+
+        Select Case saveObj.popupType
+            Case "Single Popup Style"
+                TreeView1.SelectedNode = TreeView1.Nodes(0)
+                popupTypeSelected()
+
+                Dim tempUC As OL3PopupDesignerSimple = tempOL3LayerPopupDesigner
+                tempUC.layerPath = layerPath
+                tempUC.loadObj(saveObj.popupControl)
+
+
+        End Select
+
+        previousPopupPick = saveObj.popupType 'ensures a new popup control does not overided loaded one on onload
+
+    End Sub
 
 
 
@@ -51,6 +92,14 @@ Class popupRow
     Inherits DataGridViewRow
     Public PopupType As String
     Public PopupControl As UserControl
+
     'Public layerPath As String
 
+End Class
+
+<Serializable()> _
+Public Class OL3PopupObject
+    Public popupControl As Object
+    Public popupType As String
+    Public layerPath As String
 End Class

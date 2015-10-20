@@ -3,6 +3,7 @@ Imports System.Drawing
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 Imports System.Windows
+Imports System.Xml.Serialization
 
 
 Public Class OLStylePicker
@@ -326,10 +327,12 @@ Public Class OLStylePicker
 End Class
 
 
-
+<Serializable()> _
 Public Class StyleProperties
 
+    <NonSerialized()> _
     Public Event onChange()
+    <NonSerialized()> _
     Public Event onTextChange()
     Public active As Boolean = True
 

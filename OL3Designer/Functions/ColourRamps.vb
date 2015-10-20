@@ -91,16 +91,17 @@ Public Class singleRamp
     End Property
 End Class
 
+<Serializable()> _
 Public Class fullRamp
     Public rampList As New List(Of singleRamp)
 
     Private _rampbitmap As Bitmap
     Public Property rampBitmap() As Bitmap
         Get
-            Return _rampBitmap
+            Return _rampbitmap
         End Get
         Set(ByVal value As Bitmap)
-            _rampBitmap = value
+            _rampbitmap = value
         End Set
     End Property
 

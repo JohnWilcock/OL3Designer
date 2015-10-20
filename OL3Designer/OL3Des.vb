@@ -3,6 +3,8 @@ Imports OSGeo.OSR
 Imports System.IO
 Imports System.Reflection
 Imports System.Text.RegularExpressions
+Imports System.ComponentModel.Design.Serialization
+Imports System.Runtime.Serialization.Formatters.Binary
 
 Public Class OL3Des
     Dim maps As OL3Maps
@@ -192,4 +194,25 @@ Public Class OL3Des
 
 
     End Sub
+
+    Private Sub ToolStripButton9_Click(sender As Object, e As EventArgs) Handles ToolStripButton9.Click
+
+        maps.serialize()
+    End Sub
+
+    Private Sub ToolStripButton10_Click(sender As Object, e As EventArgs) Handles ToolStripButton10.Click
+
+        maps.deserialize()
+    End Sub
+
+
+
 End Class
+
+
+
+
+
+
+
+

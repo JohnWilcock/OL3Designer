@@ -25,4 +25,25 @@
     Private Sub OL3LayerStyleFeatureStyle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    Public Function save() As OL3LayerFeatureStyleSaveObject
+        save = New OL3LayerFeatureStyleSaveObject
+        save.styleSettings = OlStylePicker1.OLStyleSettings
+        save.description = TextBox1.Text
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerFeatureStyleSaveObject)
+        OlStylePicker1.OLStyleSettings = saveObj.styleSettings
+        OlStylePicker1.ChangeOLStylePickerdialog.styleSettings = saveObj.styleSettings
+        TextBox1.Text = saveObj.description
+
+        OlStylePicker1.refreshControl()
+    End Sub
+
+End Class
+
+<Serializable()> _
+Public Class OL3LayerFeatureStyleSaveObject
+    Public styleSettings As StyleProperties
+    Public description As String
 End Class

@@ -37,13 +37,34 @@
 
 
 
+    Public Function save() As OL3LayerClusterSaveObject
+        save = New OL3LayerClusterSaveObject
+        save.styleSettings = OlStylePicker1.OLStyleSettings
+        save.description = TextBox1.Text
+        save.clusterTolerance = NumericUpDown2.Value
+    End Function
 
+    Public Sub loadObj(ByVal saveObj As OL3LayerClusterSaveObject)
+        OlStylePicker1.OLStyleSettings = saveObj.styleSettings
+        OlStylePicker1.ChangeOLStylePickerdialog.styleSettings = saveObj.styleSettings
+        TextBox1.Text = saveObj.description
+        NumericUpDown2.Value = saveObj.clusterTolerance
 
-
-
-
+        OlStylePicker1.refreshControl()
+    End Sub
 
 End Class
+
+<Serializable()> _
+Public Class OL3LayerClusterSaveObject
+    Public styleSettings As StyleProperties
+    Public clusterTolerance As Integer
+    Public description As String
+End Class
+
+
+
+
 
 Public Class ClusterRow
     Inherits DataGridViewRow

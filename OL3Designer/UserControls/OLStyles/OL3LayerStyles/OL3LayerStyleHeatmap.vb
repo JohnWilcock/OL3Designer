@@ -13,6 +13,8 @@ Public Class OL3LayerStyleHeatmap
     Public adjustmentFactor As Double 'whats required to make the minimum value 0 (could be pos of neg)
     Public adjustmentDivisor As Double 'whats required to divide values by to make range extend from 0 to 1
 
+    Public firstLoaded As Boolean = True
+
     Public cr As New ColourRamps
 
     Private Sub OL3LayerStyleHeatmap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -65,6 +67,8 @@ Public Class OL3LayerStyleHeatmap
 
 
     Sub refreshPreview()
+
+        If firstLoaded = False Then Exit Sub
 
         Dim helper As New HelperFunctions
         Dim scriptTags As String = helper.writeAllLibraries(olPath)
@@ -136,4 +140,53 @@ Public Class OL3LayerStyleHeatmap
 
     End Function
 
+
+
+    Public Function save() As OL3LayerHeatmapSaveObject
+        save = New OL3LayerHeatmapSaveObject
+
+        save.blur = olBlur
+        save.radius = olRadius
+
+        save.keyDescription = TextBox1.Text
+
+        save.weightField = ComboBox2.Text
+
+        save.colourRamp = ComboBox1.SelectedIndex
+
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerHeatmapSaveObject)
+
+        firstLoaded = False
+
+        TrackBar2.Value = saveObj.blur
+        TrackBar1.Value = saveObj.radius
+
+        olBlur = saveObj.blur
+        olRadius = saveObj.radius
+
+        TextBox1.Text = saveObj.keyDescription
+
+        ComboBox2.SelectedText = saveObj.weightField
+
+        ComboBox1.SelectedIndex = saveObj.colourRamp
+
+        firstLoaded = True
+
+        refreshPreview()
+    End Sub
+End Class
+
+
+
+
+<Serializable()> _
+Public Class OL3LayerHeatmapSaveObject
+    Public weightField As String
+    Public colourRamp As Integer
+    Public radius As Double
+    Public blur As Double
+    Public keyDescription As String
 End Class

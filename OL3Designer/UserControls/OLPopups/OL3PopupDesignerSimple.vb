@@ -288,6 +288,8 @@ Public Class OL3PopupDesignerSimple
         imageType.Location = New Point(100, 8)
         imageType.Visible = False
 
+        ToolStripComboBox2.Text = 300
+
     End Sub
 
     Function isImagePopup() As Boolean
@@ -328,6 +330,56 @@ Public Class OL3PopupDesignerSimple
     End Sub
 
 
+    Public Function save() As OL3SimplePopupSaveObject
+        save = New OL3SimplePopupSaveObject
+        Dim item As OL3SimplePopupItemSaveObject
+
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            item = New OL3SimplePopupItemSaveObject
+            item.popupField = DataGridView1.Rows(i).Cells(0).FormattedValue
+            item.popupType = DataGridView1.Rows(i).Cells(1).FormattedValue
+            save.popupItems.Add(item)
+        Next
+
+        save.orientation = selectedOrientation
+        save.width = ToolStripComboBox2.Text
+        save.imageSourceType = imageType.ComboBox1.SelectedText
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3SimplePopupSaveObject)
+        loaded = False
+
+        populateFieldlist() 'must do this first so field values are present in combobox
+
+        For i As Integer = 0 To saveObj.popupItems.Count - 1
+            DataGridView1.Rows.Add()
+            DataGridView1.Rows(DataGridView1.Rows.Count - 2).Cells(0).Value = saveObj.popupItems(i).popupField
+            DataGridView1.Rows(DataGridView1.Rows.Count - 2).Cells(1).Value = saveObj.popupItems(i).popupType
+        Next
+
+        'selectedOrientation = saveObj.orientation
+        'ToolStripComboBox2.SelectedText = saveObj.width
+        'imageType.ComboBox1.SelectedText = saveObj.imageSourceType
+
+        loaded = True
+    End Sub
+
+
 End Class
 
 
+<Serializable()> _
+Public Class OL3SimplePopupItemSaveObject
+    Public popupField As String
+    Public popupType As String
+End Class
+
+<Serializable()> _
+Public Class OL3SimplePopupSaveObject
+
+    Public popupItems As New List(Of OL3SimplePopupItemSaveObject)
+    Public width As Integer
+    Public orientation As String
+    Public imageSourceType As String
+End Class

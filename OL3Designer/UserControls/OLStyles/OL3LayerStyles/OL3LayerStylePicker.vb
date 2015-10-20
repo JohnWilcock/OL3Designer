@@ -5,6 +5,7 @@ Public Class OL3LayerStylePicker
     Public LayerType As String
     Dim currentStyleRow As styleRow
     Public currentStyleIndex As Integer = 0
+    Public loaded As Boolean = True
 
 
     Sub New()
@@ -81,7 +82,11 @@ Public Class OL3LayerStylePicker
     End Function
 
     Public Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
-        newStyleSelection()
+        If loaded Then
+            newStyleSelection()
+        End If
+
+
     End Sub
 
     Public Sub newStyleSelection()
@@ -831,15 +836,170 @@ Public Class OL3LayerStylePicker
 
 
 
+    Public Function save() As OL3LayerStyleObject
+        save = New OL3LayerStyleObject
+        Dim tempRow As styleRow
 
+        For y As Integer = 0 To DataGridView1.Rows.Count - 1
+            tempRow = New styleRow
+            tempRow = DataGridView1.Rows(y)
+            save.styles.Add(tempRow.save())
+        Next
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerStyleObject)
+        loaded = False
+
+        Dim tempRow As styleRow
+        DataGridView1.Rows.Clear()
+        For y As Integer = 0 To saveObj.styles.Count - 1
+            tempRow = New styleRow
+
+
+            DataGridView1.Rows.Add(tempRow)
+            tempRow.loadObj(saveObj.styles(y))
+
+            DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells(0).Value = saveObj.styles(y).StyleName
+
+
+        Next
+
+
+        TreeView1.SelectedNode = Nothing
+
+        'set editing style to first row
+        styleRowChanged(0)
+
+        loaded = True
+    End Sub
 End Class
+
+
+
 
 Class styleRow
     Inherits DataGridViewRow
     Public StyleType As String
     Public StyleControl As UserControl
-    'Public layerPath As String
+    Public layerPath As String 'needed for load function
+
+    Public Function save() As OL3LayerSingleStyleSaveObject
+        save = New OL3LayerSingleStyleSaveObject
+        save.StyleType = StyleType
+        save.StyleName = Cells(0).Value
 
 
+        Select Case StyleType
+
+            Case "Single Feature Style"
+                Dim currentUserControl As OL3LayerStyleFeatureStyle = StyleControl
+                save.StyleControl = currentUserControl.save()
+                save.layerPath = currentUserControl.layerPath
+                save.layerType = currentUserControl.layerType
+
+            Case "Unique Values"
+                Dim currentUserControl As OL3LayerStyleUniqueValues = StyleControl
+                save.StyleControl = currentUserControl.save()
+                save.layerPath = currentUserControl.layerPath
+                save.layerType = currentUserControl.layerType
+
+            Case "Numeric Ranges"
+                Dim currentUserControl As OL3LayerStyleNumericRanges = StyleControl
+                save.StyleControl = currentUserControl.save()
+                save.layerPath = currentUserControl.layerPath
+                save.layerType = currentUserControl.layerType
+
+            Case "Date Ranges"
+                Dim currentUserControl As OL3LayerStyleDateRanges = StyleControl
+                save.StyleControl = currentUserControl.save()
+                save.layerPath = currentUserControl.layerPath
+                save.layerType = currentUserControl.layerType
+
+            Case "Simple Cluster"
+                Dim currentUserControl As OL3LayerStyleCluster = StyleControl
+                save.StyleControl = currentUserControl.save()
+                save.layerPath = currentUserControl.layerPath
+                save.layerType = currentUserControl.layerType
+
+            Case "Cluster and Statistics"
+                Dim currentUserControl As OL3LayerStyleClusterStats = StyleControl
+                save.StyleControl = currentUserControl.save()
+                save.layerPath = currentUserControl.layerPath
+                save.layerType = currentUserControl.layerType
+
+            Case "Heatmap"
+                Dim currentUserControl As OL3LayerStyleHeatmap = StyleControl
+                save.StyleControl = currentUserControl.save()
+                save.layerPath = currentUserControl.layerP
+
+
+        End Select
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerSingleStyleSaveObject)
+        StyleType = saveObj.StyleType
+        'Cells(0).Value = saveObj.StyleName
+
+        Select Case StyleType
+
+            Case "Single Feature Style"
+                Dim currentUserControl = New OL3LayerStyleFeatureStyle(saveObj.layerType, saveObj.layerPath)
+                currentUserControl.loadObj(saveObj.StyleControl)
+                StyleControl = currentUserControl
+
+            Case "Unique Values"
+                Dim currentUserControl As New OL3LayerStyleUniqueValues(saveObj.layerType)
+                currentUserControl.loadObj(saveObj.StyleControl)
+                StyleControl = currentUserControl
+
+            Case "Numeric Ranges"
+                Dim currentUserControl As New OL3LayerStyleNumericRanges(saveObj.layerType, saveObj.layerPath)
+                currentUserControl.loadObj(saveObj.StyleControl)
+                StyleControl = currentUserControl
+
+            Case "Date Ranges"
+                Dim currentUserControl As New OL3LayerStyleDateRanges(saveObj.layerType, saveObj.layerPath)
+                currentUserControl.loadObj(saveObj.StyleControl)
+                StyleControl = currentUserControl
+
+            Case "Simple Cluster"
+                Dim currentUserControl As New OL3LayerStyleCluster(saveObj.layerType, saveObj.layerPath)
+                currentUserControl.loadObj(saveObj.StyleControl)
+                StyleControl = currentUserControl
+
+            Case "Cluster and Statistics"
+                Dim currentUserControl As New OL3LayerStyleClusterStats(saveObj.layerType, saveObj.layerPath)
+                currentUserControl.loadObj(saveObj.StyleControl)
+                StyleControl = currentUserControl
+
+            Case "Heatmap"
+                Dim currentUserControl As New OL3LayerStyleHeatmap(saveObj.layerPath)
+                currentUserControl.loadObj(saveObj.StyleControl)
+                StyleControl = currentUserControl
+
+        End Select
+
+
+    End Sub
+
+End Class
+
+
+<Serializable()> _
+Public Class OL3LayerSingleStyleSaveObject
+    Public StyleType As String
+    Public StyleName As String
+    Public StyleControl As Object
+    Public layerPath As String
+    Public layerType As String
+End Class
+
+<Serializable()> _
+Public Class OL3LayerStyleObject
+
+    Public styles As New List(Of OL3LayerSingleStyleSaveObject)
 
 End Class

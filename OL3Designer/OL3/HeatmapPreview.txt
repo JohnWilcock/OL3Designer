@@ -41,12 +41,13 @@ proj4.defs('USER:9999',"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 
 //var map1_Basemap = new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})});
 
 //**************Layer sources******************
- map1_vectorSource_0a  = new ol.source.GeoJSON({
-projection: 'USER:9999',
-object: {'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:0'}},"features":[{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -21.897357, 64.153348 ] },"properties": {"id":1}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 10.077424, 53.673497 ] },"properties": {"id":0.5}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 12.391388, 41.869931 ] },"properties": {"id":0.9}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -3.701182, 40.284307 ] },"properties": {"id":0.7}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 2.294089, 48.875917 ] },"properties": {"id":0.9}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -0.254031, 51.513209 ] },"properties": {"id":1}}]}
+ map1_vectorSource_0a  = new ol.source.Vector({
+defaultDataProjection: 'USER:9999',
+features: (new ol.format.GeoJSON()).readFeatures( {'type':'FeatureCollection', 'crs': { 'type': 'name','properties': {'name': 'USER:0'}},"features":[{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -21.897357, 64.153348 ] },"properties": {"id":1}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 10.077424, 53.673497 ] },"properties": {"id":0.5}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 12.391388, 41.869931 ] },"properties": {"id":0.9}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -3.701182, 40.284307 ] },"properties": {"id":0.7}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ 2.294089, 48.875917 ] },"properties": {"id":0.9}},{"type":"Feature","geometry":{ "type": "Point", "coordinates": [ -0.254031, 51.513209 ] },"properties": {"id":1}}]})
+
 });
 
-var map1_vectorSource_0 =  new ol.source.GeoJSON({projection: 'USER:9999'});
+var map1_vectorSource_0 =  new ol.source.Vector({defaultDataProjection: 'USER:9999', format: new ol.format.GeoJSON()});
 map1_vectorSource_0_SetSource();
 
 function map1_vectorSource_0_SetSource() {
@@ -108,7 +109,7 @@ if(tempExtent[3]> theExtent[3]){theExtent[3] = tempExtent[3]}
 }
 }
 if (hasVectorLayer == 1){
-view.fitExtent(theExtent , theMap.getSize());
+view.fit(theExtent , theMap.getSize());
 }
 //}
 }

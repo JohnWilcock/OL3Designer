@@ -161,28 +161,28 @@ Partial Class OL3PopupDesignerSimple
         '
         Me.RightToolStripMenuItem.Image = CType(resources.GetObject("RightToolStripMenuItem.Image"), System.Drawing.Image)
         Me.RightToolStripMenuItem.Name = "RightToolStripMenuItem"
-        Me.RightToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.RightToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.RightToolStripMenuItem.Text = "Right"
         '
         'LeftToolStripMenuItem
         '
         Me.LeftToolStripMenuItem.Image = CType(resources.GetObject("LeftToolStripMenuItem.Image"), System.Drawing.Image)
         Me.LeftToolStripMenuItem.Name = "LeftToolStripMenuItem"
-        Me.LeftToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.LeftToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.LeftToolStripMenuItem.Text = "Left"
         '
         'BottomToolStripMenuItem
         '
         Me.BottomToolStripMenuItem.Image = CType(resources.GetObject("BottomToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BottomToolStripMenuItem.Name = "BottomToolStripMenuItem"
-        Me.BottomToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.BottomToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.BottomToolStripMenuItem.Text = "Bottom"
         '
         'TopToolStripMenuItem
         '
         Me.TopToolStripMenuItem.Image = CType(resources.GetObject("TopToolStripMenuItem.Image"), System.Drawing.Image)
         Me.TopToolStripMenuItem.Name = "TopToolStripMenuItem"
-        Me.TopToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.TopToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.TopToolStripMenuItem.Text = "Top"
         '
         'OL3PopupPreview1

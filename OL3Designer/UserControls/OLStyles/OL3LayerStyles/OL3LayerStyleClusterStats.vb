@@ -1,4 +1,6 @@
-﻿Public Class OL3LayerStyleClusterStats
+﻿Imports System.IO
+
+Public Class OL3LayerStyleClusterStats
 
     Public NumericRangesStyleList As New List(Of StyleProperties)
     Public theStylePicker As New OLStylePicker
@@ -6,7 +8,7 @@
     Public layerType As String
 
 
-
+    Dim firstLoaded As Boolean = True
 
     Public statMin As Double
     Public statMax As Double
@@ -48,6 +50,8 @@
     End Function
 
     Sub refreshClusterStyles()
+
+        If firstLoaded = False Then Exit Sub
 
         'get javascript to call a JS function which takes a cluster, column name and stat type and returns the value -> done, placed at end of key function.txt  
 
@@ -183,7 +187,59 @@
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
         refreshClusterStyles()
     End Sub
+
+
+    Public Function save() As OL3LayerClusterStatsSaveObject
+        save = New OL3LayerClusterStatsSaveObject
+        Dim tempRow As ClusterStatsRow
+
+        For y As Integer = 0 To DataGridView1.Rows.Count - 1
+            tempRow = New ClusterStatsRow
+            tempRow = DataGridView1.Rows(y)
+            save.styles.Add(tempRow.save())
+        Next
+
+        save.clusterTolerance = NumericUpDown2.Value
+        save.field = ComboBox1.Text
+        save.StatType = ComboBox3.Text
+        save.numRanges = CInt(NumericUpDown1.Value)
+
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerClusterStatsSaveObject)
+        firstLoaded = False
+
+        Dim tempRow As ClusterStatsRow
+        DataGridView1.Rows.Clear()
+        For y As Integer = 0 To saveObj.styles.Count - 1
+            tempRow = New ClusterStatsRow
+            tempRow.loadObj(saveObj.styles(y))
+            DataGridView1.Rows.Add(tempRow)
+
+            DataGridView1.Rows(y).Cells(0).Value = tempRow.ClusterRangesBitmap
+            DataGridView1.Rows(y).Cells(1).Value = tempRow.ClusterRangesValue
+            DataGridView1.Rows(y).Cells(2).Value = tempRow.ClusterRangesEndValue
+            DataGridView1.Rows(y).Cells(3).Value = tempRow.ClusterRangesLabel
+
+            tempRow.ClusterRangesStyle.refreshControl()
+
+        Next
+
+        NumericUpDown2.Value = saveObj.clusterTolerance
+        ComboBox1.Text = saveObj.field
+        ComboBox3.Text = saveObj.StatType
+        NumericUpDown1.Value = saveObj.numRanges
+
+        firstLoaded = True
+    End Sub
+
 End Class
+
+
+
+
 
 Public Class ClusterStatsRow
     Inherits DataGridViewRow
@@ -199,6 +255,61 @@ Public Class ClusterStatsRow
         'uniqueStyle2 = New StyleProperties
     End Sub
 
+    Public Function save() As OL3LayerSingleClusterStatsSaveObject
+        save = New OL3LayerSingleClusterStatsSaveObject
+        save.styleProp = ClusterRangesStyle.OLStyleSettings
 
+        save.ClusterRangesValueFrom = Cells(1).Value
+        save.ClusterRangesValueTo = Cells(2).Value
+
+        save.ClusterRangesValueLabel = Cells(3).Value
+        ClusterRangesBitmap = Cells(0).Value
+
+        Dim ms As New System.IO.MemoryStream()
+        ClusterRangesBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+        Dim byteImage As Byte() = ms.ToArray()
+        save.ClusterRangesValueBitmapBase64 = Convert.ToBase64String(byteImage)
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerSingleClusterStatsSaveObject)
+        ClusterRangesStyle.OLStyleSettings = saveObj.styleProp
+        ClusterRangesStyle.ChangeOLStylePickerdialog.styleSettings = saveObj.styleProp
+
+        ClusterRangesValue = saveObj.ClusterRangesValueFrom
+        ClusterRangesEndValue = saveObj.ClusterRangesValueTo
+
+        ClusterRangesLabel = saveObj.ClusterRangesValueLabel
+
+        Dim byteImage As Byte() = Convert.FromBase64String(saveObj.ClusterRangesValueBitmapBase64)
+        Dim ms As New MemoryStream(byteImage, 0, byteImage.Length)
+
+        ' Convert byte[] to Image
+        ms.Write(byteImage, 0, byteImage.Length)
+        ClusterRangesBitmap = Image.FromStream(ms, True)
+
+
+    End Sub
+End Class
+
+<Serializable()> _
+Public Class OL3LayerSingleClusterStatsSaveObject
+    Public styleProp As StyleProperties
+    Public ClusterRangesValueFrom As String
+    Public ClusterRangesValueTo As String
+    Public ClusterRangesValueLabel As String
+    Public ClusterRangesValueBitmap As Bitmap
+    Public ClusterRangesValueBitmapBase64 As String
+End Class
+
+<Serializable()> _
+Public Class OL3LayerClusterStatsSaveObject
+    Public styles As New List(Of OL3LayerSingleClusterStatsSaveObject)
+    Public field As String
+    Public clusterTolerance As Integer
+    Public StatType As String
+    Public fromSize As Double
+    Public toSize As Double
+    Public numRanges As Integer
 End Class
 

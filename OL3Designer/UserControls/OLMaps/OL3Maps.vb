@@ -1,5 +1,7 @@
 ﻿Imports System.IO
 Imports System.Security.Cryptography
+Imports System.Xml.Serialization
+Imports System.Runtime.Serialization.Formatters.Binary
 
 <Serializable()> Public Class OL3Maps
     Public mapList As New List(Of OL3LayerList)
@@ -263,7 +265,7 @@ Imports System.Security.Cryptography
         Return {-1, -1}
     End Function
 
- 
+
 
     'https://support.microsoft.com/en-us/kb/320348
     Private Function FileCompare(file1 As String, file2 As String) As Boolean
@@ -312,5 +314,87 @@ Imports System.Security.Cryptography
         Return ((file1byte - file2byte) = 0)
     End Function
 
+
+
+
+    Public Function save() As OL3MapListSaveObject
+        save = New OL3MapListSaveObject
+
+        For y As Integer = 0 To mapList.Count - 1
+            save.mapList.Add(mapList(y).save())
+        Next
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3MapListSaveObject)
+
+        mapList.Clear()
+        linkedBox.Items.Clear()
+        For y As Integer = 0 To saveObj.mapList.Count - 1
+            Me.add()
+            mapList(mapList.Count - 1).loadObj(saveObj.mapList(y))
+        Next
+
+        refreshList()
+        If mapList.Count > 0 Then
+            linkedBox.SelectedIndex = 0
+        End If
+
+
+        'mapChanged()
+    End Sub
+
+
+    Public Sub deserialize()
+        'load string from file sys
+        Dim OFD As New OpenFileDialog
+        OFD.Filter = "OL3 Designer files (*.OL3)|*.ol3"
+        OFD.Title = "Open OL3 Designer file"
+        OFD.Multiselect = False
+
+        If OFD.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+
+            'load  to map object
+            Dim loadedObj As OL3MapListSaveObject
+            Dim TestFileStream As Stream = File.OpenRead(OFD.FileName)
+            Dim deserializer As New BinaryFormatter
+            loadedObj = CType(deserializer.Deserialize(TestFileStream), OL3MapListSaveObject)
+            TestFileStream.Close()
+
+            loadObj(loadedObj)
+
+
+        End If
+    End Sub
+
+    Public Sub serialize()
+
+        'save as file
+        Dim SFD As New SaveFileDialog
+        SFD.DefaultExt = "OL3"
+        SFD.AddExtension = True
+        If SFD.ShowDialog <> DialogResult.OK Then Exit Sub
+
+
+        'serialize save object
+        Dim TestFileStream As Stream = File.Create(SFD.FileName)
+        Dim serializer As New BinaryFormatter
+        Dim sObj As Object = save()
+        serializer.Serialize(TestFileStream, sObj)
+        TestFileStream.Close()
+    End Sub
+
+
+
+End Class
+
+
+
+
+<Serializable()> _
+Public Class OL3MapListSaveObject
+    Public mapList As New List(Of OL3LayerListSaveObject)
 
 End Class

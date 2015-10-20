@@ -495,11 +495,45 @@ Public Class OL3LayerList
         Next
         Return -1
     End Function
+
+
+    Public Function save() As OL3LayerListSaveObject
+        save = New OL3LayerListSaveObject
+        Dim tempRow As OLLayer
+
+        For y As Integer = 0 To DataGridView1.Rows.Count - 1
+            tempRow = DataGridView1.Rows(0)
+            save.layerList.Add(tempRow.save())
+        Next
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerListSaveObject)
+
+        Dim tempRow As OLLayer
+        DataGridView1.Rows.Clear()
+        For y As Integer = 0 To saveObj.layerList.Count - 1
+            tempRow = New OLLayer(saveObj.layerList(y).layerPath, saveObj.layerList(y).MapNum, Me)
+            tempRow.loadObj(saveObj.layerList(y))
+            DataGridView1.Rows.Add(tempRow)
+
+            DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells(0).Value = Path.GetFileNameWithoutExtension(saveObj.layerList(y).layerPath)
+
+
+        Next
+
+    End Sub
+
+
 End Class
 
-Class layerType
 
-End Class
+
+
+
+
+
 
 Class OLLayer
     Inherits DataGridViewRow
@@ -938,5 +972,48 @@ Class OLLayer
         'getLayerProjectionDefinition = "Proj4js.defs['EPSG:" & Me.Cells.Item(0).RowIndex & "'] = " & Chr(34) & OL3Edit.OL3Projections1.TextBox2.Text & Chr(34) & Chr(10)
         getLayerProjectionDefinition = "proj4.defs('USER:" & mapNumber & "00" & Me.Cells.Item(0).RowIndex & "'," & Chr(34) & OL3Edit.OL3Projections1.TextBox2.Text & Chr(34) & ");" & Chr(10)
     End Function
+
+
+
+
+    Public Function save() As OL3LayerSaveObject
+        save = New OL3LayerSaveObject
+
+        save.layerPath = OL3LayerPath
+        save.MapNum = mapNumber
+        save.layerPopups = OL3Edit.OL3LayerPopupPicker1.save()
+        save.layerProjection = OL3Edit.OL3Projections1.save()
+        save.layerStyles = OL3Edit.OL3LayerStylePicker1.save()
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerSaveObject)
+
+        OL3LayerPath = saveObj.layerPath
+        mapNumber = saveObj.MapNum
+        OL3Edit.OL3LayerPopupPicker1.loadObj(saveObj.layerPopups)
+        OL3Edit.OL3Projections1.loadObj(saveObj.layerProjection)
+        OL3Edit.OL3LayerStylePicker1.loadObj(saveObj.layerStyles)
+
+
+    End Sub
+
+End Class
+
+
+<Serializable()> _
+Public Class OL3LayerSaveObject
+    Public layerPath As String
+    Public MapNum As Integer
+    Public layerStyles As OL3LayerStyleObject
+    Public layerPopups As OL3PopupObject
+    Public layerProjection As OL3ProjectionSaveObject
+
+End Class
+
+<Serializable()> _
+Public Class OL3LayerListSaveObject
+    Public layerList As New List(Of OL3LayerSaveObject)
 
 End Class

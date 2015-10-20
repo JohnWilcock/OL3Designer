@@ -17,25 +17,32 @@
     End Sub
 
     Function getAttributionsJS() As String
-        getAttributionsJS = ""
-        Dim tempLink As String = ""
-        Dim tempImg As String = ""
-        Dim imageCount As Integer = 0
-
-        For d As Integer = 0 To DataGridView1.Rows.Count - 1
-            If DataGridView1.Rows(d).Cells(2).Value Is Nothing Then
-                tempImg = ""
-            Else
-                tempImg = "<img src='" & AttributionIconImageSourceList(imageCount).Replace("\", "/") & "'></img>"
-                imageCount = imageCount + 1
-            End If
+        If DataGridView1.Rows.Count > 0 Then
 
 
-            tempLink = "http://" & DataGridView1.Rows(d).Cells(1).FormattedValue.ToString.Replace("http://", "").Replace("https://", "")
-            getAttributionsJS = getAttributionsJS & ",new ol.Attribution({html:" & Chr(34) & tempImg & "<a href='" & tempLink & "'>" & DataGridView1.Rows(d).Cells(0).FormattedValue & "</a>" & Chr(34) & "})" & Chr(10)
-        Next
 
-        Return "[" & getAttributionsJS.Substring(1) & "]"
+            getAttributionsJS = ""
+            Dim tempLink As String = ""
+            Dim tempImg As String = ""
+            Dim imageCount As Integer = 0
+
+            For d As Integer = 0 To DataGridView1.Rows.Count - 1
+                If DataGridView1.Rows(d).Cells(2).Value Is Nothing Then
+                    tempImg = ""
+                Else
+                    tempImg = "<img src='" & AttributionIconImageSourceList(imageCount).Replace("\", "/") & "'></img>"
+                    imageCount = imageCount + 1
+                End If
+
+
+                tempLink = "http://" & DataGridView1.Rows(d).Cells(1).FormattedValue.ToString.Replace("http://", "").Replace("https://", "")
+                getAttributionsJS = getAttributionsJS & ",new ol.Attribution({html:" & Chr(34) & tempImg & "<a href='" & tempLink & "'>" & DataGridView1.Rows(d).Cells(0).FormattedValue & "</a>" & Chr(34) & "})" & Chr(10)
+            Next
+
+            Return "[" & getAttributionsJS.Substring(1) & "]"
+        Else
+            Return "[]"
+        End If
     End Function
 
 

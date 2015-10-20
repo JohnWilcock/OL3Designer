@@ -1,4 +1,6 @@
-﻿Public Class OL3LayerStyleDateRanges
+﻿Imports System.IO
+
+Public Class OL3LayerStyleDateRanges
 
     Public DateRangesStyleList As New List(Of StyleProperties)
     Public theStylePicker As New OLStylePicker
@@ -203,7 +205,59 @@
         refreshDateRangesStyles()
     End Sub
 
+
+
+    Public Function save() As OL3LayerDateValueSaveObject
+        save = New OL3LayerDateValueSaveObject
+        Dim tempRow As DateRangesRow
+
+        For y As Integer = 0 To DataGridView1.Rows.Count - 1
+            tempRow = New DateRangesRow
+            tempRow = DataGridView1.Rows(y)
+            save.styles.Add(tempRow.save())
+        Next
+
+        save.colourRamp = cr.rampPicker.SelectedIndex
+        save.field = ComboBox1.Text
+        save.fromSize = SizeRamps1.sizeFrom
+        save.toSize = SizeRamps1.sizeTo
+        save.numRanges = NumericUpDown1.Value
+
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerDateValueSaveObject)
+        firstLoaded = False
+
+        cr.rampPicker.SelectedIndex = save.colourRamp
+        ComboBox1.Text = save.field
+        SizeRamps1.sizeFrom = save.fromSize
+        SizeRamps1.sizeTo = save.toSize
+
+        Dim tempRow As DateRangesRow
+        DataGridView1.Rows.Clear()
+        For y As Integer = 0 To saveObj.styles.Count - 1
+            tempRow = New DateRangesRow
+            tempRow.loadObj(saveObj.styles(y))
+            DataGridView1.Rows.Add(tempRow)
+
+            DataGridView1.Rows(y).Cells(0).Value = tempRow.DateRangesBitmap
+            DataGridView1.Rows(y).Cells(1).Value = tempRow.DateRangesValue
+            DataGridView1.Rows(y).Cells(2).Value = tempRow.DateRangesValueTo
+            DataGridView1.Rows(y).Cells(3).Value = tempRow.DateRangesLabel
+
+            tempRow.DateRangesStyle.refreshControl()
+
+        Next
+
+        firstLoaded = True
+    End Sub
+
 End Class
+
+
+
 
 Public Class DateRangesRow
     Inherits DataGridViewRow
@@ -211,6 +265,7 @@ Public Class DateRangesRow
     'Public uniqueStyle2 As StyleProperties
     Public DateRangesBitmap As Bitmap
     Public DateRangesValue As Date
+    Public DateRangesValueTo As Date
     Public DateRangesEndValue As Date
     Public DateRangesLabel As String
 
@@ -219,6 +274,61 @@ Public Class DateRangesRow
         'uniqueStyle2 = New StyleProperties
     End Sub
 
+    Public Function save() As OL3LayerSingleDateValueSaveObject
+        save = New OL3LayerSingleDateValueSaveObject
+        save.styleProp = DateRangesStyle.OLStyleSettings
 
+        save.dateValueFrom = Cells(1).Value
+        save.dateValueTo = Cells(2).Value
+
+        save.dateLabel = DateRangesLabel
+        DateRangesBitmap = Cells(0).Value
+
+        Dim ms As New System.IO.MemoryStream()
+        DateRangesBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+        Dim byteImage As Byte() = ms.ToArray()
+        save.dateBitmapBase64 = Convert.ToBase64String(byteImage)
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayerSingleDateValueSaveObject)
+        DateRangesStyle.OLStyleSettings = saveObj.styleProp
+        DateRangesStyle.ChangeOLStylePickerdialog.styleSettings = saveObj.styleProp
+
+        DateRangesValue = saveObj.dateValueFrom
+        DateRangesValueTo = saveObj.dateValueTo
+
+        DateRangesLabel = saveObj.dateLabel
+
+        Dim byteImage As Byte() = Convert.FromBase64String(saveObj.dateBitmapBase64)
+        Dim ms As New MemoryStream(byteImage, 0, byteImage.Length)
+
+        ' Convert byte[] to Image
+        ms.Write(byteImage, 0, byteImage.Length)
+        DateRangesBitmap = Image.FromStream(ms, True)
+
+
+    End Sub
 End Class
 
+
+
+<Serializable()> _
+Public Class OL3LayerSingleDateValueSaveObject
+    Public styleProp As StyleProperties
+    Public dateValueFrom As Date
+    Public dateValueTo As Date
+    Public dateLabel As String
+    Public dateBitmap As Bitmap
+    Public dateBitmapBase64 As String
+End Class
+
+<Serializable()> _
+Public Class OL3LayerDateValueSaveObject
+    Public styles As New List(Of OL3LayerSingleDateValueSaveObject)
+    Public field As String
+    Public colourRamp As Integer
+    Public fromSize As Double
+    Public toSize As Double
+    Public numRanges As Integer
+End Class
