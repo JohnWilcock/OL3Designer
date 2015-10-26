@@ -374,6 +374,7 @@ Imports System.Runtime.Serialization.Formatters.Binary
         'save as file
         Dim SFD As New SaveFileDialog
         SFD.DefaultExt = "OL3"
+        SFD.Filter = "OL3 Designer files (*.OL3)|*.ol3"
         SFD.AddExtension = True
         If SFD.ShowDialog <> DialogResult.OK Then Exit Sub
 

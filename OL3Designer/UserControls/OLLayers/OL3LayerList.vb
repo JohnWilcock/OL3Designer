@@ -506,6 +506,9 @@ Public Class OL3LayerList
             save.layerList.Add(tempRow.save())
         Next
 
+
+        save.mapOptions = mapOptions.save()
+
     End Function
 
 
@@ -522,6 +525,8 @@ Public Class OL3LayerList
 
 
         Next
+
+        mapOptions.loadObj(saveObj.mapOptions)
 
     End Sub
 
@@ -984,6 +989,9 @@ Class OLLayer
         save.layerPopups = OL3Edit.OL3LayerPopupPicker1.save()
         save.layerProjection = OL3Edit.OL3Projections1.save()
         save.layerStyles = OL3Edit.OL3LayerStylePicker1.save()
+        save.layerFilters = OL3Edit.OlLayerFilterPicker1.save()
+        save.layerGeneral = OL3Edit.OL3General1.save()
+
 
     End Function
 
@@ -995,7 +1003,8 @@ Class OLLayer
         OL3Edit.OL3LayerPopupPicker1.loadObj(saveObj.layerPopups)
         OL3Edit.OL3Projections1.loadObj(saveObj.layerProjection)
         OL3Edit.OL3LayerStylePicker1.loadObj(saveObj.layerStyles)
-
+        OL3Edit.OlLayerFilterPicker1.loadObj(saveObj.layerFilters)
+        OL3Edit.OL3General1.loadObj(saveObj.layerGeneral)
 
     End Sub
 
@@ -1009,11 +1018,14 @@ Public Class OL3LayerSaveObject
     Public layerStyles As OL3LayerStyleObject
     Public layerPopups As OL3PopupObject
     Public layerProjection As OL3ProjectionSaveObject
+    Public layerFilters As OL3FilterSaveObject
+    Public layerGeneral As OL3GeneralSaveObject
+
 
 End Class
 
 <Serializable()> _
 Public Class OL3LayerListSaveObject
     Public layerList As New List(Of OL3LayerSaveObject)
-
+    Public mapOptions As OL3MapOptionsSaveObject
 End Class

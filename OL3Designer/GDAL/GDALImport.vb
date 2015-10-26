@@ -75,6 +75,11 @@ Public Class GDALImport
             getGeoJson = ReportLayer(layer)
         Next
 
+
+
+        'remove line breaks
+        getGeoJson = getGeoJson.Replace(Chr(10), "<Br>")
+
         'getGeoJson = OutputString
 
     End Function

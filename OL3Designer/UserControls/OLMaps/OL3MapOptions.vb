@@ -357,6 +357,21 @@
 
     End Sub
 
+
+    Sub resetCheckedListBoxs()
+        Dim theLayer As OLLayer
+        CheckedListBox1.Items.Clear()
+        CheckedListBox2.Items.Clear()
+
+
+        'set list of layers in checkboxes - checkboxlist 2 is dependant on this
+        For i As Integer = 0 To theParentLayerList.DataGridView1.Rows.Count - 1
+            theLayer = theParentLayerList.DataGridView1.Rows(i)
+            CheckedListBox1.Items.Add(theLayer.layerName)
+            CheckedListBox2.Items.Add(theLayer.layerName)
+        Next
+    End Sub
+
     Sub refreshCheckedListBox2()
         Dim theLayer As OLLayer
 
@@ -377,5 +392,107 @@
 
     End Sub
 
-  
+    Public Function save() As OL3MapOptionsSaveObject
+        save = New OL3MapOptionsSaveObject
+
+        save.mapProjection = OL3Projections1.save
+        save.basemaps = OL3Basemaps1.save
+
+        'default extent
+        If Button3.Text = "Coordinates" Then
+            save.ExtentsDefaultExtentType = "Layers"
+            For f As Integer = 0 To CheckedListBox1.Items.Count - 1
+                If CheckedListBox1.GetItemChecked(f) Then
+                    save.ExtentsDefaultExtentSelectedLayers.Add(True)
+                Else
+                    save.ExtentsDefaultExtentSelectedLayers.Add(False)
+                End If
+
+            Next
+        Else
+            save.ExtentsDefaultExtentType = "Coordinates"
+            Dim tempBBOX As OL3BBox = Panel1.Controls(0)
+            save.ExtentsDefaultExtentCoords = {tempBBOX.XtopLeft.Value, tempBBOX.YtopLeft.Value, tempBBOX.XbottomRight.Value, tempBBOX.YbottomRight.Value}
+        End If
+
+
+        'min/max zoom
+        save.ExtentsRestrictedExtentMaxZoom = ComboBox3.Text
+        save.ExtentsRestrictedExtentMinZoom = ComboBox2.Text
+
+        save.ExtentsRestrictedExtentBufferMargin = NumericUpDown1.Value
+        For h As Integer = 0 To CheckedListBox2.Items.Count - 1
+            If CheckedListBox2.GetItemChecked(h) = True Then
+                save.ExtentsRestrictedExtentSelectedLayers.Add(True)
+            Else
+                save.ExtentsRestrictedExtentSelectedLayers.Add(False)
+            End If
+        Next
+
+
+
+
+    End Function
+
+
+    Public Sub loadObj(ByVal saveObj As OL3MapOptionsSaveObject)
+        resetCheckedListBoxs()
+
+        OL3Projections1.loadObj(saveObj.mapProjection)
+        OL3Basemaps1.loadObj(saveObj.basemaps)
+
+        'default extent
+        If saveObj.ExtentsDefaultExtentType = "Layers" Then
+            Button3.Text = "Coordinates"
+
+            For f As Integer = 0 To saveObj.ExtentsDefaultExtentSelectedLayers.Count - 1
+                CheckedListBox1.SetItemChecked(f, saveObj.ExtentsDefaultExtentSelectedLayers(f))
+            Next
+        Else
+            Button3.Text = "Layers"
+            Dim tempBBOX As New OL3BBox
+
+            tempBBOX.XtopLeft.Value = saveObj.ExtentsDefaultExtentCoords(0)
+            tempBBOX.YtopLeft.Value = saveObj.ExtentsDefaultExtentCoords(1)
+            tempBBOX.XbottomRight.Value = saveObj.ExtentsDefaultExtentCoords(2)
+            tempBBOX.YbottomRight.Value = saveObj.ExtentsDefaultExtentCoords(3)
+            Panel1.Controls.Clear()
+            Panel1.Controls.Add(tempBBOX)
+
+        End If
+
+
+        'min/max zoom
+        ComboBox3.Text = saveObj.ExtentsRestrictedExtentMaxZoom
+        ComboBox2.Text = saveObj.ExtentsRestrictedExtentMinZoom
+
+        NumericUpDown1.Value = saveObj.ExtentsRestrictedExtentBufferMargin
+        For h As Integer = 0 To saveObj.ExtentsRestrictedExtentSelectedLayers.Count - 1
+            CheckedListBox2.SetItemChecked(h, saveObj.ExtentsRestrictedExtentSelectedLayers(h))
+        Next
+
+
+    End Sub
 End Class
+
+
+<Serializable()> _
+Public Class OL3MapOptionsSaveObject
+
+    Public mapProjection As OL3ProjectionSaveObject
+    Public basemaps As OL3BasemapsSaveObject
+
+    Public ExtentsLinkedMap As String
+
+    Public ExtentsDefaultExtentType As String
+    Public ExtentsDefaultExtentSelectedLayers As New List(Of Boolean)
+    Public ExtentsDefaultExtentCoords(3) As Double
+
+    Public ExtentsRestrictedExtentMinZoom As Integer
+    Public ExtentsRestrictedExtentMaxZoom As Integer
+    Public ExtentsRestrictedExtentBufferMargin As Integer
+    Public ExtentsRestrictedExtentSelectedLayers As New List(Of Boolean)
+
+
+End Class
+

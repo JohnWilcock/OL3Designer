@@ -118,4 +118,63 @@
         gr.DrawImage(org_Image, startx, startY, drawwidth, drawheight)
         Return final_Bitmap
     End Function
+
+    Public Function save() As OL3GeneralSaveObject
+        save = New OL3GeneralSaveObject
+        Dim imageCount As Integer = 0
+
+        'is there an icon, if so get the source path
+        For u As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim tempSource As String
+            If DataGridView1.Rows(u).Cells(2).Value Is Nothing Then
+                tempSource = ""
+            Else
+                tempSource = AttributionIconImageSourceList(imageCount)
+                imageCount = imageCount + 1
+            End If
+
+            save.attributions.Add(New OL3AttributionSaveObject(DataGridView1.Rows(u).Cells(0).Value, DataGridView1.Rows(u).Cells(1).Value, tempSource))
+
+        Next
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3GeneralSaveObject)
+        DataGridView1.Rows.Clear()
+        AttributionIconImageSourceList.Clear()
+
+        For q As Integer = 0 To saveObj.attributions.Count - 1
+            DataGridView1.Rows.Add()
+            DataGridView1.Rows(q).Cells(0).Value = saveObj.attributions(q).AttText
+            DataGridView1.Rows(q).Cells(1).Value = saveObj.attributions(q).AttLink
+
+            If saveObj.attributions(q).AttIconPath = "" Then
+                DataGridView1.Rows(q).Cells(2).Value = Nothing
+            Else
+                DataGridView1.Rows(q).Cells(2).Value = resizeIcons(New Bitmap(saveObj.attributions(q).AttIconPath))
+                AttributionIconImageSourceList.Add(saveObj.attributions(q).AttIconPath)
+            End If
+
+        Next
+
+    End Sub
+End Class
+
+
+<Serializable()> _
+Public Class OL3GeneralSaveObject
+    Public attributions As New List(Of OL3AttributionSaveObject)
+End Class
+
+<Serializable()> _
+Public Class OL3AttributionSaveObject
+    Sub New(ByVal text As String, ByVal link As String, ByVal icon As String)
+        AttText = text
+        AttLink = link
+        AttIconPath = icon
+    End Sub
+
+
+    Public AttText As String
+    Public AttLink As String
+    Public AttIconPath As String
 End Class

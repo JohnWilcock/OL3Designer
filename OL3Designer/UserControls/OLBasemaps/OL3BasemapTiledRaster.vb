@@ -553,7 +553,7 @@ Public Class OL3BasemapTiledRaster
 End Class
 
 
-
+<Serializable()> _
 Public Class zoomLevel
 
 
@@ -647,7 +647,7 @@ Public Class zoomLevel
 End Class
 
 
-
+<Serializable()> _
 Public Class imagefile
 
 
@@ -732,4 +732,13 @@ End Class
 
 
 
+<Serializable()> _
+Public Class OL3BasemapsTiledRasterSaveObject
 
+    Sub New(ByVal theZoomLevels As List(Of zoomLevel))
+        AllZoomsLevels = theZoomLevels
+    End Sub
+
+    Public AllZoomsLevels As New List(Of zoomLevel)
+
+End Class

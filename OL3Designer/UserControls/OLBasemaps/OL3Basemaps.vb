@@ -68,4 +68,52 @@
     Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
         newBasemapSelection()
     End Sub
+
+
+    Public Function save() As OL3BasemapsSaveObject
+        save = New OL3BasemapsSaveObject
+        save.BasemapType = TreeView1.SelectedNode.Text
+
+
+        Select Case save.BasemapType
+
+            Case "Image Files"
+                Dim ImgFiles As OL3BasemapTiledRaster = Panel1.Controls(0)
+                save.basemapObject = New OL3BasemapsTiledRasterSaveObject(ImgFiles.ZoomLevels)
+
+        End Select
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3BasemapsSaveObject)
+
+        Select Case saveObj.BasemapType
+
+            Case "Image Files"
+                TreeView1.SelectedNode = TreeView1.Nodes(0).Nodes(0)
+
+                Panel1.Controls.Clear()
+                Dim ImgFiles As New OL3BasemapTiledRaster(parentMapOptions.theParentLayerList.parentMapList)
+
+                Dim tr As OL3BasemapsTiledRasterSaveObject = saveObj.basemapObject
+                ImgFiles.ZoomLevels = tr.AllZoomsLevels
+
+                Panel1.Controls.Add(ImgFiles)
+
+            Case "OpenStreetMap"
+                TreeView1.SelectedNode = TreeView1.Nodes(1).Nodes(0)
+        End Select
+
+    End Sub
+
+
+End Class
+
+
+<Serializable()> _
+Public Class OL3BasemapsSaveObject
+
+    Public BasemapType As String
+    Public basemapObject As Object
+
 End Class

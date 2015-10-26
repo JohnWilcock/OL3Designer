@@ -223,11 +223,81 @@
         End Select
     End Sub
 
+
+    Public Function save() As OL3UniqueFilterSaveObject
+        save = New OL3UniqueFilterSaveObject
+        save.layerPath = layerPath
+
+        For t As Integer = 0 To AllFilters.Count - 1
+            save.AllFilters.Add(New List(Of OL3UniqueFilterValueSaveObject))
+
+            'if filter is selected then add true to list of fields
+            If CheckedListBox1.GetItemChecked(t) Then
+                save.activeFilters.Add(True)
+            Else
+                save.activeFilters.Add(False)
+            End If
+
+            For m As Integer = 0 To AllFilters(t).Count - 1
+                save.AllFilters(t).Add(New OL3UniqueFilterValueSaveObject)
+
+                save.AllFilters(t)(m).filterType = AllFilters(t)(m).Cells(0).Value
+                save.AllFilters(t)(m).filterValue = AllFilters(t)(m).Cells(1).Value
+                save.AllFilters(t)(m).filterLabel = AllFilters(t)(m).Cells(2).Value
+            Next
+        Next
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3UniqueFilterSaveObject)
+        AllFilters.Clear()
+        Dim tempDatagridviewComboCell As DataGridViewComboBoxCell
+
+        For t As Integer = 0 To saveObj.AllFilters.Count - 1
+            AllFilters.Add(New List(Of UniqueFilterRow))
+
+            'load checked filters
+            CheckedListBox1.SetItemChecked(t, saveObj.activeFilters(t))
+
+            'load filter values
+            For m As Integer = 0 To saveObj.AllFilters(t).Count - 1
+                AllFilters(t).Add(New UniqueFilterRow)
+
+                AllFilters(t)(m).Cells.Add(New DataGridViewComboBoxCell)
+                AllFilters(t)(m).Cells.Add(New DataGridViewTextBoxCell)
+                AllFilters(t)(m).Cells.Add(New DataGridViewTextBoxCell)
+                AllFilters(t)(m).Cells.Add(New DataGridViewButtonCell)
+
+                tempDatagridviewComboCell = New DataGridViewComboBoxCell
+                tempDatagridviewComboCell.Items.AddRange({"="})
+
+                AllFilters(t)(m).Cells(0) = tempDatagridviewComboCell
+                AllFilters(t)(m).Cells(1).Value = saveObj.AllFilters(t)(m).filterValue
+                AllFilters(t)(m).Cells(2).Value = saveObj.AllFilters(t)(m).filterLabel
+
+            Next
+        Next
+
+
+
+    End Sub
 End Class
 
 Public Class UniqueFilterRow
     Inherits DataGridViewRow
+End Class
+
+<Serializable()> _
+Public Class OL3UniqueFilterValueSaveObject
+    Public filterValue As String
+    Public filterLabel As String
+    Public filterType As String
+End Class
 
 
-
+<Serializable()> _
+Public Class OL3UniqueFilterSaveObject
+    Public activeFilters As New List(Of Boolean)
+    Public AllFilters As New List(Of List(Of OL3UniqueFilterValueSaveObject))
+    Public layerPath As String
 End Class
