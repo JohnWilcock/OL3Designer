@@ -569,6 +569,7 @@ Class OLLayer
         layerName = Path.GetFileNameWithoutExtension(layerPath)
         OL3Edit = New OL3EditLayer(layerPath, GDAL.getLayerType(layerPath, 0))
 
+
         Dim nameCell As New DataGridViewTextBoxCell
         nameCell.Value = " "
         Cells.Add(nameCell)
@@ -604,6 +605,7 @@ Class OLLayer
         Select Case OL3Edit.OlLayerFilterPicker1.Panel1.Controls(0).GetType
             Case GetType(OLLayerFilterUniqueValues)
                 Dim tempUniqueFilters As OLLayerFilterUniqueValues = OL3Edit.OlLayerFilterPicker1.Panel1.Controls(0)
+                tempUniqueFilters.layerNumber = layerNum
                 getFilterExternalJS = getFilterExternalJS & tempUniqueFilters.getFilterString() & Chr(10) & Chr(10)
 
 
