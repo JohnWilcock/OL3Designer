@@ -15,6 +15,8 @@ Public Class GPSPhotographs
         Dim _2 As Double = System.BitConverter.ToInt32(byte_property_id, 8) / System.BitConverter.ToInt32(byte_property_id, 12)
         Dim _3 As Double = System.BitConverter.ToInt32(byte_property_id, 16) / System.BitConverter.ToInt32(byte_property_id, 20)
 
+        photo.Dispose()
+
         If _1 + _2 + _3 > 0 Then
             Return True
         Else
@@ -127,6 +129,9 @@ err:
 
         On Error GoTo 0
 
+        'prevent memory being hoged by image.
+        selected_image.Dispose()
+        thePhoto.Dispose()
 
     End Function
 
