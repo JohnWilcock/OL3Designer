@@ -324,13 +324,13 @@ Public Class GDALImport
         End If
 
         Select Case layer.GetNextFeature.GetGeometryRef.GetGeometryType
-            Case 6, 3 'poly
+            Case 6, 3, wkbGeometryType.wkbPolygon, wkbGeometryType.wkbPolygon25D, wkbGeometryType.wkbMultiPolygon, wkbGeometryType.wkbMultiPolygon25D 'poly
                 Return "Polygon"
-            Case 2, 101, 5 ' line
+            Case 2, 101, 5, wkbGeometryType.wkbLineString, wkbGeometryType.wkbLinearRing, wkbGeometryType.wkbLineString25D, wkbGeometryType.wkbMultiLineString, wkbGeometryType.wkbMultiLineString25D ' line
                 Return "Line"
-            Case 4, 1 'point
+            Case 4, 1, wkbGeometryType.wkbPoint, wkbGeometryType.wkbPoint25D, wkbGeometryType.wkbMultiPoint, wkbGeometryType.wkbMultiPolygon25D 'point
                 Return "Point"
-            Case 100 ' none
+            Case 100, wkbGeometryType.wkbNone ' none
                 Return "none"
             Case -2147483642 ' multipoly?
                 Return "Polygon"
