@@ -502,7 +502,7 @@ Public Class OL3LayerList
         Dim tempRow As OLLayer
 
         For y As Integer = 0 To DataGridView1.Rows.Count - 1
-            tempRow = DataGridView1.Rows(0)
+            tempRow = DataGridView1.Rows(y)
             save.layerList.Add(tempRow.save())
         Next
 
