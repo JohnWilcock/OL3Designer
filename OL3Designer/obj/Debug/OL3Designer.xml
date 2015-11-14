@@ -28,6 +28,10 @@ OL3Designer
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
+</member><member name="P:OL3Designer.My.Resources.Resources.action_add_16xMD">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.base">
 	<summary>
   Looks up a localized string similar to // Copyright 2006 The Closure Library Authors. All Rights Reserved.
@@ -40,7 +44,7 @@ OL3Designer
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS-IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or [rest of string was truncated]";.
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.Blank">
 	<summary>
@@ -77,11 +81,7 @@ OL3Designer
   font: 0/0 a;
   color: transparent;
   text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-
-.inpu [rest of string was truncated]";.
+  background-color: trans [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.bootstrap1">
 	<summary>
@@ -90,7 +90,7 @@ OL3Designer
 * Copyright 2012 Twitter, Inc.
 * http://www.apache.org/licenses/LICENSE-2.0.txt
 */
-!function(e){"use strict";e(function(){e.support.transition=function(){var e=function(){var e=document.createElement("bootstrap"),t={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"},n;for(n in t)if(e.style[n]!==undefined)return t[n]}();return e&amp;&amp;{end:e}}()})}(window.jQuery),!function(e){"use strict";va [rest of string was truncated]";.
+!function(e){"use strict";e(function(){e.support.transition=function(){var e=function(){var e=document.createElement("bootstrap"),t={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"},n;for(n in t)if(e.style[n]!==undefined)return t[n]}();return e&amp;&amp;{end:e}}()})}(window.jQuery),!function(e){"use stric [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.colourRamps">
 	<summary>
@@ -149,8 +149,7 @@ if (hasVectorLayer != 1){
 theExtent = theMap.getLayers().item(i).getSource().getExtent();
 }
 //alert(theMap.getLayers().item(i).get('name'));
-hasVectorLayer = 1;
-te [rest of string was truncated]";.
+hasVec [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.HeatmapPreview">
 	<summary>
@@ -167,12 +166,12 @@ te [rest of string was truncated]";.
 &lt;script src='OLFILEPATHproj4.js' type='text/javascript'&gt;&lt;/script&gt; 
 
 
-&lt;script src='OLFILEPATHbase.js' type='text/javascript [rest of string was truncated]";.
+&lt;script src='OLFILEPATHbase.js' type='te [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.jQuery">
 	<summary>
   Looks up a localized string similar to /*! jQuery v1.7.2 jquery.com | jquery.org/license */
-(function(a,b){function cy(a){return f.isWindow(a)?a:a.nodeType===9?a.defaultView||a.parentWindow:!1}function cu(a){if(!cj[a]){var b=c.body,d=f("&lt;"+a+"&gt;").appendTo(b),e=d.css("display");d.remove();if(e==="none"||e===""){ck||(ck=c.createElement("iframe"),ck.frameBorder=ck.width=ck.height=0),b.appendChild(ck);if(!cl||!ck.createElement)cl=(ck.contentWindow||ck.contentDocument).document,cl.write((f.support.boxModel?"&lt;!doctype html&gt;":"")+"&lt;html&gt;&lt;body&gt;"),cl.clo [rest of string was truncated]";.
+(function(a,b){function cy(a){return f.isWindow(a)?a:a.nodeType===9?a.defaultView||a.parentWindow:!1}function cu(a){if(!cj[a]){var b=c.body,d=f("&lt;"+a+"&gt;").appendTo(b),e=d.css("display");d.remove();if(e==="none"||e===""){ck||(ck=c.createElement("iframe"),ck.frameBorder=ck.width=ck.height=0),b.appendChild(ck);if(!cl||!ck.createElement)cl=(ck.contentWindow||ck.contentDocument).document,cl.write((f.support.boxModel?"&lt;!doctype html&gt;":"")+"&lt;html&gt;&lt;body&gt;"),cl.cl [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.keyFunction">
 	<summary>
@@ -191,7 +190,7 @@ document.getElementById(keyDiv).innerHTML = "";
 var numberOfKeyLayers = keyLayers.length;
 var theKeyHTML = "&lt;div  style='padding:" + keyPadding + "px;'&gt;" + keyHeading;
 
-//for each layer you need 1. the styles . 2. the values which re [rest of string was truncated]";.
+//for each layer you need 1. the styles . 2. the  [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.LABELJS">
 	<summary>
@@ -226,13 +225,13 @@ var PointFeature = new ol.Feature({
 // Please do not edit.
 goog.addDependency('../../../ol/ol/animation.js', ['ol.animation'], ['ol.PreRenderFunction', 'ol.ViewHint', 'ol.coordinate', 'ol.easing']);
 goog.addDependency('../../../ol/ol/array.js', ['ol.array'], ['goog.array', 'goog.asserts']);
-goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
+goog.addDependency('../../../ol/o [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.ol1">
 	<summary>
   Looks up a localized string similar to // OpenLayers 3. See http://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/ol3/master/LICENSE.md
-// Version: v3.9.0
+// Version: v3.10.1
 
 (function (root, factory) {
   if (typeof exports === "object") {
@@ -244,7 +243,7 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
   }
 }(this, function () {
   var OPENLAYERS = {};
-  var l,aa=aa||{},ba=this;function m(a){return void 0!==a}function v(a,c,d){a=a.split(".");d=d||ba;a[0] [rest of string was truncated]";.
+  var l,aa=aa||{},ba=this;function ca(a){return void 0!==a}function t(a,c,d){a=a.split(".");d=d||ba;a[ [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.olstyle_icon__Direction_Marker">
 	<summary>
@@ -366,11 +365,7 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
 }
 
 .clearfix:after {
-  clear: both;
-}
-
-.hide-text {
-  font: [rest of string was truncated]";.
+ [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.POPUPJSPREVEW">
 	<summary>
@@ -390,11 +385,19 @@ goog.addDependency('../../../ol/ol/at [rest of string was truncated]";.
  * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- *//*! normalize.css v3.0.1 | MIT License | git.io/normalize */html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hg [rest of string was truncated]";.
+ *//*! normalize.css v3.0.1 | MIT License | git.io/normalize */html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,foot [rest of string was truncated]";.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.proj4">
 	<summary>
   Looks up a localized string similar to !function(a){if("object"==typeof exports)module.exports=a();else if("function"==typeof define&amp;&amp;define.amd)define(a);else{var b;"undefined"!=typeof window?b=window:"undefined"!=typeof global?b=global:"undefined"!=typeof self&amp;&amp;(b=self),b.proj4=a()}}(function(){return function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i="function"==typeof require&amp;&amp;require;if(!h&amp;&amp;i)return i(g,!0);if(f)return f(g,!0);throw new Error("Cannot find module '"+g+"'")}var j=c[g]={exports:{}};b[g][0].call(j.exports,function(a){v [rest of string was truncated]";.
+</summary>
+</member><member name="P:OL3Designer.My.Resources.Resources.ScaleBar">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:OL3Designer.My.Resources.Resources.size">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:OL3Designer.My.Resources.Resources.STYLEJS">
 	<summary>
@@ -419,7 +422,7 @@ var PointFeature = new ol.Feature({
 	<summary>
   Looks up a localized string similar to /*! URI.js v1.14.1 http://medialize.github.io/URI.js/ */
 /* build contains: IPv6.js, punycode.js, SecondLevelDomains.js, URI.js, URITemplate.js, jquery.URI.js, URI.fragmentURI.js */
-(function(c,h){"object"===typeof exports?module.exports=h():"function"===typeof define&amp;&amp;define.amd?define(h):c.IPv6=h(c)})(this,function(c){var h=c&amp;&amp;c.IPv6;return{best:function(c){c=c.toLowerCase().split(":");var m=c.length,b=8;""===c[0]&amp;&amp;""===c[1]&amp;&amp;""===c[2]?(c.shift(),c.shift()):""===c[0]&amp;&amp;""===c[1]?c.shift():""===c[m-1]&amp;&amp;""== [rest of string was truncated]";.
+(function(c,h){"object"===typeof exports?module.exports=h():"function"===typeof define&amp;&amp;define.amd?define(h):c.IPv6=h(c)})(this,function(c){var h=c&amp;&amp;c.IPv6;return{best:function(c){c=c.toLowerCase().split(":");var m=c.length,b=8;""===c[0]&amp;&amp;""===c[1]&amp;&amp;""===c[2]?(c.shift(),c.shift()):""===c[0]&amp;&amp;""===c[1]?c.shift():""===c[m-1]&amp;&amp;"" [rest of string was truncated]";.
 </summary>
 </member><member name="T:OL3Designer.My.Resources.Resources">
 	<summary>

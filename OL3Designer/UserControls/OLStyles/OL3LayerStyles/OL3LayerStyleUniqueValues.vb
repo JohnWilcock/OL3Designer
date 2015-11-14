@@ -212,13 +212,16 @@ Public Class OL3LayerStyleUniqueValues
 
 
     Sub copyLabelToAllRows()
+        'exit if only 1 row
+        If DataGridView1.Rows.Count <= 1 Then Exit Sub
+
         Dim currentRow As uniqueRow
         Dim pasteStyleSettings As StyleProperties
         Dim copyRow As uniqueRow = DataGridView1.Rows(0)
         Dim copyStyleSettings As StyleProperties = copyRow.uniqueStyle.OLStyleSettings
 
-
-        For u As Integer = 0 To DataGridView1.Rows.Count - 1
+        'copy label style from first row to all others
+        For u As Integer = 1 To DataGridView1.Rows.Count - 1
             currentRow = DataGridView1.Rows(u)
             pasteStyleSettings = currentRow.uniqueStyle.OLStyleSettings
             pasteStyleSettings.active = False
@@ -238,6 +241,11 @@ Public Class OL3LayerStyleUniqueValues
             pasteStyleSettings.active = True
 
 
+            currentRow.uniqueStyle.ChangeOLStylePickerdialog.OLLabelPicker.styleSettings = pasteStyleSettings
+            currentRow.uniqueStyle.ChangeOLStylePickerdialog.OLLabelPicker.loadValuesToControls()
+            currentRow.uniqueStyle.ChangeOLStylePickerdialog.refreshDialog()
+            currentRow.uniqueStyle.OLTextupdate()
+            currentRow.uniqueStyle.refreshTextControl()
         Next
     End Sub
 
@@ -292,6 +300,54 @@ Public Class OL3LayerStyleUniqueValues
     End Sub
 
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        addIndividualStyles()
+    End Sub
+
+    Sub addIndividualStyles()
+
+        If ComboBox1.SelectedIndex = -1 Then Exit Sub
+
+        Dim AIS As New AddUniqueValue(layerPath, ComboBox1.Text)
+        AIS.ShowDialog()
+
+        'add selected styles.
+        Dim currentRowIndex As Integer
+        Dim currentRow As uniqueRow
+        Dim GDAL As New GDALImport
+
+        Dim fields As List(Of String) = GDAL.getFieldList(layerPath)
+        For g = 0 To AIS.CheckedListBox1.CheckedIndices.Count - 1
+            currentRowIndex = DataGridView1.Rows.Add(New uniqueRow)
+            currentRow = DataGridView1.Rows(currentRowIndex)
+
+            currentRow.uniqueStyle.OLStyleSettings.OLGeomType = layerType
+            currentRow.uniqueStyle.layerPath = layerPath
+            currentRow.uniqueStyle.fieldList = fields
+
+
+            'set a random fill colour
+            Dim rand As New Random
+            currentRow.uniqueStyle.OLStyleSettings.OLFillColour = Color.FromArgb(rand.Next(0, 254), rand.Next(0, 254), rand.Next(0, 254), rand.Next(0, 254))
+            currentRow.uniqueStyle.OLStyleSettings.OLStrokeColor = Color.Black
+
+            theStylePicker.OLStyleSettings = currentRow.uniqueStyle.OLStyleSettings
+            Application.DoEvents()
+
+            'add data
+            currentRow.uniqueValue = AIS.CheckedListBox1.Items(AIS.CheckedListBox1.CheckedIndices(g))
+            currentRow.uniqueLabel = AIS.CheckedListBox1.Items(AIS.CheckedListBox1.CheckedIndices(g))
+
+            DataGridView1.Rows(currentRowIndex).Cells("OLStyle").Value = currentRow.uniqueStyle.PanelToBitmap
+            DataGridView1.Rows(currentRowIndex).Cells("OLValue").Value = currentRow.uniqueValue
+            DataGridView1.Rows(currentRowIndex).Cells("Label").Value = currentRow.uniqueLabel
+        Next
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        copyLabelToAllRows()
+    End Sub
 End Class
 
 

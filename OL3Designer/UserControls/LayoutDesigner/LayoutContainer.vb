@@ -30,6 +30,8 @@ Public Class SP
     Public p2Text As New HTMLEditor
     Public p1CollapseButtonHTML As String
     Public p2CollapseButtonHTML As String
+    Public p1Fixed As New FixedDimensions
+    Public p2Fixed As New FixedDimensions
 
     'for style
     Public p1StyleButton As New Button
@@ -71,6 +73,8 @@ Public Class SP
 
         End If
         parentSP = theSP
+
+
     End Sub
 
     Protected Overrides Sub InitLayout()
@@ -137,12 +141,12 @@ Public Class SP
         p2Img.SizeMode = PictureBoxSizeMode.Zoom
 
         'set up property panels
-        Dim p1Controls() As Control = {p1Type, p1Collapsable, p1Collapsed, p1Path, p1Text, p1KeyButton, p1Img, p1ImageType, p1StyleButton, p1ControlsButton}
+        Dim p1Controls() As Control = {p1Type, p1Collapsable, p1Collapsed, p1Path, p1Text, p1KeyButton, p1Img, p1ImageType, p1StyleButton, p1ControlsButton, p1Fixed}
         p1P.Controls.AddRange(p1Controls)
         p1P.FlowDirection = FlowDirection.TopDown
         p1P.AutoScroll = True
 
-        Dim p2Controls() As Control = {p2Type, p2Collapsable, p2collapsed, p2Path, p2Text, p2KeyButton, p2Img, p2ImageType, p2StyleButton, p2ControlsButton}
+        Dim p2Controls() As Control = {p2Type, p2Collapsable, p2collapsed, p2Path, p2Text, p2KeyButton, p2Img, p2ImageType, p2StyleButton, p2ControlsButton, p2Fixed}
         p2P.Controls.AddRange(p2Controls)
         p2P.FlowDirection = FlowDirection.TopDown
         p2P.AutoScroll = True
@@ -278,6 +282,25 @@ Public Class SP
 
 
     Sub displayProperties()
+        'is it horizontal or vertical - set image in fixed UC
+        If Me.Orientation = Windows.Forms.Orientation.Horizontal Then
+            p1Fixed.Ori = "V"
+            p2Fixed.Ori = "V"
+        Else
+            p1Fixed.Ori = "H"
+            p2Fixed.Ori = "H"
+        End If
+
+
+        'is either frame fixed dimensions
+        If p1Fixed.CheckBox1.Checked Then
+            p2Fixed.CheckBox1.Enabled = False
+        End If
+
+        If p2Fixed.CheckBox1.Checked Then
+            p1Fixed.CheckBox1.Enabled = False
+        End If
+
         'shows the proptery panel in designated panel
         properties.Controls.Clear()
         Dim thePanel As modifiedPanel = properties
@@ -306,8 +329,6 @@ Public Class SP
         If p1Lookup.Length > 0 Then p1Lookup = p1Lookup.Substring(0, 3)
         If p2Lookup.Length > 0 Then p2Lookup = p2Lookup.Substring(0, 3)
 
-
-
         Select Case p1Lookup
             Case "Map"
                 p1Collapsable.Hide()
@@ -318,6 +339,7 @@ Public Class SP
                 p1Img.Hide()
                 p1ImageType.Hide()
                 p1ControlsButton.Hide()
+                p1Fixed.Show()
             Case "Key"
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
@@ -327,6 +349,7 @@ Public Class SP
                 p1Img.Hide()
                 p1ImageType.Hide()
                 p1ControlsButton.Hide()
+                p1Fixed.Show()
 
                 Dim propertiesPanel As modifiedPanel = properties
                 p1KeyOptions.OL3mapsObject = propertiesPanel.OL3MapsObject
@@ -339,6 +362,7 @@ Public Class SP
                 p1Img.Show()
                 p1ImageType.Show()
                 p1ControlsButton.Hide()
+                p1Fixed.Show()
             Case "Tex" ' Text
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
@@ -348,6 +372,7 @@ Public Class SP
                 p1Img.Hide()
                 p1ImageType.Hide()
                 p1ControlsButton.Hide()
+                p1Fixed.Show()
             Case "Con" 'Controls
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
@@ -357,6 +382,7 @@ Public Class SP
                 p1Img.Hide()
                 p1ImageType.Hide()
                 p1ControlsButton.Show()
+                p1Fixed.Show()
 
         End Select
 
@@ -370,6 +396,7 @@ Public Class SP
                 p2Img.Hide()
                 p2ImageType.Hide()
                 p2ControlsButton.Hide()
+                p2Fixed.Show()
             Case "Key"
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
@@ -379,6 +406,7 @@ Public Class SP
                 p2Img.Hide()
                 p2ImageType.Hide()
                 p2ControlsButton.Hide()
+                p2Fixed.Show()
 
                 Dim propertiesPanel As modifiedPanel = properties
                 p2KeyOptions.OL3mapsObject = propertiesPanel.OL3MapsObject
@@ -391,6 +419,7 @@ Public Class SP
                 p2Img.Show()
                 p2ImageType.Show()
                 p2ControlsButton.Hide()
+                p2Fixed.Show()
             Case "Tex"
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
@@ -400,6 +429,7 @@ Public Class SP
                 p2Img.Hide()
                 p2ImageType.Hide()
                 p2ControlsButton.Hide()
+                p2Fixed.Show()
             Case "Con"
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
@@ -409,6 +439,7 @@ Public Class SP
                 p2Img.Hide()
                 p2ImageType.Hide()
                 p2ControlsButton.Show()
+                p2Fixed.Show()
 
         End Select
     End Sub

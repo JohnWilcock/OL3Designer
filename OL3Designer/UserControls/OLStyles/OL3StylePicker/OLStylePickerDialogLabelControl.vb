@@ -14,6 +14,41 @@
         NumericUpDown4.Value = styleSettings.OLMaskWidth
         Button11.BackColor = styleSettings.OLMaskColor
         Button10.BackColor = styleSettings.OLTextColour
+
+        ComboBox1.Text = styleSettings.OLTextCol
+
+        'ComboBox2.Text = styleSettings.o
+        clearAlignment()
+        Select Case styleSettings.OLTextVAlign & styleSettings.OLTextHAlign
+            Case "bottomcenter"
+                RadioButton1.Checked = True
+                RadioButton1.FlatAppearance.BorderSize = 2
+            Case "bottomleft"
+                RadioButton3.Checked = 1
+                RadioButton3.FlatAppearance.BorderSize = 2
+            Case "bottomright"
+                RadioButton2.Checked = True
+                RadioButton2.FlatAppearance.BorderSize = 2
+            Case "middlecenter"
+                RadioButton8.Checked = 1
+                RadioButton8.FlatAppearance.BorderSize = 2
+            Case "middleright"
+                RadioButton9.Checked = 1
+                RadioButton9.FlatAppearance.BorderSize = 2
+            Case "middleleft"
+                RadioButton7.Checked = 1
+                RadioButton7.FlatAppearance.BorderSize = 2
+            Case "topcenter"
+                RadioButton4.Checked = 1
+                RadioButton4.FlatAppearance.BorderSize = 2
+            Case "topleft"
+                RadioButton5.Checked = True
+                RadioButton5.FlatAppearance.BorderSize = 2
+            Case "topright"
+                RadioButton6.Checked = 1
+                RadioButton6.FlatAppearance.BorderSize = 2
+        End Select
+
     End Sub
 
     Private Sub OLStylePickerDialogLabelControl_Load(sender As Object, e As EventArgs) Handles MyBase.Load

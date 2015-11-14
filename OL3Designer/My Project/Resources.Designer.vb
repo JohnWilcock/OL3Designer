@@ -61,6 +61,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property action_add_16xMD() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("action_add_16xMD", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to // Copyright 2006 The Closure Library Authors. All Rights Reserved.
         '''//
         '''// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -71,7 +81,7 @@ Namespace My.Resources
         '''//
         '''// Unless required by applicable law or agreed to in writing, software
         '''// distributed under the License is distributed on an &quot;AS-IS&quot; BASIS,
-        '''// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or [rest of string was truncated]&quot;;.
+        '''// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property base() As String
             Get
@@ -119,11 +129,7 @@ Namespace My.Resources
         '''  font: 0/0 a;
         '''  color: transparent;
         '''  text-shadow: none;
-        '''  background-color: transparent;
-        '''  border: 0;
-        '''}
-        '''
-        '''.inpu [rest of string was truncated]&quot;;.
+        '''  background-color: trans [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property bootstrap() As String
             Get
@@ -137,7 +143,7 @@ Namespace My.Resources
         '''* Copyright 2012 Twitter, Inc.
         '''* http://www.apache.org/licenses/LICENSE-2.0.txt
         '''*/
-        '''!function(e){&quot;use strict&quot;;e(function(){e.support.transition=function(){var e=function(){var e=document.createElement(&quot;bootstrap&quot;),t={WebkitTransition:&quot;webkitTransitionEnd&quot;,MozTransition:&quot;transitionend&quot;,OTransition:&quot;oTransitionEnd otransitionend&quot;,transition:&quot;transitionend&quot;},n;for(n in t)if(e.style[n]!==undefined)return t[n]}();return e&amp;&amp;{end:e}}()})}(window.jQuery),!function(e){&quot;use strict&quot;;va [rest of string was truncated]&quot;;.
+        '''!function(e){&quot;use strict&quot;;e(function(){e.support.transition=function(){var e=function(){var e=document.createElement(&quot;bootstrap&quot;),t={WebkitTransition:&quot;webkitTransitionEnd&quot;,MozTransition:&quot;transitionend&quot;,OTransition:&quot;oTransitionEnd otransitionend&quot;,transition:&quot;transitionend&quot;},n;for(n in t)if(e.style[n]!==undefined)return t[n]}();return e&amp;&amp;{end:e}}()})}(window.jQuery),!function(e){&quot;use stric [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property bootstrap1() As String
             Get
@@ -235,8 +241,7 @@ Namespace My.Resources
         '''theExtent = theMap.getLayers().item(i).getSource().getExtent();
         '''}
         '''//alert(theMap.getLayers().item(i).get(&apos;name&apos;));
-        '''hasVectorLayer = 1;
-        '''te [rest of string was truncated]&quot;;.
+        '''hasVec [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property extentFunction() As String
             Get
@@ -258,7 +263,7 @@ Namespace My.Resources
         '''&lt;script src=&apos;OLFILEPATHproj4.js&apos; type=&apos;text/javascript&apos;&gt;&lt;/script&gt; 
         '''
         '''
-        '''&lt;script src=&apos;OLFILEPATHbase.js&apos; type=&apos;text/javascript [rest of string was truncated]&quot;;.
+        '''&lt;script src=&apos;OLFILEPATHbase.js&apos; type=&apos;te [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property HeatmapPreview() As String
             Get
@@ -268,7 +273,7 @@ Namespace My.Resources
         
         '''<summary>
         '''  Looks up a localized string similar to /*! jQuery v1.7.2 jquery.com | jquery.org/license */
-        '''(function(a,b){function cy(a){return f.isWindow(a)?a:a.nodeType===9?a.defaultView||a.parentWindow:!1}function cu(a){if(!cj[a]){var b=c.body,d=f(&quot;&lt;&quot;+a+&quot;&gt;&quot;).appendTo(b),e=d.css(&quot;display&quot;);d.remove();if(e===&quot;none&quot;||e===&quot;&quot;){ck||(ck=c.createElement(&quot;iframe&quot;),ck.frameBorder=ck.width=ck.height=0),b.appendChild(ck);if(!cl||!ck.createElement)cl=(ck.contentWindow||ck.contentDocument).document,cl.write((f.support.boxModel?&quot;&lt;!doctype html&gt;&quot;:&quot;&quot;)+&quot;&lt;html&gt;&lt;body&gt;&quot;),cl.clo [rest of string was truncated]&quot;;.
+        '''(function(a,b){function cy(a){return f.isWindow(a)?a:a.nodeType===9?a.defaultView||a.parentWindow:!1}function cu(a){if(!cj[a]){var b=c.body,d=f(&quot;&lt;&quot;+a+&quot;&gt;&quot;).appendTo(b),e=d.css(&quot;display&quot;);d.remove();if(e===&quot;none&quot;||e===&quot;&quot;){ck||(ck=c.createElement(&quot;iframe&quot;),ck.frameBorder=ck.width=ck.height=0),b.appendChild(ck);if(!cl||!ck.createElement)cl=(ck.contentWindow||ck.contentDocument).document,cl.write((f.support.boxModel?&quot;&lt;!doctype html&gt;&quot;:&quot;&quot;)+&quot;&lt;html&gt;&lt;body&gt;&quot;),cl.cl [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property jQuery() As String
             Get
@@ -292,7 +297,7 @@ Namespace My.Resources
         '''var numberOfKeyLayers = keyLayers.length;
         '''var theKeyHTML = &quot;&lt;div  style=&apos;padding:&quot; + keyPadding + &quot;px;&apos;&gt;&quot; + keyHeading;
         '''
-        '''//for each layer you need 1. the styles . 2. the values which re [rest of string was truncated]&quot;;.
+        '''//for each layer you need 1. the styles . 2. the  [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property keyFunction() As String
             Get
@@ -348,7 +353,7 @@ Namespace My.Resources
         '''// Please do not edit.
         '''goog.addDependency(&apos;../../../ol/ol/animation.js&apos;, [&apos;ol.animation&apos;], [&apos;ol.PreRenderFunction&apos;, &apos;ol.ViewHint&apos;, &apos;ol.coordinate&apos;, &apos;ol.easing&apos;]);
         '''goog.addDependency(&apos;../../../ol/ol/array.js&apos;, [&apos;ol.array&apos;], [&apos;goog.array&apos;, &apos;goog.asserts&apos;]);
-        '''goog.addDependency(&apos;../../../ol/ol/at [rest of string was truncated]&quot;;.
+        '''goog.addDependency(&apos;../../../ol/o [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property ol_deps() As String
             Get
@@ -359,7 +364,7 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized string similar to // OpenLayers 3. See http://openlayers.org/
         '''// License: https://raw.githubusercontent.com/openlayers/ol3/master/LICENSE.md
-        '''// Version: v3.9.0
+        '''// Version: v3.10.1
         '''
         '''(function (root, factory) {
         '''  if (typeof exports === &quot;object&quot;) {
@@ -371,7 +376,7 @@ Namespace My.Resources
         '''  }
         '''}(this, function () {
         '''  var OPENLAYERS = {};
-        '''  var l,aa=aa||{},ba=this;function m(a){return void 0!==a}function v(a,c,d){a=a.split(&quot;.&quot;);d=d||ba;a[0] [rest of string was truncated]&quot;;.
+        '''  var l,aa=aa||{},ba=this;function ca(a){return void 0!==a}function t(a,c,d){a=a.split(&quot;.&quot;);d=d||ba;a[ [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property ol1() As String
             Get
@@ -617,11 +622,7 @@ Namespace My.Resources
         '''}
         '''
         '''.clearfix:after {
-        '''  clear: both;
-        '''}
-        '''
-        '''.hide-text {
-        '''  font: [rest of string was truncated]&quot;;.
+        ''' [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property PopupJS1() As String
             Get
@@ -651,7 +652,7 @@ Namespace My.Resources
         ''' * Bootstrap v3.2.0 (http://getbootstrap.com)
         ''' * Copyright 2011-2014 Twitter, Inc.
         ''' * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-        ''' *//*! normalize.css v3.0.1 | MIT License | git.io/normalize */html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hg [rest of string was truncated]&quot;;.
+        ''' *//*! normalize.css v3.0.1 | MIT License | git.io/normalize */html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,foot [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property PopupJSPreview() As String
             Get
@@ -665,6 +666,26 @@ Namespace My.Resources
         Friend ReadOnly Property proj4() As String
             Get
                 Return ResourceManager.GetString("proj4", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property ScaleBar() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ScaleBar", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property size() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("size", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
@@ -695,7 +716,7 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized string similar to /*! URI.js v1.14.1 http://medialize.github.io/URI.js/ */
         '''/* build contains: IPv6.js, punycode.js, SecondLevelDomains.js, URI.js, URITemplate.js, jquery.URI.js, URI.fragmentURI.js */
-        '''(function(c,h){&quot;object&quot;===typeof exports?module.exports=h():&quot;function&quot;===typeof define&amp;&amp;define.amd?define(h):c.IPv6=h(c)})(this,function(c){var h=c&amp;&amp;c.IPv6;return{best:function(c){c=c.toLowerCase().split(&quot;:&quot;);var m=c.length,b=8;&quot;&quot;===c[0]&amp;&amp;&quot;&quot;===c[1]&amp;&amp;&quot;&quot;===c[2]?(c.shift(),c.shift()):&quot;&quot;===c[0]&amp;&amp;&quot;&quot;===c[1]?c.shift():&quot;&quot;===c[m-1]&amp;&amp;&quot;&quot;== [rest of string was truncated]&quot;;.
+        '''(function(c,h){&quot;object&quot;===typeof exports?module.exports=h():&quot;function&quot;===typeof define&amp;&amp;define.amd?define(h):c.IPv6=h(c)})(this,function(c){var h=c&amp;&amp;c.IPv6;return{best:function(c){c=c.toLowerCase().split(&quot;:&quot;);var m=c.length,b=8;&quot;&quot;===c[0]&amp;&amp;&quot;&quot;===c[1]&amp;&amp;&quot;&quot;===c[2]?(c.shift(),c.shift()):&quot;&quot;===c[0]&amp;&amp;&quot;&quot;===c[1]?c.shift():&quot;&quot;===c[m-1]&amp;&amp;&quot;&quot; [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property URI() As String
             Get

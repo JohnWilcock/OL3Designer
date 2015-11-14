@@ -49,7 +49,6 @@ Partial Class OL3MapOptions
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.OL3Basemaps1 = New OL3Designer.OL3Basemaps()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -59,7 +58,6 @@ Partial Class OL3MapOptions
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
-        Me.TabPage4.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -313,7 +311,6 @@ Partial Class OL3MapOptions
         '
         'TabPage4
         '
-        Me.TabPage4.Controls.Add(Me.Label7)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
@@ -321,16 +318,6 @@ Partial Class OL3MapOptions
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Controls"
         Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(18, 21)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(281, 78)
-        Me.Label7.TabIndex = 0
-        Me.Label7.Text = "Not yet implemented " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Placeholder for :" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "zoom controls" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "scale bar" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "attribution " & _
-    "(from which layers - actual text to be set in layer)"
         '
         'OL3MapOptions
         '
@@ -352,8 +339,6 @@ Partial Class OL3MapOptions
         Me.GroupBox1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
-        Me.TabPage4.ResumeLayout(False)
-        Me.TabPage4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -383,5 +368,4 @@ Partial Class OL3MapOptions
     Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
-    Friend WithEvents Label7 As System.Windows.Forms.Label
 End Class

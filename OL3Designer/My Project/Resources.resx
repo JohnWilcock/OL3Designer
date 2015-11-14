@@ -757,4 +757,13 @@ view.fitExtent(theExtent , theMap.getSize());
   <data name="Blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\FormIcons\Blank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="action_add_16xMD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\FormIcons\action_add_16xMD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="size" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\FormIcons\size.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ScaleBar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\FormIcons\ScaleBar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

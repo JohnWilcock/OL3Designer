@@ -73,12 +73,29 @@ Public Class LayoutDesigner
         End If
     End Function
 
+    Function getCellDimensions(ByVal theSP As SP, ByVal thePanel As Panel, ByVal otherFixed As FixedDimensions, ByVal theFixed As FixedDimensions) As String()
+        Dim tHeight As String = 100
+        Dim tWidth As String = 100
+
+        If theSP.Orientation = Orientation.Vertical Then tHeight = "height:" & 100 & "%;" : tWidth = "width:" & CInt((thePanel.Width / theSP.Width) * 100) & "%;"
+        If theSP.Orientation = Orientation.Horizontal Then tHeight = "height:" & CInt((thePanel.Height / theSP.Height) * 100) & "%;" : tWidth = "width:" & 100 & "%;"
+
+        'override if fixed dimensions of this panel
+        If theSP.Orientation = Orientation.Vertical And theFixed.fixed Then tHeight = "height:" & 100 & "%;" : tWidth = "width:" & theFixed.dimension & "px;"
+        If theSP.Orientation = Orientation.Horizontal And theFixed.fixed Then tHeight = "height:" & theFixed.dimension & "px;" : tWidth = "width:" & 100 & "%;"
+
+        'if other cell is fixed, set dims to 100%, except opposite of fixed
+        If theSP.Orientation = Orientation.Vertical And otherFixed.fixed Then tHeight = "height:100%;" : tWidth = ""
+        If theSP.Orientation = Orientation.Horizontal And otherFixed.fixed Then tHeight = "" : tWidth = "width:100%;"
+
+        Return {tHeight, tWidth}
+
+    End Function
 
     Function convertLayoutToHTML(ByVal theSP As SP) As String
         Dim convertToHTML As String = ""
         Dim Ori As String = ""
         Dim OriEnd As String = ""
-        Dim tHeight, tWidth As Integer
         Dim keyDivNumber As String
         Dim HTMLText As String = ""
 
@@ -91,11 +108,17 @@ Public Class LayoutDesigner
         End If
 
 
+        'get cell dimensions : width = 1 height = 0
+        Dim cell1dims() As String = getCellDimensions(theSP, theSP.Panel1, theSP.p2Fixed, theSP.p1Fixed)
+        Dim cell2dims() As String = getCellDimensions(theSP, theSP.Panel2, theSP.p1Fixed, theSP.p2Fixed)
+
+
         'cell 1
         'if contents of panel1 is another splitter, recall this sub, else create div
         removeAllButtons(theSP.Panel1)
         If theSP.Panel1.Controls.Count > 0 Then
-            convertToHTML = convertToHTML & "<td id='table" & theSP.tableID & "_1' style='width:" & CInt((theSP.Panel1.Width / theSP.Width) * 100) & "%;'>" & convertLayoutToHTML(theSP.Panel1.Controls(theSP.Panel1.Controls.Count - 1)) & "</td>"
+
+            convertToHTML = convertToHTML & "<td id='table" & theSP.tableID & "_1' style='" & cell1dims(1) & "'>" & convertLayoutToHTML(theSP.Panel1.Controls(theSP.Panel1.Controls.Count - 1)) & "</td>"
         Else
             'if its a key get the key num , else returns blank
             keyDivNumber = addKeyObjectLiterol(theSP.aL1, theSP.p1KeyOptions)
@@ -103,16 +126,13 @@ Public Class LayoutDesigner
             If theSP.p1Type.Text = "Image" Then HTMLText = "<img style='max-width:100%;max-height:100%;' src='" & theSP.p1ImageType.getPath(theSP.p1Img.ImageLocation, OL3mapsObject.outputLocation) & "'></img>" ' Else HTMLText = ""
             If theSP.p1Type.Text = "Controls" Then HTMLText = theSP.p1ControlOptions.getControlHTML
 
-            If theSP.Orientation = Orientation.Vertical Then tHeight = 100 : tWidth = CInt((theSP.Panel1.Width / theSP.Width) * 100)
-            If theSP.Orientation = Orientation.Horizontal Then tHeight = CInt((theSP.Panel1.Height / theSP.Height) * 100) : tWidth = 100
-
-            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_1' style='height:" & tHeight & "%;width:" & tWidth & "%;" & theSP.p1StyleOptions.getstyleCSS & "'><div id='" & theSP.aL1.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;overflow:auto;height:100%;width:100%;'>" & theSP.p1CollapseButtonHTML & HTMLText & "</div></td>"
+            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_1' style='" & cell1dims(0) & cell1dims(1) & theSP.p1StyleOptions.getstyleCSS & "'><div id='" & theSP.aL1.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;overflow:auto;" & cell1dims(0) & cell1dims(1) & "'>" & theSP.p1CollapseButtonHTML & HTMLText & "</div></td>"
 
             If theSP.Orientation = Orientation.Horizontal Then
                 convertToHTML = convertToHTML & "</tr>"
-                convertToHTML = setButtonParameters(convertToHTML, tHeight, 100 - tHeight, 1)
+                'convertToHTML = setButtonParameters(convertToHTML, tHeight, 100 - tHeight, 1)
             Else
-                convertToHTML = setButtonParameters(convertToHTML, tWidth, 100 - tWidth, 0)
+                'convertToHTML = setButtonParameters(convertToHTML, tWidth, 100 - tWidth, 0)
             End If
 
         End If
@@ -122,7 +142,8 @@ Public Class LayoutDesigner
         removeAllButtons(theSP.Panel2)
         HTMLText = ""
         If theSP.Panel2.Controls.Count Then
-            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2'  style='width:" & CInt((theSP.Panel2.Width / theSP.Width) * 100) & "%;'>" & convertLayoutToHTML(theSP.Panel2.Controls(theSP.Panel2.Controls.Count - 1)) & "</td>" & OriEnd
+
+            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2'  style='" & cell2dims(1) & "'>" & convertLayoutToHTML(theSP.Panel2.Controls(theSP.Panel2.Controls.Count - 1)) & "</td>" & OriEnd
         Else
             'if its a key get the key num , else returns blank
             keyDivNumber = addKeyObjectLiterol(theSP.aL2, theSP.p2KeyOptions)
@@ -130,20 +151,18 @@ Public Class LayoutDesigner
             If theSP.p2Type.Text = "Image" Then HTMLText = "<img style='max-width:100%;max-height:100%;' src='" & theSP.p2ImageType.getPath(theSP.p2Img.ImageLocation, OL3mapsObject.outputLocation) & "'></img>" 'Else HTMLText = ""
             If theSP.p2Type.Text = "Controls" Then HTMLText = theSP.p1ControlOptions.getControlHTML
 
-            If theSP.Orientation = Orientation.Vertical Then tHeight = 100 : tWidth = CInt((theSP.Panel2.Width / theSP.Width) * 100)
-            If theSP.Orientation = Orientation.Horizontal Then tHeight = CInt((theSP.Panel2.Height / theSP.Height) * 100) : tWidth = 100
 
-            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2' style='height:" & tHeight & "%;width:" & tWidth & "%;" & theSP.p2StyleOptions.getstyleCSS & "'><div id='" & theSP.aL2.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;height:100%;width:100%;'>" & theSP.p2CollapseButtonHTML & HTMLText & "</div></td>"
+            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2' style='" & cell2dims(0) & cell2dims(1) & theSP.p2StyleOptions.getstyleCSS & "'><div id='" & theSP.aL2.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;" & cell2dims(0) & cell2dims(1) & "'>" & theSP.p2CollapseButtonHTML & HTMLText & "</div></td>"
             If theSP.Orientation = Orientation.Horizontal Then convertToHTML = convertToHTML & "</tr>"
         End If
 
 
 
         If theSP.Orientation = Orientation.Horizontal Then
-            convertToHTML = setButtonParameters(convertToHTML, tHeight, 100 - tHeight, 1)
+            ' convertToHTML = setButtonParameters(convertToHTML, tHeight, 100 - tHeight, 1)
         Else
             convertToHTML = convertToHTML & "</tr>"
-            convertToHTML = setButtonParameters(convertToHTML, tWidth, 100 - tWidth, 0)
+            ' convertToHTML = setButtonParameters(convertToHTML, tWidth, 100 - tWidth, 0)
         End If
 
         convertToHTML = convertToHTML & "</table>"

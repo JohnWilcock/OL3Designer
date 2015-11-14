@@ -173,6 +173,12 @@
     <Compile Include="OL3DesAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UserControls\LayoutDesigner\FixedDimensions.Designer.vb">
+      <DependentUpon>FixedDimensions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\FixedDimensions.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControls\LayoutDesigner\HTMLEditor.Designer.vb">
       <DependentUpon>HTMLEditor.vb</DependentUpon>
     </Compile>
@@ -278,12 +284,6 @@
     <Compile Include="UserControls\OLMaps\OL3BBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\OLMaps\OL3MapControls.Designer.vb">
-      <DependentUpon>OL3MapControls.vb</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\OLMaps\OL3MapControls.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="UserControls\OLMaps\OL3MapOptions.Designer.vb">
       <DependentUpon>OL3MapOptions.vb</DependentUpon>
     </Compile>
@@ -322,6 +322,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GDAL\ProjectionsAndTransformations.vb" />
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\AddUniqueValue.Designer.vb">
+      <DependentUpon>AddUniqueValue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLStyles\OL3LayerStyles\AddUniqueValue.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleClusterStats.Designer.vb">
       <DependentUpon>OL3LayerStyleClusterStats.vb</DependentUpon>
     </Compile>
@@ -435,6 +441,9 @@
     <EmbeddedResource Include="OL3DesAbout.resx">
       <DependentUpon>OL3DesAbout.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\FixedDimensions.resx">
+      <DependentUpon>FixedDimensions.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LayoutDesigner\HTMLEditor.resx">
       <DependentUpon>HTMLEditor.vb</DependentUpon>
     </EmbeddedResource>
@@ -486,9 +495,6 @@
     <EmbeddedResource Include="UserControls\OLMaps\OL3BBox.resx">
       <DependentUpon>OL3BBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\OLMaps\OL3MapControls.resx">
-      <DependentUpon>OL3MapControls.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OLMaps\OL3MapOptions.resx">
       <DependentUpon>OL3MapOptions.vb</DependentUpon>
     </EmbeddedResource>
@@ -506,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OLProjections\OL3Projections.resx">
       <DependentUpon>OL3Projections.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\AddUniqueValue.resx">
+      <DependentUpon>AddUniqueValue.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OLStyles\OL3LayerStyles\OL3LayerStyleClusterStats.resx">
       <DependentUpon>OL3LayerStyleClusterStats.vb</DependentUpon>
@@ -713,6 +722,9 @@
     <None Include="Icons\olstyle_marker_Green Triangle.png" />
     <None Include="Icons\olstyle_marker_Orange Square.png" />
     <None Include="Icons\FormIcons\Blank.png" />
+    <None Include="Icons\FormIcons\action_add_16xMD.png" />
+    <None Include="Icons\FormIcons\size.png" />
+    <None Include="Icons\FormIcons\ScaleBar.png" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
