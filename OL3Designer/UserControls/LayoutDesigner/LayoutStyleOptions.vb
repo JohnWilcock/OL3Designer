@@ -18,7 +18,28 @@
         End If
     End Sub
 
-    Private Sub LayoutStyleOptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
+    Public Function save() As OL3LayoutStyleOptionsSaveObject
+        save = New OL3LayoutStyleOptionsSaveObject
+        save.Border = CheckBox1.Checked
+        save.BorderColour = Button1.BackColor
+        save.BorderWidth = NumericUpDown1.Value
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayoutStyleOptionsSaveObject)
+        CheckBox1.Checked = saveObj.Border
+        Button1.BackColor = saveObj.BorderColour
+        NumericUpDown1.Value = saveObj.BorderWidth
 
     End Sub
+End Class
+
+<Serializable()> _
+Public Class OL3LayoutStyleOptionsSaveObject
+    Public Border As Boolean
+    Public BorderColour As Color
+    Public BorderWidth As Integer
+
 End Class

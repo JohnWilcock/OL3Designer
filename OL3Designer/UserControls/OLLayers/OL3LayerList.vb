@@ -985,7 +985,7 @@ Class OLLayer
 
     Public Function save() As OL3LayerSaveObject
         save = New OL3LayerSaveObject
-
+        save.layerID = layerID
         save.layerPath = OL3LayerPath
         save.MapNum = mapNumber
         save.layerPopups = OL3Edit.OL3LayerPopupPicker1.save()
@@ -1002,6 +1002,7 @@ Class OLLayer
 
         OL3LayerPath = saveObj.layerPath
         mapNumber = saveObj.MapNum
+        layerID = saveObj.layerID
         OL3Edit.OL3LayerPopupPicker1.loadObj(saveObj.layerPopups)
         OL3Edit.OL3Projections1.loadObj(saveObj.layerProjection)
         OL3Edit.OL3LayerStylePicker1.loadObj(saveObj.layerStyles)
@@ -1015,6 +1016,7 @@ End Class
 
 <Serializable()> _
 Public Class OL3LayerSaveObject
+    Public layerID As Integer
     Public layerPath As String
     Public MapNum As Integer
     Public layerStyles As OL3LayerStyleObject

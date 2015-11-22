@@ -207,6 +207,11 @@ Public Class OL3Des
 
 
 
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        LayoutElements1.TreeView1.Nodes.Clear()
+
+        LayoutElements1.TreeView1.Nodes.Add(LayoutElements1.getAmendedElementList(LayoutDesigner1.Sp1, LayoutDesigner1))
+    End Sub
 End Class
 
 

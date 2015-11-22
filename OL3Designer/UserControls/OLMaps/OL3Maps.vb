@@ -324,6 +324,8 @@ Imports System.Runtime.Serialization.Formatters.Binary
             save.mapList.Add(mapList(y).save())
         Next
 
+        save.theLayoutDesigner = layout.save()
+
     End Function
 
 
@@ -341,7 +343,7 @@ Imports System.Runtime.Serialization.Formatters.Binary
             linkedBox.SelectedIndex = 0
         End If
 
-
+        layout.loadObj(saveObj.theLayoutDesigner)
         'mapChanged()
     End Sub
 
@@ -397,5 +399,5 @@ End Class
 <Serializable()> _
 Public Class OL3MapListSaveObject
     Public mapList As New List(Of OL3LayerListSaveObject)
-
+    Public theLayoutDesigner As OL3LayoutContainerSaveObject
 End Class

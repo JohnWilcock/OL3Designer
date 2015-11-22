@@ -123,7 +123,7 @@
                 tempFilterUniqueValues = theLayer.OL3Edit.OlLayerFilterPicker1.Panel1.Controls(0)
                 If tempFilterUniqueValues.getListOfUniqueFilterRows(mapNumber, layerNumber, FilterFieldNode.Text) Is Nothing Then
                 Else
-                    newFilterItem.controlFields = tempFilterUniqueValues.getListOfUniqueFilterRows(mapNumber, layerNumber, FilterFieldNode.Text)
+                    newFilterItem.controlFields = convertUniqueFilterRowListToValuePairList(tempFilterUniqueValues.getListOfUniqueFilterRows(mapNumber, layerNumber, FilterFieldNode.Text))
                 End If
         End Select
 
@@ -167,14 +167,29 @@
 
         'get selected node
         Dim selectedNode As Integer = TreeView2.SelectedNode.Index
-        Dim tempListOfValues As List(Of UniqueFilterRow) = FilterItems(selectedNode).controlFields
+        Dim tempListOfValues As List(Of UniqueFilterValueCheckPair) = FilterItems(selectedNode).controlFields
 
         For s As Integer = 0 To tempListOfValues.Count - 1
-            CheckedListBox1.Items.Add(tempListOfValues(s).Cells(2).Value.ToString)
+            CheckedListBox1.Items.Add(tempListOfValues(s).value)
             CheckedListBox1.SetItemCheckState(CheckedListBox1.Items.Count - 1, 1)
         Next
 
     End Sub
+
+    Function convertUniqueFilterRowListToValuePairList(ByVal rowList As List(Of UniqueFilterRow)) As List(Of UniqueFilterValueCheckPair)
+        convertUniqueFilterRowListToValuePairList = New List(Of UniqueFilterValueCheckPair)
+
+        For s As Integer = 0 To rowList.Count - 1
+
+            Dim temp As New UniqueFilterValueCheckPair
+            temp.checked = 1
+            temp.value = rowList(s).Cells(2).Value.ToString
+
+            convertUniqueFilterRowListToValuePairList.Add(temp)
+        Next
+
+    End Function
+
 
     Sub removeFilter(ByVal index As Integer)
         FilterItems.RemoveAt(index)
@@ -250,10 +265,42 @@
     End Sub
 
 
+    Sub refreshFiltersTreeview()
+        CheckedListBox1.Items.Clear()
+
+        TreeView2.Nodes.Clear()
+        For d As Integer = 0 To FilterItems.Count - 1
+            TreeView2.Nodes.Add(FilterItems(d).label)
+        Next
+
+    End Sub
+
+    Public Function save() As List(Of ControlItem)
+        save = FilterItems
+       
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As List(Of ControlItem))
+        FilterItems = saveObj
+
+        refreshFiltersTreeview()
+    End Sub
+
 End Class
 
-Class ControlItem
-    Public controlFields As List(Of UniqueFilterRow)
+
+<Serializable()> _
+Public Class UniqueFilterValueCheckPair
+    Public value As String
+    Public checked As Boolean
+End Class
+
+
+<Serializable()> _
+Public Class ControlItem
+    'Public controlFields As List(Of UniqueFilterRow) 'change to string 
+    Public controlFields As List(Of UniqueFilterValueCheckPair)
     Public StyleNames As List(Of String)
     Public fieldName As String
     Public label As String

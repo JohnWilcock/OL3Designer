@@ -538,6 +538,198 @@ Public Class SP
         If OFD.ShowDialog() = DialogResult.OK Then
             p2Img.ImageLocation = OFD.FileName
         End If
+
     End Sub
+
+
+    Public Function save(ByRef theLD As LayoutDesigner) As OL3LayoutContainerSaveObject
+        save = New OL3LayoutContainerSaveObject
+
+        'recursive bit to get all nested sp's
+        ' If 'its got a splitter in it-> save it
+        Dim tempSP As SP
+        theLD.removeAllButtons(Me.Panel1)
+        If Me.Panel1.Controls.Count > 0 Then
+            tempSP = Me.Panel1.Controls(Me.Panel1.Controls.Count - 1)
+            save.p1 = tempSP.save(theLD)
+        End If
+        theLD.removeAllButtons(Me.Panel2)
+        If Me.Panel2.Controls.Count > 0 Then
+            tempSP = Me.Panel2.Controls(Me.Panel2.Controls.Count - 1)
+            save.p2 = tempSP.save(theLD)
+        End If
+
+
+
+        save.ori = Me.Orientation
+        'If Me.Orientation = Windows.Forms.Orientation.Horizontal Then
+        '    save.dimension = Me.Panel1.Width
+        'Else
+        '    save.dimension = Me.Panel1.Height
+        'End If
+        save.dimension = Me.SplitterDistance
+
+        save.tableID = tableID
+        save.aL1 = aL1.Text
+        save.aL2 = aL2.Text
+
+        save.rows = rows
+
+        save.p1Collapsable = p1Collapsable.Checked
+        save.p2Collapsable = p2Collapsable.Checked
+        save.p1Collapsed = p1Collapsed.Checked
+        save.p2collapsed = p2collapsed.Checked
+
+        save.p1Img = p1Img.ImageLocation
+        save.p2Img = p2Img.ImageLocation
+
+        save.p1Text = p1Text.save
+        save.p2Text = p2Text.save
+
+        save.p1CollapseButtonHTML = p1CollapseButtonHTML
+        save.p2CollapseButtonHTML = p2CollapseButtonHTML
+
+        save.p1Fixed = p1Fixed.save
+        save.p2Fixed = p2Fixed.save
+
+        save.p1StyleOptions = p1StyleOptions.save
+        save.p2StyleOptions = p2StyleOptions.save
+
+        save.p1KeyOptions = p1KeyOptions.save
+        save.p2KeyOptions = p2KeyOptions.save
+
+        save.p1ControlOptions = p1ControlOptions.save
+        save.p2controloptions = p2controloptions.save
+
+        save.p1ImageType = p1ImageType.save
+        save.p2ImageType = p1ImageType.save
+
+
+        theLD.addAllLabels(Me)
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayoutContainerSaveObject)
+
+
+        'recursive bit to get all nested sp's
+        'remove any current controls
+        Me.Panel1.Controls.Clear()
+        Me.Panel2.Controls.Clear()
+        ' If 'its got a splitter in it-> save it
+        Dim tempSP As SP
+        If saveObj.p1 IsNot Nothing Then
+            Me.selectedPanel = Me.Panel1
+            Me.splitOut()
+            tempSP = Me.Panel1.Controls(Me.Panel1.Controls.Count - 1)
+            tempSP.loadObj(saveObj.p1)
+        End If
+        If saveObj.p2 IsNot Nothing Then
+            Me.selectedPanel = Me.Panel2
+            Me.splitOut()
+            tempSP = Me.Panel2.Controls(Me.Panel2.Controls.Count - 1)
+            tempSP.loadObj(saveObj.p2)
+        End If
+
+
+        Me.Orientation = saveObj.ori
+        'If Me.Orientation = Windows.Forms.Orientation.Horizontal Then
+        '    'splitter distance , not panel width/height
+        '    ' Me.Panel1.Width = saveObj.dimension
+
+        'Else
+        '    ' Me.Panel1.Height = saveObj.dimension
+        'End If
+        Me.SplitterDistance = saveObj.dimension
+
+        tableID = saveObj.tableID
+        aL1.Text = saveObj.aL1
+        aL2.Text = saveObj.aL2
+        p1Type.Text = aL1.Text
+        p2Type.Text = aL2.Text
+
+        rows = saveObj.rows
+
+        p1Collapsable.Checked = saveObj.p1Collapsable
+        p2Collapsable.Checked = saveObj.p2Collapsable
+        p1Collapsed.Checked = saveObj.p1Collapsed
+        p2collapsed.Checked = saveObj.p2collapsed
+
+        p1Img.ImageLocation = saveObj.p1Img
+        p2Img.ImageLocation = saveObj.p2Img
+
+        p1Text.loadObj(saveObj.p1Text)
+        p2Text.loadObj(saveObj.p2Text)
+
+        p1CollapseButtonHTML = saveObj.p1CollapseButtonHTML
+        p2CollapseButtonHTML = saveObj.p2CollapseButtonHTML
+
+        p1Fixed.loadObj(saveObj.p1Fixed)
+        p2Fixed.loadObj(saveObj.p2Fixed)
+
+        p1StyleOptions.loadObj(saveObj.p1StyleOptions)
+        p2StyleOptions.loadObj(saveObj.p2StyleOptions)
+
+        p1KeyOptions.loadObj(saveObj.p1KeyOptions)
+        p2KeyOptions.loadObj(saveObj.p2KeyOptions)
+
+        p1ControlOptions.loadObj(saveObj.p1ControlOptions)
+        p2controloptions.loadObj(saveObj.p2controloptions)
+
+        p1ImageType.loadObj(saveObj.p1ImageType)
+        p1ImageType.loadObj(saveObj.p2ImageType)
+
+
+    End Sub
+
+
+End Class
+
+<Serializable()> _
+Public Class OL3LayoutContainerSaveObject
+    Public tableID As Integer
+
+    Public p1 As OL3LayoutContainerSaveObject
+    Public p2 As OL3LayoutContainerSaveObject
+
+    Public dimension As Integer ' percent - not fixed
+    Public ori As System.Windows.Forms.Orientation
+
+    Public aL1 As String
+    Public aL2 As String
+    Public p1Type As String
+    Public p2Type As String
+
+    Public rows As Boolean
+
+    Public p1Collapsable As Boolean
+    Public p2Collapsable As Boolean
+    Public p1Collapsed As Boolean
+    Public p2collapsed As Boolean
+    Public p1Img As String
+    Public p2Img As String
+    Public p1Text As OL3LayoutHTMLSaveObject
+    Public p2Text As OL3LayoutHTMLSaveObject
+    Public p1CollapseButtonHTML As String
+    Public p2CollapseButtonHTML As String
+    Public p1Fixed As OL3FixedSaveObject
+    Public p2Fixed As OL3FixedSaveObject
+
+    'for style
+    Public p1StyleOptions As OL3LayoutStyleOptionsSaveObject
+    Public p2StyleOptions As OL3LayoutStyleOptionsSaveObject
+
+    'for key
+    Public p1KeyOptions As List(Of keyItem)
+    Public p2KeyOptions As List(Of keyItem)
+
+    'for controls
+    Public p1ControlOptions As List(Of ControlItem)
+    Public p2controloptions As List(Of ControlItem)
+
+    'for image
+    Public p1ImageType As OL3ImageSourceSaveObject
+    Public p2ImageType As OL3ImageSourceSaveObject
+
+
 End Class
 

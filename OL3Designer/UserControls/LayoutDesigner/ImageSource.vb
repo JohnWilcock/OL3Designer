@@ -68,4 +68,49 @@ Public Class ImageSource
 
     End Function
 
+
+    Public Function save() As OL3ImageSourceSaveObject
+        save = New OL3ImageSourceSaveObject
+        Select Case ComboBox1.SelectedIndex
+            Case 0
+                save.ImageSource = OL3ImageSourceSaveObject.ImageSourceType.Absolute
+            Case 1
+                save.ImageSource = OL3ImageSourceSaveObject.ImageSourceType.Relative
+            Case 2
+                save.ImageSource = OL3ImageSourceSaveObject.ImageSourceType.RelativeAndCopy
+            Case Else
+                save.ImageSource = OL3ImageSourceSaveObject.ImageSourceType.Absolute
+        End Select
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3ImageSourceSaveObject)
+        Select Case saveObj.ImageSource
+            Case OL3ImageSourceSaveObject.ImageSourceType.Absolute
+                ComboBox1.SelectedIndex = 0
+            Case OL3ImageSourceSaveObject.ImageSourceType.Relative
+                ComboBox1.SelectedIndex = 1
+            Case OL3ImageSourceSaveObject.ImageSourceType.RelativeAndCopy
+                ComboBox1.SelectedIndex = 2
+            Case Else
+                ComboBox1.SelectedIndex = 0
+        End Select
+
+    End Sub
 End Class
+
+<Serializable()> _
+Public Class OL3ImageSourceSaveObject
+
+    Public Enum ImageSourceType
+        Absolute = 0
+        Relative = 1
+        RelativeAndCopy = 2
+    End Enum
+
+    Public ImageSource As ImageSourceType
+
+End Class
+
+
+

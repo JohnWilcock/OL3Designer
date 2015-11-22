@@ -47,4 +47,32 @@
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
         dimension = NumericUpDown1.Value
     End Sub
+
+
+    Public Function save() As OL3FixedSaveObject
+        save = New OL3FixedSaveObject
+        save.dimension = dimension
+        save.fixed = fixed
+        save.Ori = Ori
+
+
+
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3FixedSaveObject)
+        dimension = saveObj.dimension
+        fixed = saveObj.fixed
+        Ori = saveObj.Ori
+
+
+    End Sub
+
+End Class
+
+<Serializable()> _
+Public Class OL3FixedSaveObject
+    Public fixed As Boolean
+    Public dimension As Integer
+    Public Ori As String
+
 End Class

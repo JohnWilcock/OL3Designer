@@ -233,8 +233,38 @@ Public Class LayoutKeyOptions
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
+    Sub refreshLisboxOfLayerInKey()
+        'refreshes the listbox of layers in key to sync it with "keyItems" ->should really be changed to fire with an onchange event
+
+        'clear list box
+        ListBox1.Items.Clear()
+        'refresh with keyitems
+        For x As Integer = 0 To keyItems.Count - 1
+            ListBox1.Items.Add(keyItems(x).label)
+        Next
+    End Sub
+
+    Public Function save() As List(Of keyItem)
+        save = New List(Of keyItem)
+        For x As Integer = 0 To keyItems.Count - 1
+            save.Add(keyItems(x))
+        Next
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As List(Of keyItem))
+        keyItems = saveObj
+        refreshLisboxOfLayerInKey()
+        refreshKey()
+    End Sub
+
+
 End Class
 
+
+
+
+<Serializable()> _
 Public Class keyItem
     Public label As String
     Public LayerID As Long

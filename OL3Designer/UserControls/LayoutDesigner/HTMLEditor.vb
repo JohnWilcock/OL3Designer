@@ -88,4 +88,25 @@ Public Class HTMLEditor
         End If
 
     End Sub
+
+
+    Public Function save() As OL3LayoutHTMLSaveObject
+        save = New OL3LayoutHTMLSaveObject
+        save.HTML = HTMLedit.DocumentText
+    End Function
+
+    Public Sub loadObj(ByVal saveObj As OL3LayoutHTMLSaveObject)
+        HTMLedit.DocumentText = saveObj.HTML
+
+    End Sub
+
+End Class
+
+
+
+
+<Serializable()> _
+Public Class OL3LayoutHTMLSaveObject
+    Public HTML As String
+
 End Class

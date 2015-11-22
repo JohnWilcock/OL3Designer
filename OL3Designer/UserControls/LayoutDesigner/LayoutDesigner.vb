@@ -330,6 +330,23 @@ Public Class LayoutDesigner
     Function setButtonParameters(ByVal buttonString As String, ByVal one As String, ByVal two As String, ByVal orientation As String) As String
         Return buttonString.Replace("999,999,9", one & "," & two & "," & orientation)
     End Function
+
+    Public Function save() As OL3LayoutContainerSaveObject
+        save = Sp1.save(Me)
+    End Function
+
+
+
+    Public Sub loadObj(ByVal saveObj As OL3LayoutContainerSaveObject)
+        'clear layout designer first to start from scratch -> now done in SP (layout container)
+        'now load saved layout designer.
+        Sp1.loadObj(saveObj)
+
+        'put labels back on
+        addAllLabels(Sp1)
+    End Sub
+
+
 End Class
 
 Class modifiedPanel

@@ -206,6 +206,12 @@
     <Compile Include="UserControls\LayoutDesigner\LayoutDesigner.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutElements.Designer.vb">
+      <DependentUpon>LayoutElements.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LayoutDesigner\LayoutElements.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControls\LayoutDesigner\LayoutKeyOptions.Designer.vb">
       <DependentUpon>LayoutKeyOptions.vb</DependentUpon>
     </Compile>
@@ -455,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LayoutDesigner\LayoutDesigner.resx">
       <DependentUpon>LayoutDesigner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LayoutDesigner\LayoutElements.resx">
+      <DependentUpon>LayoutElements.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LayoutDesigner\LayoutKeyOptions.resx">
       <DependentUpon>LayoutKeyOptions.vb</DependentUpon>
