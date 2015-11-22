@@ -5,6 +5,7 @@ Public Class LayoutDesigner
     Public WithEvents mapList As New ToolStripComboBox
     Public OL3mapsObject As OL3Maps
     Public Event onLayoutItemsChange()
+    Public elementList As LayoutElements
 
     Private _layoutList As String = ""
     Public Property layoutList() As String
@@ -26,6 +27,19 @@ Public Class LayoutDesigner
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+        Dim tableLayout As New SplitContainer
+        tableLayout.Orientation = Orientation.Horizontal
+        Panel1.Parent = tableLayout.Panel1
+        tableLayout.Panel1.Controls.Add(Panel1)
+        TableLayoutPanel1.Controls.Add(tableLayout, 1, 0)
+        tableLayout.Dock = DockStyle.Fill
+        Panel1.Dock = DockStyle.Fill
+
+        elementList = New LayoutElements
+        tableLayout.Panel2.Controls.Add(elementList)
+        elementList.Dock = DockStyle.Fill
+
+
 
     End Sub
 
@@ -303,6 +317,8 @@ Public Class LayoutDesigner
 
         Sp1.p1Type.Text = "Key"
         Sp1.p2Type.Text = "Map 1"
+
+        refreshElementList()
     End Sub
 
     Sub addAllLabels(ByVal theSP As SP)
@@ -330,6 +346,11 @@ Public Class LayoutDesigner
     Function setButtonParameters(ByVal buttonString As String, ByVal one As String, ByVal two As String, ByVal orientation As String) As String
         Return buttonString.Replace("999,999,9", one & "," & two & "," & orientation)
     End Function
+
+    Sub refreshElementList()
+        elementList.TreeView1.Nodes.Clear()
+        elementList.TreeView1.Nodes.Add(elementList.getAmendedElementList(Me.Sp1, Me))
+    End Sub
 
     Public Function save() As OL3LayoutContainerSaveObject
         save = Sp1.save(Me)

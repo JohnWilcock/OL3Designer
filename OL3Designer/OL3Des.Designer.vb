@@ -35,11 +35,6 @@ Partial Class OL3Des
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
-        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton8 = New System.Windows.Forms.ToolStripButton()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.LayoutDesigner1 = New OL3Designer.LayoutDesigner()
@@ -49,20 +44,20 @@ Partial Class OL3Des
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.LayoutElements1 = New OL3Designer.LayoutElements()
+        Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton8 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStrip5 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton9 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton10 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStrip5 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButton9 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton10 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.Panel6 = New System.Windows.Forms.Panel()
         Me.ToolStripContainer1.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
         Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout()
@@ -72,16 +67,14 @@ Partial Class OL3Des
         Me.Panel4.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.ToolStrip4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel5.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
-        Me.ToolStrip2.SuspendLayout()
+        Me.ToolStrip4.SuspendLayout()
         Me.ToolStrip5.SuspendLayout()
+        Me.ToolStrip2.SuspendLayout()
         Me.ToolStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -105,8 +98,9 @@ Partial Class OL3Des
         '
         'ToolStripContainer1.TopToolStripPanel
         '
-        Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip2)
+        Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip4)
         Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip5)
+        Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip2)
         Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip3)
         '
         'ToolStrip1
@@ -181,14 +175,13 @@ Partial Class OL3Des
         '
         Me.TableLayoutPanel3.ColumnCount = 1
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.Panel3, 0, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.Panel2, 0, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.Panel3, 0, 0)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 2
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
+        Me.TableLayoutPanel3.RowCount = 1
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 304.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 304.0!))
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(170, 356)
         Me.TableLayoutPanel3.TabIndex = 9
         '
@@ -196,9 +189,9 @@ Partial Class OL3Des
         '
         Me.Panel3.Controls.Add(Me.Panel1)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(3, 38)
+        Me.Panel3.Location = New System.Drawing.Point(3, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(164, 315)
+        Me.Panel3.Size = New System.Drawing.Size(164, 350)
         Me.Panel3.TabIndex = 1
         '
         'Panel1
@@ -206,23 +199,113 @@ Partial Class OL3Des
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(164, 315)
+        Me.Panel1.Size = New System.Drawing.Size(164, 350)
         Me.Panel1.TabIndex = 6
         '
-        'Panel2
+        'TabControl1
         '
-        Me.Panel2.Controls.Add(Me.ToolStrip4)
-        Me.Panel2.Location = New System.Drawing.Point(3, 3)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(164, 29)
-        Me.Panel2.TabIndex = 0
+        Me.TabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Location = New System.Drawing.Point(179, 3)
+        Me.TabControl1.Multiline = True
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(631, 356)
+        Me.TabControl1.TabIndex = 5
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.LayoutDesigner1)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 4)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(623, 330)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Design"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'LayoutDesigner1
+        '
+        Me.LayoutDesigner1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutDesigner1.layoutList = ""
+        Me.LayoutDesigner1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutDesigner1.Name = "LayoutDesigner1"
+        Me.LayoutDesigner1.Size = New System.Drawing.Size(617, 324)
+        Me.LayoutDesigner1.TabIndex = 0
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.TableLayoutPanel1)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 4)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(623, 330)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Preview"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.45454!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.54545!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutPreview1, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.Panel5, 1, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(617, 324)
+        Me.TableLayoutPanel1.TabIndex = 1
+        '
+        'LayoutPreview1
+        '
+        Me.LayoutPreview1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutPreview1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutPreview1.Name = "LayoutPreview1"
+        Me.LayoutPreview1.Size = New System.Drawing.Size(428, 318)
+        Me.LayoutPreview1.TabIndex = 0
+        '
+        'Panel5
+        '
+        Me.Panel5.Controls.Add(Me.Label1)
+        Me.Panel5.Controls.Add(Me.Button3)
+        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel5.Location = New System.Drawing.Point(437, 3)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(177, 318)
+        Me.Panel5.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(3, 29)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(150, 78)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "The preview only displays the " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "HTML elements of the layout, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "not the map.  Ofte" & _
+    "n elements " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "will appear blank if they have " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "not been assigned a border in " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "th" & _
+    "e layout designer."
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(6, 3)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 2
+        Me.Button3.Text = "Refresh"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'ToolStrip4
         '
+        Me.ToolStrip4.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripComboBox1, Me.ToolStripButton7, Me.ToolStripButton8})
-        Me.ToolStrip4.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip4.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip4.Name = "ToolStrip4"
-        Me.ToolStrip4.Size = New System.Drawing.Size(164, 25)
+        Me.ToolStrip4.Size = New System.Drawing.Size(135, 25)
         Me.ToolStrip4.TabIndex = 0
         Me.ToolStrip4.Text = "ToolStrip4"
         '
@@ -250,138 +333,38 @@ Partial Class OL3Des
         Me.ToolStripButton8.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton8.Text = "Delete selected map frame"
         '
-        'TabControl1
+        'ToolStrip5
         '
-        Me.TabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(179, 3)
-        Me.TabControl1.Multiline = True
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(631, 356)
-        Me.TabControl1.TabIndex = 5
+        Me.ToolStrip5.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton9, Me.ToolStripButton10})
+        Me.ToolStrip5.Location = New System.Drawing.Point(138, 0)
+        Me.ToolStrip5.Name = "ToolStrip5"
+        Me.ToolStrip5.Size = New System.Drawing.Size(58, 25)
+        Me.ToolStrip5.TabIndex = 13
         '
-        'TabPage1
+        'ToolStripButton9
         '
-        Me.TabPage1.Controls.Add(Me.LayoutDesigner1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 4)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(623, 305)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Design"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.ToolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton9.Image = CType(resources.GetObject("ToolStripButton9.Image"), System.Drawing.Image)
+        Me.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton9.Name = "ToolStripButton9"
+        Me.ToolStripButton9.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton9.Text = "ToolStripButton9"
         '
-        'LayoutDesigner1
+        'ToolStripButton10
         '
-        Me.LayoutDesigner1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutDesigner1.layoutList = ""
-        Me.LayoutDesigner1.Location = New System.Drawing.Point(3, 3)
-        Me.LayoutDesigner1.Name = "LayoutDesigner1"
-        Me.LayoutDesigner1.Size = New System.Drawing.Size(617, 299)
-        Me.LayoutDesigner1.TabIndex = 0
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.TableLayoutPanel1)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 4)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(623, 305)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Preview"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.ColumnCount = 2
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.45454!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.54545!))
-        Me.TableLayoutPanel1.Controls.Add(Me.LayoutPreview1, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Panel5, 1, 0)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(617, 299)
-        Me.TableLayoutPanel1.TabIndex = 1
-        '
-        'LayoutPreview1
-        '
-        Me.LayoutPreview1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutPreview1.Location = New System.Drawing.Point(3, 3)
-        Me.LayoutPreview1.Name = "LayoutPreview1"
-        Me.LayoutPreview1.Size = New System.Drawing.Size(428, 293)
-        Me.LayoutPreview1.TabIndex = 0
-        '
-        'Panel5
-        '
-        Me.Panel5.Controls.Add(Me.Label1)
-        Me.Panel5.Controls.Add(Me.Button3)
-        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel5.Location = New System.Drawing.Point(437, 3)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(177, 293)
-        Me.Panel5.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 29)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(150, 78)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "The preview only displays the " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "HTML elements of the layout, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "not the map.  Ofte" & _
-    "n elements " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "will appear blank if they have " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "not been assigned a border in " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "th" & _
-    "e layout designer."
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(6, 3)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "Refresh"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'TabPage3
-        '
-        Me.TabPage3.Controls.Add(Me.Panel6)
-        Me.TabPage3.Controls.Add(Me.Button1)
-        Me.TabPage3.Controls.Add(Me.LayoutElements1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 4)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(623, 330)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Elements"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(6, 6)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Refresh"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'LayoutElements1
-        '
-        Me.LayoutElements1.Location = New System.Drawing.Point(6, 34)
-        Me.LayoutElements1.Name = "LayoutElements1"
-        Me.LayoutElements1.Size = New System.Drawing.Size(229, 290)
-        Me.LayoutElements1.TabIndex = 0
+        Me.ToolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton10.Image = CType(resources.GetObject("ToolStripButton10.Image"), System.Drawing.Image)
+        Me.ToolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton10.Name = "ToolStripButton10"
+        Me.ToolStripButton10.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton10.Text = "ToolStripButton10"
         '
         'ToolStrip2
         '
         Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripButton1, Me.ToolStripButton4, Me.ToolStripButton5})
-        Me.ToolStrip2.Location = New System.Drawing.Point(61, 0)
+        Me.ToolStrip2.Location = New System.Drawing.Point(237, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
         Me.ToolStrip2.Size = New System.Drawing.Size(124, 25)
         Me.ToolStrip2.TabIndex = 11
@@ -422,38 +405,11 @@ Partial Class OL3Des
         Me.ToolStripButton5.Text = "ToolStripButton5"
         Me.ToolStripButton5.ToolTipText = "Simple layout"
         '
-        'ToolStrip5
-        '
-        Me.ToolStrip5.Dock = System.Windows.Forms.DockStyle.None
-        Me.ToolStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton9, Me.ToolStripButton10})
-        Me.ToolStrip5.Location = New System.Drawing.Point(3, 0)
-        Me.ToolStrip5.Name = "ToolStrip5"
-        Me.ToolStrip5.Size = New System.Drawing.Size(58, 25)
-        Me.ToolStrip5.TabIndex = 13
-        '
-        'ToolStripButton9
-        '
-        Me.ToolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton9.Image = CType(resources.GetObject("ToolStripButton9.Image"), System.Drawing.Image)
-        Me.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton9.Name = "ToolStripButton9"
-        Me.ToolStripButton9.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton9.Text = "ToolStripButton9"
-        '
-        'ToolStripButton10
-        '
-        Me.ToolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton10.Image = CType(resources.GetObject("ToolStripButton10.Image"), System.Drawing.Image)
-        Me.ToolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton10.Name = "ToolStripButton10"
-        Me.ToolStripButton10.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton10.Text = "ToolStripButton10"
-        '
         'ToolStrip3
         '
         Me.ToolStrip3.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3})
-        Me.ToolStrip3.Location = New System.Drawing.Point(185, 0)
+        Me.ToolStrip3.Location = New System.Drawing.Point(196, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
         Me.ToolStrip3.Size = New System.Drawing.Size(35, 25)
         Me.ToolStrip3.TabIndex = 12
@@ -467,13 +423,6 @@ Partial Class OL3Des
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "ToolStripButton3"
         Me.ToolStripButton3.ToolTipText = "Information"
-        '
-        'Panel6
-        '
-        Me.Panel6.Location = New System.Drawing.Point(259, 34)
-        Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(358, 290)
-        Me.Panel6.TabIndex = 2
         '
         'OL3Des
         '
@@ -497,21 +446,18 @@ Partial Class OL3Des
         Me.Panel4.ResumeLayout(False)
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
-        Me.ToolStrip4.ResumeLayout(False)
-        Me.ToolStrip4.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
-        Me.TabPage3.ResumeLayout(False)
-        Me.ToolStrip2.ResumeLayout(False)
-        Me.ToolStrip2.PerformLayout()
+        Me.ToolStrip4.ResumeLayout(False)
+        Me.ToolStrip4.PerformLayout()
         Me.ToolStrip5.ResumeLayout(False)
         Me.ToolStrip5.PerformLayout()
+        Me.ToolStrip2.ResumeLayout(False)
+        Me.ToolStrip2.PerformLayout()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
         Me.ResumeLayout(False)
@@ -527,7 +473,6 @@ Partial Class OL3Des
     Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents TableLayoutPanel3 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents ToolStripContainer1 As System.Windows.Forms.ToolStripContainer
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
@@ -553,9 +498,5 @@ Partial Class OL3Des
     Friend WithEvents ToolStrip5 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripButton9 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton10 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
-    Friend WithEvents LayoutElements1 As OL3Designer.LayoutElements
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Panel6 As System.Windows.Forms.Panel
 
 End Class

@@ -11,7 +11,7 @@ Public Class SP
     Public aL2 As New Label
 
 
-    Dim selectedPanel As SplitterPanel
+    Public selectedPanel As SplitterPanel
     Dim rows As Boolean
 
     Public WithEvents p1P As New FlowLayoutPanel
@@ -227,6 +227,10 @@ Public Class SP
     End Sub
 
     Sub splitOut()
+        'clear property panel else error on split out.
+        properties.Controls.Clear()
+
+
         Dim thePanel As SplitterPanel = selectedPanel
         Dim newSP As New SP(Me)
         Dim randomNum As New Random
@@ -277,6 +281,8 @@ Public Class SP
             thePanel.Controls.Add(newSP)
 
         End If
+
+        triggerElementListUpdate()
 
     End Sub
 
@@ -340,6 +346,7 @@ Public Class SP
                 p1ImageType.Hide()
                 p1ControlsButton.Hide()
                 p1Fixed.Show()
+
             Case "Key"
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
@@ -442,6 +449,10 @@ Public Class SP
                 p2Fixed.Show()
 
         End Select
+
+        If p1Lookup.Length > 0 And properties.Controls.Count > 0 Then triggerElementListUpdate()
+        If p2Lookup.Length > 0 And properties.Controls.Count > 0 Then triggerElementListUpdate()
+
     End Sub
 
     Sub setCollapseHTML()
@@ -539,6 +550,11 @@ Public Class SP
             p2Img.ImageLocation = OFD.FileName
         End If
 
+    End Sub
+
+    Sub triggerElementListUpdate()
+        Dim thePanel As modifiedPanel = properties
+        thePanel.OL3MapsObject.layout.refreshElementList()
     End Sub
 
 
