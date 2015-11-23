@@ -38,7 +38,7 @@ Public Class LayoutDesigner
         elementList = New LayoutElements
         tableLayout.Panel2.Controls.Add(elementList)
         elementList.Dock = DockStyle.Fill
-
+        tableLayout.SplitterDistance = 260
 
 
     End Sub

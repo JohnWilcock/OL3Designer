@@ -301,11 +301,26 @@ Public Class SP
         'is either frame fixed dimensions
         If p1Fixed.CheckBox1.Checked Then
             p2Fixed.CheckBox1.Enabled = False
+        Else
+
+            p2Fixed.CheckBox1.Enabled = True
         End If
 
         If p2Fixed.CheckBox1.Checked Then
             p1Fixed.CheckBox1.Enabled = False
+        Else
+            p1Fixed.CheckBox1.Enabled = True
         End If
+
+        'colour in panel?
+        'Dim myBrush As New System.Drawing.SolidBrush(System.Drawing.Color.Red)
+        'Dim thePen As New System.Drawing.Pen(Brushes.Red, 4)
+        'Dim formGraphics As System.Drawing.Graphics
+        'formGraphics = Me.CreateGraphics()
+        'formGraphics.DrawRectangle(thePen, New Rectangle(Me.selectedPanel.DisplayRectangle.X, Me.selectedPanel.DisplayRectangle.Y, Me.selectedPanel.DisplayRectangle.X + Me.selectedPanel.DisplayRectangle.Width, Me.selectedPanel.DisplayRectangle.Y + Height - 2))
+
+        'myBrush.Dispose()
+        'formGraphics.Dispose()
 
         'shows the proptery panel in designated panel
         properties.Controls.Clear()
@@ -321,6 +336,20 @@ Public Class SP
             properties.Controls.Add(p2P)
             p2P.Dock = DockStyle.Fill
         End If
+    End Sub
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        '' Call the OnPaint method of the base class.
+        'MyBase.OnPaint(e)
+        '' Call methods of the System.Drawing.Graphics object.
+
+        'Dim myBrush As New System.Drawing.SolidBrush(System.Drawing.Color.Red)
+        'Dim formGraphics As System.Drawing.Graphics
+        'formGraphics = Me.selectedPanel.CreateGraphics()
+        'formGraphics.FillRectangle(myBrush, New Rectangle(0, 0, 200, 100))
+
+        'myBrush.Dispose()
+        'formGraphics.Dispose()
     End Sub
 
     Sub setPropertyPanels()

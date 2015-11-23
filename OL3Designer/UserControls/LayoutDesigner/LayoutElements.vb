@@ -9,6 +9,30 @@
         Return tempTreenode
     End Function
 
+    Function setNullSP(ByVal theSP As SP, ByVal panelNum As Integer)
+        If panelNum = 1 Then
+            theSP.p1Type.Hide()
+            theSP.p1Text.Hide()
+            theSP.p1Path.Hide()
+            theSP.p1KeyButton.Hide()
+            theSP.p1ImageType.Hide()
+            theSP.p1ControlsButton.Hide()
+            theSP.p1Collapsable.Hide()
+            theSP.p1Collapsed.Hide()
+        Else
+            theSP.p2Type.Hide()
+            theSP.p2Text.Hide()
+            theSP.p2Path.Hide()
+            theSP.p2KeyButton.Hide()
+            theSP.p2ImageType.Hide()
+            theSP.p2ControlsButton.Hide()
+            theSP.p2Collapsable.Hide()
+            theSP.p2collapsed.Hide()
+        End If
+
+
+    End Function
+
     Function getElementList(ByVal theSP As SP, ByRef theLD As LayoutDesigner) As TreeNode
         getElementList = New TreeNode
         thelayoutDesigner = theLD
@@ -28,6 +52,7 @@
             Else
                 getElementList.Nodes(nodeNum).Text = "Left"
             End If
+            setNullSP(theSP, 1)
             getElementList.Nodes(nodeNum).Name = theSP.tableID
         Else
             'if its a key get the key num , else returns blank
@@ -65,7 +90,8 @@
                     getElementList.Nodes(nodeNum).Text = "Bottom"
                 Else
                     getElementList.Nodes(nodeNum).Text = "Right"
-                End If
+            End If
+            setNullSP(theSP, 2)
                 getElementList.Nodes(nodeNum).Name = theSP.tableID
             Else
                 'if its a key get the key num , else returns blank
