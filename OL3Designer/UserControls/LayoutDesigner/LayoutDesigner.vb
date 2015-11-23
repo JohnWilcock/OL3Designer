@@ -140,7 +140,16 @@ Public Class LayoutDesigner
             If theSP.p1Type.Text = "Image" Then HTMLText = "<img style='max-width:100%;max-height:100%;' src='" & theSP.p1ImageType.getPath(theSP.p1Img.ImageLocation, OL3mapsObject.outputLocation) & "'></img>" ' Else HTMLText = ""
             If theSP.p1Type.Text = "Controls" Then HTMLText = theSP.p1ControlOptions.getControlHTML
 
-            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_1' style='" & cell1dims(0) & cell1dims(1) & theSP.p1StyleOptions.getstyleCSS & "'><div id='" & theSP.aL1.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;overflow:auto;" & cell1dims(0) & cell1dims(1) & "'>" & theSP.p1CollapseButtonHTML & HTMLText & "</div></td>"
+            Dim div1Dims(1) As String
+            If theSP.p1Fixed.fixed Then
+                div1Dims(0) = cell1dims(0)
+                div1Dims(1) = cell1dims(1)
+            Else
+                div1Dims(0) = "width:100%;"
+                div1Dims(1) = "height:100%;"
+            End If
+
+            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_1' style='" & cell1dims(0) & cell1dims(1) & theSP.p1StyleOptions.getstyleCSS & "'><div id='" & theSP.aL1.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;overflow:auto;" & div1Dims(0) & div1Dims(1) & "'>" & theSP.p1CollapseButtonHTML & HTMLText & "</div></td>"
 
             If theSP.Orientation = Orientation.Horizontal Then
                 convertToHTML = convertToHTML & "</tr>"
@@ -166,7 +175,17 @@ Public Class LayoutDesigner
             If theSP.p2Type.Text = "Controls" Then HTMLText = theSP.p1ControlOptions.getControlHTML
 
 
-            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2' style='" & cell2dims(0) & cell2dims(1) & theSP.p2StyleOptions.getstyleCSS & "'><div id='" & theSP.aL2.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;" & cell2dims(0) & cell2dims(1) & "'>" & theSP.p2CollapseButtonHTML & HTMLText & "</div></td>"
+            Dim div2Dims(1) As String
+            If theSP.p2Fixed.fixed Then
+                div2Dims(0) = cell2dims(0)
+                div2Dims(1) = cell2dims(1)
+            Else
+                div2Dims(0) = "width:100%;"
+                div2Dims(1) = "height:100%;"
+            End If
+
+
+            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2' style='" & cell2dims(0) & cell2dims(1) & theSP.p2StyleOptions.getstyleCSS & "'><div id='" & theSP.aL2.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;" & div2Dims(0) & div2Dims(1) & "'>" & theSP.p2CollapseButtonHTML & HTMLText & "</div></td>"
             If theSP.Orientation = Orientation.Horizontal Then convertToHTML = convertToHTML & "</tr>"
         End If
 
