@@ -92,16 +92,19 @@ Public Class OL3Des
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         LayoutDesigner1.Sp1.Panel1Collapsed = False
+        LayoutDesigner1.Sp1.p1Collapsed.Checked = False
         LayoutDesigner1.Sp1.Orientation = Orientation.Horizontal
     End Sub
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         LayoutDesigner1.Sp1.Panel1Collapsed = False
+        LayoutDesigner1.Sp1.p1Collapsed.Checked = False
         LayoutDesigner1.Sp1.Orientation = Orientation.Vertical
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
         LayoutDesigner1.Sp1.Panel1Collapsed = True
+        LayoutDesigner1.Sp1.p1Collapsed.Checked = True
         LayoutDesigner1.Sp1.p1Type.Text = "Text"
     End Sub
 

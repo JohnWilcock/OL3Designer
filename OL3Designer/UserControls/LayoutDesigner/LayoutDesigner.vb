@@ -106,6 +106,14 @@ Public Class LayoutDesigner
 
     End Function
 
+    Function collapsedCSS(ByVal cb As CheckBox) As String
+        If cb.Checked Then
+            Return "display:none;"
+        Else
+            Return ""
+        End If
+    End Function
+
     Function convertLayoutToHTML(ByVal theSP As SP) As String
         Dim convertToHTML As String = ""
         Dim Ori As String = ""
@@ -132,7 +140,7 @@ Public Class LayoutDesigner
         removeAllButtons(theSP.Panel1)
         If theSP.Panel1.Controls.Count > 0 Then
 
-            convertToHTML = convertToHTML & "<td id='table" & theSP.tableID & "_1' style='" & cell1dims(1) & "'>" & convertLayoutToHTML(theSP.Panel1.Controls(theSP.Panel1.Controls.Count - 1)) & "</td>"
+            convertToHTML = convertToHTML & "<td id='table" & theSP.tableID & "_1' style='" & collapsedCSS(theSP.p1Collapsed) & cell1dims(1) & "'>" & convertLayoutToHTML(theSP.Panel1.Controls(theSP.Panel1.Controls.Count - 1)) & "</td>"
         Else
             'if its a key get the key num , else returns blank
             keyDivNumber = addKeyObjectLiterol(theSP.aL1, theSP.p1KeyOptions)
@@ -149,7 +157,7 @@ Public Class LayoutDesigner
                 div1Dims(1) = "height:100%;"
             End If
 
-            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_1' style='" & cell1dims(0) & cell1dims(1) & theSP.p1StyleOptions.getstyleCSS & "'><div id='" & theSP.aL1.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;overflow:auto;" & div1Dims(0) & div1Dims(1) & "'>" & theSP.p1CollapseButtonHTML & HTMLText & "</div></td>"
+            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_1' style='" & collapsedCSS(theSP.p1Collapsed) & cell1dims(0) & cell1dims(1) & theSP.p1StyleOptions.getstyleCSS & "'><div id='" & theSP.aL1.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;overflow:auto;" & div1Dims(0) & div1Dims(1) & "'>" & theSP.p1CollapseButtonHTML & HTMLText & "</div></td>"
 
             If theSP.Orientation = Orientation.Horizontal Then
                 convertToHTML = convertToHTML & "</tr>"
@@ -166,7 +174,7 @@ Public Class LayoutDesigner
         HTMLText = ""
         If theSP.Panel2.Controls.Count Then
 
-            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2'  style='" & cell2dims(1) & "'>" & convertLayoutToHTML(theSP.Panel2.Controls(theSP.Panel2.Controls.Count - 1)) & "</td>" & OriEnd
+            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2'  style='" & collapsedCSS(theSP.p2collapsed) & cell2dims(1) & "'>" & convertLayoutToHTML(theSP.Panel2.Controls(theSP.Panel2.Controls.Count - 1)) & "</td>" & OriEnd
         Else
             'if its a key get the key num , else returns blank
             keyDivNumber = addKeyObjectLiterol(theSP.aL2, theSP.p2KeyOptions)
@@ -185,7 +193,7 @@ Public Class LayoutDesigner
             End If
 
 
-            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2' style='" & cell2dims(0) & cell2dims(1) & theSP.p2StyleOptions.getstyleCSS & "'><div id='" & theSP.aL2.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;" & div2Dims(0) & div2Dims(1) & "'>" & theSP.p2CollapseButtonHTML & HTMLText & "</div></td>"
+            convertToHTML = convertToHTML & Ori & "<td  id='table" & theSP.tableID & "_2' style='" & collapsedCSS(theSP.p2collapsed) & cell2dims(0) & cell2dims(1) & theSP.p2StyleOptions.getstyleCSS & "'><div id='" & theSP.aL2.Text.ToLower.Replace(" ", "") & keyDivNumber & "' style='position:relative;" & div2Dims(0) & div2Dims(1) & "'>" & theSP.p2CollapseButtonHTML & HTMLText & "</div></td>"
             If theSP.Orientation = Orientation.Horizontal Then convertToHTML = convertToHTML & "</tr>"
         End If
 
