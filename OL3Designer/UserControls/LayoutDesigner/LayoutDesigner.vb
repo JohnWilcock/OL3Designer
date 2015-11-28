@@ -150,8 +150,8 @@ Public Class LayoutDesigner
 
             Dim div1Dims(1) As String
             If theSP.p1Fixed.fixed Then
-                div1Dims(0) = cell1dims(0)
-                div1Dims(1) = cell1dims(1)
+                div1Dims(0) = cell1dims(0) 'height
+                div1Dims(1) = cell1dims(1) 'width
             Else
                 div1Dims(0) = "width:100%;"
                 div1Dims(1) = "height:100%;"

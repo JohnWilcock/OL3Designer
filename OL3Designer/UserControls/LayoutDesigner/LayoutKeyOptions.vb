@@ -80,9 +80,10 @@ Public Class LayoutKeyOptions
         'if layer still exists update all the properties (i.e. layer name, map num, layer num)
         Dim keyItemCount As Integer = 0
         Dim keyItemCountAll As Integer = keyItems.Count - 1
-        For item As Integer = 0 To keyItemCountAll
+        For item As Integer = keyItemCountAll To 0 Step -1
             'if item has been removed
-            If findKeyID(keyItemCount) = False Then
+            If findKeyID(item) = False Then
+                reduceLayerNumberHeldInKey(item)
                 keyItems.RemoveAt(item)
                 ListBox1.Items.RemoveAt(item)
             End If
@@ -90,11 +91,19 @@ Public Class LayoutKeyOptions
         Next
     End Sub
 
+    Sub reduceLayerNumberHeldInKey(ByVal layersAbove As Integer)
+        'sub reduces the layer numbers held in keyitems. only does for layers with index above the removed layer
+        For f As Integer = layersAbove + 1 To keyItems.Count - 1
+            keyItems(f).layerNumber = keyItems(f).layerNumber - 1
+        Next
+
+    End Sub
+
     Function findKeyID(ByVal keyItemCount As Long) As Boolean
         For Each map As OL3LayerList In OL3mapsObject.mapList
             For Each mapLayer As OLLayer In map.DataGridView1.Rows
 
-                If keyItems.Count > (keyItemCount - 1) Then
+                If keyItems.Count > (keyItemCount) Then
                     If mapLayer.layerID = keyItems(keyItemCount).LayerID Then
                         'update layer info if names have changed etc
                         keyItems(keyItemCount).layerName = mapLayer.layerName

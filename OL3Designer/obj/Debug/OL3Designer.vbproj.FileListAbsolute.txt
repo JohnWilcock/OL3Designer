@@ -247,3 +247,4 @@ C:\Users\wilc8340\Downloads\OL3Designer-master\OL3Designer-master\OL3Designer\ob
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.AddUniqueValue.resources
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.FixedDimensions.resources
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.LayoutElements.resources
+C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.ApplicationSettings.resources

@@ -430,6 +430,12 @@
     <Compile Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogTextControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\Other\ApplicationSettings.Designer.vb">
+      <DependentUpon>ApplicationSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Other\ApplicationSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="OL3Des.resx">
@@ -572,6 +578,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OLStyles\OL3StylePicker\OLStylePickerDialogTextControl.resx">
       <DependentUpon>OLStylePickerDialogTextControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Other\ApplicationSettings.resx">
+      <DependentUpon>ApplicationSettings.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

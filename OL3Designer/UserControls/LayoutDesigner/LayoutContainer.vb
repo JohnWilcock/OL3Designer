@@ -366,6 +366,7 @@ Public Class SP
 
         Select Case p1Lookup
             Case "Map"
+                p1Type.Show()
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
                 p1Path.Hide()
@@ -377,6 +378,7 @@ Public Class SP
                 p1Fixed.Show()
 
             Case "Key"
+                p1Type.Show()
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
                 p1Path.Hide()
@@ -390,6 +392,7 @@ Public Class SP
                 Dim propertiesPanel As modifiedPanel = properties
                 p1KeyOptions.OL3mapsObject = propertiesPanel.OL3MapsObject
             Case "Ima" ' Image
+                p1Type.Show()
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
                 p1Path.Show()
@@ -400,6 +403,7 @@ Public Class SP
                 p1ControlsButton.Hide()
                 p1Fixed.Show()
             Case "Tex" ' Text
+                p1Type.Show()
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
                 p1Path.Hide()
@@ -410,6 +414,7 @@ Public Class SP
                 p1ControlsButton.Hide()
                 p1Fixed.Show()
             Case "Con" 'Controls
+                p1Type.Show()
                 p1Collapsable.Hide()
                 p1Collapsed.Hide()
                 p1Path.Hide()
@@ -424,6 +429,7 @@ Public Class SP
 
         Select Case p2Lookup
             Case "Map"
+                p2Type.Show()
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
                 p2Path.Hide()
@@ -434,6 +440,7 @@ Public Class SP
                 p2ControlsButton.Hide()
                 p2Fixed.Show()
             Case "Key"
+                p2Type.Show()
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
                 p2Path.Hide()
@@ -447,6 +454,7 @@ Public Class SP
                 Dim propertiesPanel As modifiedPanel = properties
                 p2KeyOptions.OL3mapsObject = propertiesPanel.OL3MapsObject
             Case "Ima"
+                p2Type.Show()
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
                 p2Path.Show()
@@ -457,6 +465,7 @@ Public Class SP
                 p2ControlsButton.Hide()
                 p2Fixed.Show()
             Case "Tex"
+                p2Type.Show()
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
                 p2Path.Hide()
@@ -467,6 +476,7 @@ Public Class SP
                 p2ControlsButton.Hide()
                 p2Fixed.Show()
             Case "Con"
+                p2Type.Show()
                 p2Collapsable.Hide()
                 p2collapsed.Hide()
                 p2Path.Hide()
@@ -490,17 +500,17 @@ Public Class SP
 
         If p1Collapsable.Checked Then
             If rows Then 'table, panel , cell, 
-                p1CollapseButtonHTML = "<button style='width:25px;position:absolute;right:0;bottom:0;' onclick='collapsePanel(" & Chr(34) & "table" & tableID & "_2" & Chr(34) & "," & Chr(34) & "table" & tableID & "_1" & Chr(34) & ",999,999,9)'>&#8597;</button>"
+                p1CollapseButtonHTML = "<button style='width:25px;position:absolute;z-index:999;right:0;bottom:0;' onclick='collapsePanel(" & Chr(34) & "table" & tableID & "_2" & Chr(34) & "," & Chr(34) & "table" & tableID & "_1" & Chr(34) & ",999,999,9)'>&#8597;</button>"
             Else
-                p1CollapseButtonHTML = "<button style='width:25px;position:absolute;right:0;top:0;'  onclick='collapsePanel(" & Chr(34) & "table" & tableID & "_2" & Chr(34) & "," & Chr(34) & "table" & tableID & "_1" & Chr(34) & ",999,999,9)'>&harr;</button>"
+                p1CollapseButtonHTML = "<button style='width:25px;position:absolute;z-index:999;right:0;top:0;'  onclick='collapsePanel(" & Chr(34) & "table" & tableID & "_2" & Chr(34) & "," & Chr(34) & "table" & tableID & "_1" & Chr(34) & ",999,999,9)'>&harr;</button>"
             End If
         End If
 
         If p2Collapsable.Checked Then
             If rows Then
-                p2CollapseButtonHTML = "<button style='width:25px;position:absolute;right:0;top:0;' onclick='collapsePanel(" & Chr(34) & "table" & tableID & "_1" & Chr(34) & "," & Chr(34) & "table" & tableID & "_2" & Chr(34) & ",999,999,9)'>&#8597;</button>"
+                p2CollapseButtonHTML = "<button style='width:25px;position:absolute;z-index:999;right:0;top:0;' onclick='collapsePanel(" & Chr(34) & "table" & tableID & "_1" & Chr(34) & "," & Chr(34) & "table" & tableID & "_2" & Chr(34) & ",999,999,9)'>&#8597;</button>"
             Else
-                p2CollapseButtonHTML = "<button style='width:25px;position:absolute;left:0;top:0;'  onclick='collapsePanel(" & Chr(34) & "table" & tableID & "_1" & Chr(34) & "," & Chr(34) & "table" & tableID & "_2" & Chr(34) & ",999,999,9)'>&harr;</button>"
+                p2CollapseButtonHTML = "<button style='width:25px;position:absolute;z-index:999;left:0;top:0;'  onclick='collapsePanel(" & Chr(34) & "table" & tableID & "_1" & Chr(34) & "," & Chr(34) & "table" & tableID & "_2" & Chr(34) & ",999,999,9)'>&harr;</button>"
             End If
         End If
     End Sub

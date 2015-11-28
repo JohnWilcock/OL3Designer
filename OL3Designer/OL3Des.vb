@@ -173,6 +173,13 @@ Public Class OL3Des
         'remove map
         If maps.mapList.Count > 1 Then
             maps.mapList.RemoveAt(maps.linkedBox.SelectedIndex)
+
+            'reduce map numbers and names for all map numbers above the removed one
+            For f As Integer = maps.linkedBox.SelectedIndex + 1 To maps.linkedBox.Items.Count - 1
+                maps.mapList(f - 1).mapNumber = maps.mapList(f - 1).mapNumber - 1
+                maps.mapList(f - 1).mapName = "Map " & maps.mapList(f - 1).mapNumber
+            Next
+
             maps.linkedBox.Items.RemoveAt(maps.linkedBox.SelectedIndex)
             maps.linkedBox.SelectedIndex = 0
 
@@ -189,11 +196,13 @@ Public Class OL3Des
             Next
 
         Else
-            MsgBox("Cannot delete, there must be at least one map")
+            MsgBox("Cannot delete, there must always be at least one map")
         End If
 
         'refresh linked layout component list
         maps.refreshList()
+
+        'remove map from layout elements
 
 
     End Sub
