@@ -248,6 +248,12 @@
     <Compile Include="UserControls\OLBasemaps\OL3BasemapTiledRaster.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\OLBasemaps\OLBasemapOSM.Designer.vb">
+      <DependentUpon>OLBasemapOSM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OLBasemaps\OLBasemapOSM.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControls\OLFilters\OLLayerFilterNumericValues.Designer.vb">
       <DependentUpon>OLLayerFilterNumericValues.vb</DependentUpon>
     </Compile>
@@ -488,6 +494,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OLBasemaps\OL3BasemapTiledRaster.resx">
       <DependentUpon>OL3BasemapTiledRaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OLBasemaps\OLBasemapOSM.resx">
+      <DependentUpon>OLBasemapOSM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OLFilters\OLLayerFilterNumericValues.resx">
       <DependentUpon>OLLayerFilterNumericValues.vb</DependentUpon>

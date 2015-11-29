@@ -289,7 +289,7 @@ Partial Class OL3Des
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripComboBox1, Me.ToolStripButton7, Me.ToolStripButton8})
         Me.ToolStrip4.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip4.Name = "ToolStrip4"
-        Me.ToolStrip4.Size = New System.Drawing.Size(166, 25)
+        Me.ToolStrip4.Size = New System.Drawing.Size(135, 25)
         Me.ToolStrip4.TabIndex = 0
         Me.ToolStrip4.Text = "ToolStrip4"
         '
@@ -321,7 +321,7 @@ Partial Class OL3Des
         '
         Me.ToolStrip5.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton9, Me.ToolStripButton10})
-        Me.ToolStrip5.Location = New System.Drawing.Point(169, 0)
+        Me.ToolStrip5.Location = New System.Drawing.Point(138, 0)
         Me.ToolStrip5.Name = "ToolStrip5"
         Me.ToolStrip5.Size = New System.Drawing.Size(58, 25)
         Me.ToolStrip5.TabIndex = 13
@@ -348,7 +348,7 @@ Partial Class OL3Des
         '
         Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripButton1, Me.ToolStripButton4, Me.ToolStripButton5})
-        Me.ToolStrip2.Location = New System.Drawing.Point(287, 0)
+        Me.ToolStrip2.Location = New System.Drawing.Point(254, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
         Me.ToolStrip2.Size = New System.Drawing.Size(124, 25)
         Me.ToolStrip2.TabIndex = 11
@@ -393,7 +393,7 @@ Partial Class OL3Des
         '
         Me.ToolStrip3.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ToolStripButton11})
-        Me.ToolStrip3.Location = New System.Drawing.Point(229, 0)
+        Me.ToolStrip3.Location = New System.Drawing.Point(196, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
         Me.ToolStrip3.Size = New System.Drawing.Size(58, 25)
         Me.ToolStrip3.TabIndex = 12

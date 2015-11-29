@@ -248,3 +248,4 @@ C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.Add
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.FixedDimensions.resources
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.LayoutElements.resources
 C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.ApplicationSettings.resources
+C:\Users\John\Documents\GitHub\OL3Designer\OL3Designer\obj\Debug\OL3Designer.OLBasemapOSM.resources

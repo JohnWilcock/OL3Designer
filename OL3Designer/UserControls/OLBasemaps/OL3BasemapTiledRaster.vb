@@ -18,6 +18,8 @@ Public Class OL3BasemapTiledRaster
     Public finalTileSize As Integer
     Public parentMapList As OL3Maps
 
+    Public overrideEnablable As Boolean = False
+
     Public copiedFromMapID As String = ""
     Public listOfMapIDs As New List(Of String)
 
@@ -47,6 +49,11 @@ Public Class OL3BasemapTiledRaster
     Private Sub TiledRaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         refreshZoomList()
         populateMapList()
+
+        If overrideEnablable = False Then
+            ToolStripButton3.Checked = True
+            ToolStripButton3.Enabled = False
+        End If
     End Sub
 
     Sub populateMapList()
@@ -111,6 +118,11 @@ Public Class OL3BasemapTiledRaster
         ZoomLevels.Add(New zoomLevel)
         ZoomLevels(ZoomLevels.Count - 1).Zoom = ZoomLevels.Count
         ListBox1.Items.Add(ZoomLevels.Count)
+
+        'zoom level has been added, disable "do not override" as structure has changed
+        overrideEnablable = False
+        ToolStripButton3.Checked = True
+        ToolStripButton3.Enabled = False
     End Sub
 
     Sub refreshZoomList()
@@ -231,9 +243,17 @@ Public Class OL3BasemapTiledRaster
     Sub createAllTileLevels(ByVal outputFile As String, ByVal mapNum As Integer, ByVal outName As String)
         outputpath = outputFile 'outputfile is directory
 
+
         'create tiles folder
         If Not Directory.Exists(outputpath & "\" & outName) Then
             System.IO.Directory.CreateDirectory(outputpath & "\" & outName)
+        Else
+            If ToolStripButton3.Checked Then
+                'delete folder
+                System.IO.Directory.Delete(outputpath & "\" & outName, True)
+                'recreate folder
+                System.IO.Directory.CreateDirectory(outputpath & "\" & outName)
+            End If
         End If
 
         'create map folder
@@ -408,7 +428,7 @@ Public Class OL3BasemapTiledRaster
             If File.Exists(listOfAllTiles(t).outputFileName) Then
                 'if file exists and "override" is turned off, do not write image 
                 '(this reduces the proccing time considerably if someone is tweaking the map) 
-                If Not ToolStripButton1.Checked Then
+                If Not ToolStripButton3.Checked Then
                     Continue For
                 End If
 
@@ -467,6 +487,12 @@ Public Class OL3BasemapTiledRaster
             combinedImage.Dispose()
         Next
 
+
+        'tiling has finished,enable "do not override"
+        overrideEnablable = True
+
+        ToolStripButton3.Checked = False
+        ToolStripButton3.Enabled = True
     End Sub
 
     Function getOriginsJSArray() As String
@@ -548,6 +574,9 @@ Public Class OL3BasemapTiledRaster
             GroupBox1.Visible = False
         End If
     End Sub
+
+
+
 
 
 End Class

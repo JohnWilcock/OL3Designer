@@ -24,7 +24,6 @@ Partial Class OL3BasemapTiledRaster
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OL3BasemapTiledRaster))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -82,30 +81,20 @@ Partial Class OL3BasemapTiledRaster
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "New tiled raster background map"
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.LightCoral
-        Me.Label4.Location = New System.Drawing.Point(5, 60)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(54, 65)
-        Me.Label4.TabIndex = 9
-        Me.Label4.Text = "Only 1 " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "zoom " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "level " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "currently " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "supported"
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.LightCoral
-        Me.Label1.Location = New System.Drawing.Point(6, 16)
+        Me.Label1.Location = New System.Drawing.Point(218, 51)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(334, 13)
+        Me.Label1.Size = New System.Drawing.Size(127, 39)
         Me.Label1.TabIndex = 8
-        Me.Label1.Text = "At present,These images MUST be in the same projection as the map"
+        Me.Label1.Text = "At present,These images " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "MUST be in the same " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "projection as the map"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(75, 51)
+        Me.Label3.Location = New System.Drawing.Point(75, 20)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(62, 13)
         Me.Label3.TabIndex = 7
@@ -114,7 +103,7 @@ Partial Class OL3BasemapTiledRaster
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 51)
+        Me.Label2.Location = New System.Drawing.Point(6, 20)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(63, 13)
         Me.Label2.TabIndex = 6
@@ -123,9 +112,9 @@ Partial Class OL3BasemapTiledRaster
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.ToolStripContainer1)
-        Me.Panel1.Location = New System.Drawing.Point(6, 70)
+        Me.Panel1.Location = New System.Drawing.Point(6, 36)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(62, 168)
+        Me.Panel1.Size = New System.Drawing.Size(62, 202)
         Me.Panel1.TabIndex = 3
         '
         'ToolStripContainer1
@@ -133,13 +122,12 @@ Partial Class OL3BasemapTiledRaster
         '
         'ToolStripContainer1.ContentPanel
         '
-        Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.Label4)
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.ListBox1)
-        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(62, 143)
+        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(62, 177)
         Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainer1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainer1.Name = "ToolStripContainer1"
-        Me.ToolStripContainer1.Size = New System.Drawing.Size(62, 168)
+        Me.ToolStripContainer1.Size = New System.Drawing.Size(62, 202)
         Me.ToolStripContainer1.TabIndex = 0
         Me.ToolStripContainer1.Text = "ToolStripContainer1"
         '
@@ -153,7 +141,7 @@ Partial Class OL3BasemapTiledRaster
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(0, 0)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(62, 143)
+        Me.ListBox1.Size = New System.Drawing.Size(62, 177)
         Me.ListBox1.TabIndex = 0
         '
         'ToolStrip1
@@ -177,9 +165,9 @@ Partial Class OL3BasemapTiledRaster
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.ToolStripContainer2)
-        Me.Panel2.Location = New System.Drawing.Point(74, 70)
+        Me.Panel2.Location = New System.Drawing.Point(74, 36)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(121, 168)
+        Me.Panel2.Size = New System.Drawing.Size(121, 202)
         Me.Panel2.TabIndex = 4
         '
         'ToolStripContainer2
@@ -188,11 +176,11 @@ Partial Class OL3BasemapTiledRaster
         'ToolStripContainer2.ContentPanel
         '
         Me.ToolStripContainer2.ContentPanel.Controls.Add(Me.ListBox2)
-        Me.ToolStripContainer2.ContentPanel.Size = New System.Drawing.Size(121, 143)
+        Me.ToolStripContainer2.ContentPanel.Size = New System.Drawing.Size(121, 177)
         Me.ToolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainer2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainer2.Name = "ToolStripContainer2"
-        Me.ToolStripContainer2.Size = New System.Drawing.Size(121, 168)
+        Me.ToolStripContainer2.Size = New System.Drawing.Size(121, 202)
         Me.ToolStripContainer2.TabIndex = 0
         Me.ToolStripContainer2.Text = "ToolStripContainer2"
         '
@@ -206,7 +194,7 @@ Partial Class OL3BasemapTiledRaster
         Me.ListBox2.FormattingEnabled = True
         Me.ListBox2.Location = New System.Drawing.Point(0, 0)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(121, 143)
+        Me.ListBox2.Size = New System.Drawing.Size(121, 177)
         Me.ListBox2.TabIndex = 1
         '
         'ToolStrip2
@@ -230,17 +218,18 @@ Partial Class OL3BasemapTiledRaster
         'Panel3
         '
         Me.Panel3.Controls.Add(Me.PropertyGrid1)
-        Me.Panel3.Location = New System.Drawing.Point(201, 70)
+        Me.Panel3.Location = New System.Drawing.Point(201, 125)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(165, 168)
+        Me.Panel3.Size = New System.Drawing.Size(165, 113)
         Me.Panel3.TabIndex = 5
         '
         'PropertyGrid1
         '
         Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PropertyGrid1.HelpVisible = False
         Me.PropertyGrid1.Location = New System.Drawing.Point(0, 0)
         Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(165, 168)
+        Me.PropertyGrid1.Size = New System.Drawing.Size(165, 113)
         Me.PropertyGrid1.TabIndex = 2
         Me.PropertyGrid1.ToolbarVisible = False
         '
@@ -317,7 +306,6 @@ Partial Class OL3BasemapTiledRaster
         Me.GroupBox1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.ToolStripContainer1.ContentPanel.ResumeLayout(False)
-        Me.ToolStripContainer1.ContentPanel.PerformLayout()
         Me.ToolStripContainer1.TopToolStripPanel.ResumeLayout(False)
         Me.ToolStripContainer1.TopToolStripPanel.PerformLayout()
         Me.ToolStripContainer1.ResumeLayout(False)
@@ -367,6 +355,5 @@ Partial Class OL3BasemapTiledRaster
     Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents ToolStripComboBox1 As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
 
 End Class

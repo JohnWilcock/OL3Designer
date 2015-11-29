@@ -6,7 +6,16 @@
     Public Function getBasemapJS(Optional ByVal outputPath As String = "", Optional ByVal mapNumber As Integer = 0, Optional ByVal outputName As String = "") As String
         Select Case TreeView1.SelectedNode.Text
             Case "OpenStreetMap"
-                Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})});"
+                If Panel1.Controls.Count > 0 Then
+                    Dim OSMControl As OLBasemapOSM = Panel1.Controls(0)
+                    Return OSMControl.getBasemapJS
+                Else
+                    'uninitalised control -> then default will apply, return mapquest roads
+                    Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
+                End If
+
+
+
 
             Case "Image Files"
                 Dim tiledImageControl As OL3BasemapTiledRaster = Panel1.Controls(0)
@@ -41,7 +50,16 @@
 
         Select Case TreeView1.SelectedNode.Text
             Case "OpenStreetMap"
+
+                If Panel1.Controls.Count > 0 Then
+                    If TypeOf (Panel1.Controls(0)) Is OLBasemapOSM Then
+                        Exit Sub
+                    End If
+                End If
+
                 Panel1.Controls.Clear()
+                Panel1.Controls.Add(New OLBasemapOSM())
+
                 If hasLoaded Then parentMapOptions.numberOfZoomLevels = 22
 
             Case "Image Files"
