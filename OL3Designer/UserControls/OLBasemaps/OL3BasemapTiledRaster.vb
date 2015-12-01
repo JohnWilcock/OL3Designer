@@ -579,6 +579,32 @@ Public Class OL3BasemapTiledRaster
 
 
 
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        removeRaster()
+    End Sub
+
+    Sub removeRaster()
+        If ListBox1.SelectedIndex = -1 Or ListBox2.SelectedIndex = -1 Then Exit Sub
+        ZoomLevels(ListBox1.SelectedIndex).Images.RemoveAt(ListBox2.SelectedIndex)
+        ListBox2.Items.RemoveAt(ListBox2.SelectedIndex)
+    End Sub
+
+    Sub removeZoom()
+        If ListBox1.SelectedIndex = -1 Then Exit Sub
+        ZoomLevels.RemoveAt(ListBox1.SelectedIndex)
+
+
+        'reduce number of all indexs above the removed
+        For p As Integer = ListBox1.SelectedIndex To ListBox1.Items.Count - 1
+            ListBox1.Items(p) = CInt(ListBox1.Items(p)) - 1
+        Next
+
+        ListBox1.Items.RemoveAt(ListBox1.SelectedIndex)
+    End Sub
+
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        removeZoom()
+    End Sub
 End Class
 
 

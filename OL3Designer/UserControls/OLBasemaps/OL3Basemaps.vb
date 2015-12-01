@@ -99,6 +99,9 @@
                 Dim ImgFiles As OL3BasemapTiledRaster = Panel1.Controls(0)
                 save.basemapObject = New OL3BasemapsTiledRasterSaveObject(ImgFiles.ZoomLevels)
 
+            Case "OpenStreetMap"
+                Dim OSMBasemaps As OLBasemapOSM = Panel1.Controls(0)
+                save.basemapObject = New OL3BasemapsOSMSaveObject(OSMBasemaps)
         End Select
 
     End Function
@@ -120,6 +123,22 @@
 
             Case "OpenStreetMap"
                 TreeView1.SelectedNode = TreeView1.Nodes(1).Nodes(0)
+                Panel1.Controls.Clear()
+
+                Dim osmSaveObj As OL3BasemapsOSMSaveObject = saveObj.basemapObject
+                Dim osm As New OLBasemapOSM
+                Panel1.Controls.Add(osm)
+
+                On Error Resume Next
+                osm.ListView1.FindItemWithText(osmSaveObj.OSMType).Selected = True
+                On Error GoTo 0
+
+                If osm.ListView1.SelectedItems.Count = 0 Then
+                    If osm.ListView1.Items.Count > 0 Then
+                        osm.ListView1.Items(0).Selected = True
+                    End If
+                End If
+
         End Select
 
     End Sub

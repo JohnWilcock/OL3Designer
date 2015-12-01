@@ -33,6 +33,9 @@ Public Class OL3Des
 
         Dim hf As New HelperFunctions
         hf.createOL3Script()
+
+        TabControl1.TabPages(1).Dispose()
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
@@ -74,7 +77,12 @@ Public Class OL3Des
             Exit Sub
         End If
 
-        maps.createOutputFile(ToolStripTextBox1.Text, maps.getJS(Path.GetFileNameWithoutExtension(ToolStripTextBox1.Text), Path.GetDirectoryName(ToolStripTextBox1.Text)), maps.getHTML)
+        Dim fileCreated As Boolean = maps.createOutputFile(ToolStripTextBox1.Text, maps.getJS(Path.GetFileNameWithoutExtension(ToolStripTextBox1.Text), Path.GetDirectoryName(ToolStripTextBox1.Text)), maps.getHTML)
+
+        'open map
+        If My.Settings.OpenMap And fileCreated Then
+            Process.Start(ToolStripTextBox1.Text)
+        End If
     End Sub
 
 
@@ -218,6 +226,10 @@ Public Class OL3Des
     End Sub
 
 
+    Private Sub ToolStripButton11_Click(sender As Object, e As EventArgs) Handles ToolStripButton11.Click
+        Dim set1 As New ApplicationSettings
+        set1.Show()
+    End Sub
 End Class
 
 

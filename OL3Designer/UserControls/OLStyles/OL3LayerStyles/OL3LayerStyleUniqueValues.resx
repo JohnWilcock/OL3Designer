@@ -129,23 +129,11 @@
   <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="OLStyle.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="OLValue.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Label.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAABcSURBVDhPzYxRCoAwDEN3tt7/PP2NWDrJaoRNYRh4H0uX
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAABcSURBVDhPzYxRCoAwDEN3tt7/PP2NWDrJaoRNYRh4H0uX
         1wB8QpYrjA+Ku6OSp8iUwMwu9gjOT0wVMH1zE/DoiZ8LmDpi+mYQcJQgT5E9gkqeIlLwBlmuIMt50A4j
         RH5TZf96FwAAAABJRU5ErkJggg==
 </value>
@@ -153,7 +141,7 @@
   <data name="Button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGESURBVFhH5ZXNbYQwFIQpJMdUwp0CuG8VFEBD3GkIRcle
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAGESURBVFhH5ZXNbYQwFIQpJMdUwp0CuG8VFEBD3GkIRcle
         +BPgaFAGvbWf+XdyyEijRTZiPs8DbWT+WLsA6rre5TPaDRDH8ar/D8DX5/PFQQDwMNtRFM2Wa8EANBFA
         6lcBNAUHGIbBFEWxhOAaa1RwgK7rTJZlSwiusUYFBZimyVRVtQTQWMMeFBTArp/mGPBCyvXbAWT9+JXX
         2AsKYNePU8s2OAaESp+RCmDXj0AbSH4NV6QC2PXzhPYY7pADoNVPAG0MV+UA+N5+23eNwQGQ9a/5rjE4

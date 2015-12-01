@@ -37,7 +37,12 @@ Public Class OL3LayerList
         Dim layerIndex As Integer = DataGridView1.Rows.Add(newOLLayer)
         DataGridView1.Rows(layerIndex).Cells(0).Value = newOLLayer.layerName
 
-        parentMapList.layout.addLayerToAllKeys(parentMapList.layout.Sp1, mapNumber, layerIndex)
+        'if auto add to keys enabled then add to keys
+        If My.Settings.AddLyrToKey Then
+            parentMapList.layout.addLayerToAllKeys(parentMapList.layout.Sp1, mapNumber, layerIndex)
+        End If
+
+
     End Sub
 
     'places red X and edit pencil in remove column button cell

@@ -5,6 +5,11 @@
     Public UrlTitle As List(Of String)
     Dim croppedImageSize As Integer = 80
 
+    '/15/6219/12958.jpg
+    Dim prevX As Long = 6219 '10
+    Dim prevY As Long = 12958 '22
+    Dim prevZ As Long = 15 '6
+
     Sub New()
 
         ' This call is required by the designer.
@@ -45,15 +50,15 @@
         UrlTitle = New List(Of String)
 
         UrlTitle.Add("MapQuest")
-        UrlList.Add("http://otile1.mqcdn.com/tiles/1.0.0/map/6/10/22.png")
+        UrlList.Add("http://otile1.mqcdn.com/tiles/1.0.0/map/" & prevZ & "/" & prevX & "/" & prevY & ".png")
         UrlTitle.Add("MapQuest Aerial")
-        UrlList.Add("http://otile2.mqcdn.com/tiles/1.0.0/sat/6/10/22.png")
+        UrlList.Add("http://otile2.mqcdn.com/tiles/1.0.0/sat/" & prevZ & "/" & prevX & "/" & prevY & ".png")
         UrlTitle.Add("MapQuest Hybrid")
-        UrlList.Add("http://otile2.mqcdn.com/tiles/1.0.0/hyb/6/10/22.png")
+        UrlList.Add("http://otile2.mqcdn.com/tiles/1.0.0/hyb/" & prevZ & "/" & prevX & "/" & prevY & ".png")
         UrlTitle.Add("Open Steet Map")
-        UrlList.Add("http://a.tile.openstreetmap.org/6/10/22.png")
+        UrlList.Add("http://a.tile.openstreetmap.org/" & prevZ & "/" & prevX & "/" & prevY & ".png")
         UrlTitle.Add("Staman Watercolour")
-        UrlList.Add("https://stamen-tiles-c.a.ssl.fastly.net/watercolor/6/10/22.jpg")
+        UrlList.Add("https://stamen-tiles-c.a.ssl.fastly.net/watercolor/" & prevZ & "/" & prevX & "/" & prevY & ".jpg")
 
 
 
@@ -76,6 +81,7 @@
                 Using grp = Graphics.FromImage(CropImage)
                     grp.DrawImage(OriginalImage, New Rectangle(0, 0, CropRect.Width, CropRect.Height), CropRect, GraphicsUnit.Pixel)
                 End Using
+
                 OSMImageList.Images.Add(CropImage)
 
                 ListView1.Items.Add(UrlTitle(j), j)
@@ -90,5 +96,21 @@
     End Sub
 
 
+
+End Class
+
+<Serializable()> _
+Public Class OL3BasemapsOSMSaveObject
+
+    Sub New(ByVal theControl As OLBasemapOSM)
+        If theControl IsNot Nothing And theControl.ListView1.SelectedItems.Count > 0 Then
+            OSMType = theControl.ListView1.SelectedItems(0).Text
+        Else
+            OSMType = "MapQuest"
+        End If
+
+    End Sub
+
+    Public OSMType As String
 
 End Class

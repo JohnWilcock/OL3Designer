@@ -43,12 +43,12 @@ Partial Class OL3LayerStylePicker
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -173,25 +173,6 @@ Partial Class OL3LayerStylePicker
         Me.DataGridView1.Size = New System.Drawing.Size(118, 274)
         Me.DataGridView1.TabIndex = 1
         '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Style"
-        Me.Column1.Name = "Column1"
-        Me.Column1.Width = 69
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = ""
-        Me.Column2.Name = "Column2"
-        Me.Column2.Text = " "
-        Me.Column2.Width = 23
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = ""
-        Me.Column3.Name = "Column3"
-        Me.Column3.Width = 23
-        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1})
@@ -215,6 +196,25 @@ Partial Class OL3LayerStylePicker
         Me.DataGridViewTextBoxColumn1.HeaderText = "Style"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.Width = 60
+        '
+        'Column1
+        '
+        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Column1.HeaderText = "Style"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = ""
+        Me.Column2.Name = "Column2"
+        Me.Column2.Text = " "
+        Me.Column2.Width = 23
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = ""
+        Me.Column3.Name = "Column3"
+        Me.Column3.Width = 23
         '
         'OL3LayerStylePicker
         '

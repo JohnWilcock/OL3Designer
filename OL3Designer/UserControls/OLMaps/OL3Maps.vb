@@ -209,16 +209,19 @@ Imports System.Runtime.Serialization.Formatters.Binary
 
 
 
-    Sub createOutputFile(ByVal outputPath As String, ByVal theJS As String, ByVal theHTML As String)
+    Function createOutputFile(ByVal outputPath As String, ByVal theJS As String, ByVal theHTML As String) As Boolean
+        createOutputFile = 0
         outputLocation = outputPath
 
 
-
-        If File.Exists(outputPath) Then
-            If MsgBoxResult.Cancel = MsgBox("File exists, overide ?", MsgBoxStyle.OkCancel, "File exists") Then
-                Exit Sub
+        If My.Settings.MapOverwrite Then
+            If File.Exists(outputPath) Then
+                If MsgBoxResult.Cancel = MsgBox("File exists, overide ?", MsgBoxStyle.OkCancel, "File exists") Then
+                    Return 0
+                End If
             End If
         End If
+
 
         'write the external javascript libraries
         Dim helper As New HelperFunctions
@@ -226,8 +229,8 @@ Imports System.Runtime.Serialization.Formatters.Binary
 
         theHTML = "<!doctype html><html style='height: 100%;'><head>" & scriptTags & layout.collapseScript & "</head><body style='height: 100%; width:100%'>" & theHTML & ""
         System.IO.File.WriteAllText(outputPath, theHTML & theJS & "</body></html>" & vbCrLf)
-
-    End Sub
+        Return 1
+    End Function
 
     Function isLayerDuplicated(ByVal layerPath As String, ByVal mapNum As Integer, ByVal layerNum As Integer) As Integer() 'returns lowest number duplicate mapnum & layerNum. -1 if no duplicate found
         'by checking this, the application can divert a layer to the source of a different layer, this avoids duplicating long geoJson strings 

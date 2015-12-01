@@ -26,18 +26,18 @@ Partial Class OL3LayerStyleUniqueValues
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SizeRamps1 = New OL3Designer.SizeRamps()
         Me.OLStyle = New System.Windows.Forms.DataGridViewImageColumn()
         Me.OLValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SizeRamps1 = New OL3Designer.SizeRamps()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -70,35 +70,6 @@ Partial Class OL3LayerStyleUniqueValues
         Me.DataGridView1.Size = New System.Drawing.Size(304, 134)
         Me.DataGridView1.TabIndex = 0
         '
-        'OLStyle
-        '
-        Me.OLStyle.HeaderText = "Style"
-        Me.OLStyle.Name = "OLStyle"
-        Me.OLStyle.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.OLStyle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.OLStyle.Width = 65
-        '
-        'OLValue
-        '
-        Me.OLValue.HeaderText = "Value"
-        Me.OLValue.Name = "OLValue"
-        Me.OLValue.ReadOnly = True
-        Me.OLValue.Width = 80
-        '
-        'Label
-        '
-        Me.Label.HeaderText = "Label"
-        Me.Label.Name = "Label"
-        Me.Label.Width = 80
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = ""
-        Me.Column1.Name = "Column1"
-        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column1.Width = 20
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -126,26 +97,6 @@ Partial Class OL3LayerStyleUniqueValues
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Size"
         '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Column2"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.Width = 80
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Label"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.Width = 80
-        '
-        'SizeRamps1
-        '
-        Me.SizeRamps1.Location = New System.Drawing.Point(186, 45)
-        Me.SizeRamps1.Name = "SizeRamps1"
-        Me.SizeRamps1.Size = New System.Drawing.Size(121, 30)
-        Me.SizeRamps1.TabIndex = 3
-        '
         'Button1
         '
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
@@ -169,6 +120,55 @@ Partial Class OL3LayerStyleUniqueValues
         Me.Button2.Text = "Copy Top Label " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Style To All "
         Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Button2.UseVisualStyleBackColor = True
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Column2"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Width = 80
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Label"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Width = 80
+        '
+        'SizeRamps1
+        '
+        Me.SizeRamps1.Location = New System.Drawing.Point(186, 45)
+        Me.SizeRamps1.Name = "SizeRamps1"
+        Me.SizeRamps1.Size = New System.Drawing.Size(121, 30)
+        Me.SizeRamps1.TabIndex = 3
+        '
+        'OLStyle
+        '
+        Me.OLStyle.HeaderText = "Style"
+        Me.OLStyle.Name = "OLStyle"
+        Me.OLStyle.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.OLStyle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.OLStyle.Width = 65
+        '
+        'OLValue
+        '
+        Me.OLValue.HeaderText = "Value"
+        Me.OLValue.Name = "OLValue"
+        Me.OLValue.ReadOnly = True
+        Me.OLValue.Width = 80
+        '
+        'Label
+        '
+        Me.Label.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Label.HeaderText = "Label"
+        Me.Label.Name = "Label"
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = ""
+        Me.Column1.Name = "Column1"
+        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column1.Width = 20
         '
         'OL3LayerStyleUniqueValues
         '
@@ -199,11 +199,11 @@ Partial Class OL3LayerStyleUniqueValues
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents OLStyle As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents OLValue As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
 
 End Class
