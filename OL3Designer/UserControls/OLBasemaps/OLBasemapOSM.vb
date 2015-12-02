@@ -26,21 +26,26 @@
 
     Function getBasemapJS() As String
 
+        If ListView1.SelectedItems.Count > 0 Then
+            Select Case ListView1.SelectedItems(0).Text
+                Case "MapQuest"
+                    Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
+                Case "MapQuest Aerial"
+                    Return "new ol.layer.Tile({style:'Aerial',source: new ol.source.MapQuest({layer: 'sat'})});"
+                Case "MapQuest Hybrid"
+                    Return "new ol.layer.Tile({style: 'AerialWithLabels', source: new ol.source.MapQuest({layer: 'hyb'})});"
+                Case "Open Steet Map"
+                    Return "new ol.layer.Tile({source: new ol.source.OSM()});"
+                Case "Staman Watercolour"
+                    Return "new ol.layer.Tile({style:'AerialWithLabels',source: new  ol.source.Stamen({layer: 'watercolor'})});"
+                Case Else
+                    Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
+            End Select
 
-        Select Case ListView1.SelectedItems(0).Text
-            Case "MapQuest"
-                Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
-            Case "MapQuest Aerial"
-                Return "new ol.layer.Tile({style:'Aerial',source: new ol.source.MapQuest({layer: 'sat'})});"
-            Case "MapQuest Hybrid"
-                Return "new ol.layer.Tile({style: 'AerialWithLabels', source: new ol.source.MapQuest({layer: 'hyb'})});"
-            Case "Open Steet Map"
-                Return "new ol.layer.Tile({source: new ol.source.OSM()});"
-            Case "Staman Watercolour"
-                Return "new ol.layer.Tile({style:'AerialWithLabels',source: new  ol.source.Stamen({layer: 'watercolor'})});"
-            Case Else
-                Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
-        End Select
+        Else
+            Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
+        End If
+
 
 
     End Function

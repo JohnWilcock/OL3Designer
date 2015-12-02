@@ -177,7 +177,7 @@ Partial Class OL3DesAbout
         Me.Padding = New System.Windows.Forms.Padding(9)
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "OL3DesAbout"
+        Me.Text = "OpenLayer 3 Designer - About"
         Me.TableLayoutPanel.ResumeLayout(False)
         Me.TableLayoutPanel.PerformLayout()
         Me.ResumeLayout(False)

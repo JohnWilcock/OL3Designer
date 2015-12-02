@@ -121,7 +121,7 @@ Public Class OL3Projections
 
         Dim gdal As New GDALImport
         TextBox1.Text = ChosenCoordSystemEPSG
-        TextBox2.Text = gdal.getProj4JSCRS(ChosenCoordSystemWKT)
+        TextBox2.Text = gdal.getProj4JSCRS(ChosenCoordSystemWKT)       
         'theDlg.Label3.Text = ChosenCoordSystem
         'Me.Dispose()
         'Me.Parent.Controls.Remove(Me)
