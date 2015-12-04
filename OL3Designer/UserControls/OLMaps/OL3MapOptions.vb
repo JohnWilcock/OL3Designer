@@ -298,6 +298,7 @@
 
     Function getExtentString() As String
         getExtentString = ""
+        'refreshDefaultExtents()
 
         If Button3.Text = "Coordinates" Then 'if a choice of layers
             If CheckedListBox1.CheckedItems.Count = CheckedListBox1.Items.Count Then
@@ -305,13 +306,16 @@
                 getExtentString = "setMaxExtent(map" & theParentLayerList.mapNumber & ");"
             Else
                 'subset of layers selected
-                getExtentString = "map" & theParentLayerList.mapNumber
+                refreshDefaultExtents()
+
+                getExtentString = "map" & theParentLayerList.mapNumber & ", ["
                 For t As Integer = 0 To CheckedListBox1.Items.Count - 1
                     If CheckedListBox1.GetItemChecked(t) Then
-                        getExtentString = getExtentString & ", map" & theParentLayerList.mapNumber & "_vectorLayer_" & t
+                        'getExtentString = getExtentString & ", map" & theParentLayerList.mapNumber & "_vectorLayer_" & t
+                        getExtentString = getExtentString & t + 1 & ", "
                     End If
                 Next
-                getExtentString = "setMaxExtentByLayer(" & getExtentString & ");"
+                getExtentString = "setMaxExtentByLayer(" & getExtentString.Substring(0, getExtentString.Length - 2) & "]);"
             End If
 
 
@@ -436,6 +440,7 @@
 
 
     Public Sub loadObj(ByVal saveObj As OL3MapOptionsSaveObject)
+
         resetCheckedListBoxs()
 
         OL3Projections1.loadObj(saveObj.mapProjection)

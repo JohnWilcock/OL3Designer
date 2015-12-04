@@ -100,8 +100,13 @@
                 save.basemapObject = New OL3BasemapsTiledRasterSaveObject(ImgFiles.ZoomLevels)
 
             Case "OpenStreetMap"
-                Dim OSMBasemaps As OLBasemapOSM = Panel1.Controls(0)
-                save.basemapObject = New OL3BasemapsOSMSaveObject(OSMBasemaps)
+                If Panel1.Controls.Count > 0 Then
+                    Dim OSMBasemaps As OLBasemapOSM = Panel1.Controls(0)
+                    save.basemapObject = New OL3BasemapsOSMSaveObject(OSMBasemaps)
+                Else
+                    save.basemapObject = New OL3BasemapsOSMSaveObject(New OLBasemapOSM)
+                End If
+
         End Select
 
     End Function

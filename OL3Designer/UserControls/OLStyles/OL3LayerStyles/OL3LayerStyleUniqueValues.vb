@@ -14,7 +14,9 @@ Public Class OL3LayerStyleUniqueValues
     Dim test As String
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+
         refreshUniqueStyles()
+
     End Sub
 
     Sub New(ByVal layerT As String)
@@ -80,7 +82,12 @@ Public Class OL3LayerStyleUniqueValues
 
         'check for sensible amount - as using webrowser controls is slow and clunky it would take hours to load 1000s of styles
         If UVs.Count > 5 Then
-            If MsgBox("There are more than 5 unique values in this field, loading styles for all values many be slow. Continue ?", MsgBoxStyle.OkCancel) = MsgBoxResult.Cancel Then Exit Sub
+            If firstLoaded = False Then
+                Exit Sub
+            Else
+                If MsgBox("There are more than 5 unique values in this field, loading styles for all values many be slow. Continue ?", MsgBoxStyle.OkCancel) = MsgBoxResult.Cancel Then Exit Sub
+            End If
+
         End If
 
         'clear previous
@@ -269,6 +276,7 @@ Public Class OL3LayerStyleUniqueValues
 
 
     Public Sub loadObj(ByVal saveObj As OL3LayerUniqueValuesSaveObject)
+
         firstLoaded = False
         layerPath = saveObj.layerPath
 

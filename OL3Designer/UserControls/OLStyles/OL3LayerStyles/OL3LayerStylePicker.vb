@@ -722,6 +722,8 @@ Public Class OL3LayerStylePicker
                 'for each unique style row
                 For g As Integer = 0 To currentUserControl.DataGridView1.Rows.Count - 1
                     allIfs = allIfs & "if(feature.get('" & currentUserControl.ComboBox1.Text & "') == '" & currentUserControl.DataGridView1.Rows(g).Cells(1).FormattedValue & "'){|"
+                    'allIfs = allIfs & "if(['" & currentUserControl.DataGridView1.Rows(g).Cells(1).FormattedValue & "'].indexOf(feature.get('" & currentUserControl.ComboBox1.Text & "')) >= 0 ){|"
+
                 Next
                 Return allIfs
 
