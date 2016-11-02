@@ -65,7 +65,7 @@ proj4.defs('USER:1999',"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 
 
 
 //**************basemaps******************
-var map1_Basemap = new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})});
+var map1_Basemap = new ol.layer.Tile({source: new ol.source.OSM()});
 
 //**************Layer sources******************
  map1_vectorSource_0a  = new ol.source.Vector({
