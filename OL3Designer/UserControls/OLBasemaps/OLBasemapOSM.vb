@@ -28,22 +28,16 @@
 
         If ListView1.SelectedItems.Count > 0 Then
             Select Case ListView1.SelectedItems(0).Text
-                Case "MapQuest"
-                    Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
-                Case "MapQuest Aerial"
-                    Return "new ol.layer.Tile({style:'Aerial',source: new ol.source.MapQuest({layer: 'sat'})});"
-                Case "MapQuest Hybrid"
-                    Return "new ol.layer.Tile({style: 'AerialWithLabels', source: new ol.source.MapQuest({layer: 'hyb'})});"
                 Case "Open Steet Map"
                     Return "new ol.layer.Tile({source: new ol.source.OSM()});"
                 Case "Staman Watercolour"
                     Return "new ol.layer.Tile({style:'AerialWithLabels',source: new  ol.source.Stamen({layer: 'watercolor'})});"
                 Case Else
-                    Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
+                    Return "new ol.layer.Tile({source: new ol.source.OSM()})"
             End Select
 
         Else
-            Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
+            Return "new ol.layer.Tile({source: new ol.source.OSM()})"
         End If
 
 
@@ -54,12 +48,6 @@
         UrlList = New List(Of String)
         UrlTitle = New List(Of String)
 
-        UrlTitle.Add("MapQuest")
-        UrlList.Add("http://otile1.mqcdn.com/tiles/1.0.0/map/" & prevZ & "/" & prevX & "/" & prevY & ".png")
-        UrlTitle.Add("MapQuest Aerial")
-        UrlList.Add("http://otile2.mqcdn.com/tiles/1.0.0/sat/" & prevZ & "/" & prevX & "/" & prevY & ".png")
-        UrlTitle.Add("MapQuest Hybrid")
-        UrlList.Add("http://otile2.mqcdn.com/tiles/1.0.0/hyb/" & prevZ & "/" & prevX & "/" & prevY & ".png")
         UrlTitle.Add("Open Steet Map")
         UrlList.Add("http://a.tile.openstreetmap.org/" & prevZ & "/" & prevX & "/" & prevY & ".png")
         UrlTitle.Add("Staman Watercolour")
@@ -111,7 +99,7 @@ Public Class OL3BasemapsOSMSaveObject
         If theControl IsNot Nothing And theControl.ListView1.SelectedItems.Count > 0 Then
             OSMType = theControl.ListView1.SelectedItems(0).Text
         Else
-            OSMType = "MapQuest"
+            OSMType = "Open Steet Map"
         End If
 
     End Sub

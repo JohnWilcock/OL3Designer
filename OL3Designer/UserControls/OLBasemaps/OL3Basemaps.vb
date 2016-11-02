@@ -10,8 +10,8 @@
                     Dim OSMControl As OLBasemapOSM = Panel1.Controls(0)
                     Return OSMControl.getBasemapJS
                 Else
-                    'uninitalised control -> then default will apply, return mapquest roads
-                    Return "new ol.layer.Tile({style:'Road',source: new ol.source.MapQuest({layer: 'osm'})})"
+                    'uninitalised control -> then default will apply, return osm
+                    Return "new ol.layer.Tile({source: new ol.source.OSM()})"
                 End If
 
 
